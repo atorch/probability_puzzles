@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:orientation="vertical">
+	<Button android:layout_marginTop="20dp"
+	    style="?android:attr/borderlessButtonStyle"
+		android:text="@string/reset_user_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="resetUserData" />
+    <ListView android:id="@android:id/list"
+		android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+</LinearLayout>
