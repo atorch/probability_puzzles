@@ -2,10 +2,9 @@
 <resources>
 
     <string name="app_name">Probability Puzzles</string>
-    <string name="new_in_this_update">This is version 3.5, released in November 2018 &#8212; now with over eighty-five puzzles. Enjoy!
+    <string name="new_in_this_update">This is version 3.6, released in December 2018 &#8212; now with over eighty-five puzzles (and zero ads). Enjoy!
     \n\nSome of the puzzles in this app will be difficult if you haven\'t studied probability. Need to brush up? Have a look at this <a href="https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/amsbook.mac.pdf">Dartmouth book</a> and these <a href="https://ocw.mit.edu/courses/mathematics/18-440-probability-and-random-variables-spring-2014/lecture-notes/">MIT notes</a>. You could also read through some probability problems at <a href="https://math.stackexchange.com/questions/tagged/probability">math.stackexchange.com</a>.
-    \n\nThis app is full of math puzzles, and uses Mariusz Gromada\'s mXparser version 4.2.0 to translate mathematical expressions to numbers: it\'ll understand .2, 0.2, 20\%, or 1/5. The parser also understands factorials and binomial coefficients: try typing 5!/(3!*2!) or C(5,3) with a capital C for \"5 choose 3.\" You can also type lowercase e for the base of the natural logarithm. Visit <a href="http://mathparser.org">mathparser.org</a> for more information.
-    \n\nFull disclosure: there are ads in this app! They appear when you click on the hint button (except for the intro level). In the spirit of probability puzzles, the ads are random: they appear independently with probability 1/5. If you click on the hint button N times, what\'s the probability that you don\'t see any ads?</string>
+    \n\nThis app is full of math puzzles, and uses Mariusz Gromada\'s mXparser version 4.2.0 to translate mathematical expressions to numbers: it\'ll understand .2, 0.2, 20\%, or 1/5. The parser also understands factorials and binomial coefficients: try typing 5!/(3!*2!) or C(5,3) with a capital C for \"5 choose 3.\" You can also type lowercase e for the base of the natural logarithm. Visit <a href="http://mathparser.org">mathparser.org</a> for more information.</string>
     
     <string name="app_link">Challenge yourself with probability puzzles &#8212; install the app at https://play.google.com/store/apps/details?id=atorch.statspuzzles</string>
 

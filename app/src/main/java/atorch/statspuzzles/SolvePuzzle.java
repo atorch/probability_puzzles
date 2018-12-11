@@ -48,8 +48,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
 import org.mariuszgromada.math.mxparser.*;
 
 public class SolvePuzzle extends AppCompatActivity {
@@ -246,8 +244,6 @@ public class SolvePuzzle extends AppCompatActivity {
 
     public static class SolvePuzzleFragment extends Fragment implements OnClickListener {
 
-        private InterstitialAd mInterstitialAd;
-
         private int level;
         private int puzzleIndex;
         private int nPuzzles;
@@ -258,8 +254,6 @@ public class SolvePuzzle extends AppCompatActivity {
     	private String answer;
     	private String imageString;
     	private ViewPager mViewPager;
-
-    	private int randomIntForAdDisplay;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -277,21 +271,6 @@ public class SolvePuzzle extends AppCompatActivity {
 			} else {
             	imageString = "";
 			}
-
-            randomIntForAdDisplay = random.nextInt(5);  // Uniform on {0, 1, 2, 3, 4}
-            mInterstitialAd = new InterstitialAd(getContext());
-
-            // Show ads only on certain levels, and with low probability
-            if (level >= 0 && randomIntForAdDisplay == 0) {
-                if (level == 2) {
-                    mInterstitialAd.setAdUnitId("ca-app-pub-9812324290382523/3765031252");
-                } else if (level == 1) {
-                    mInterstitialAd.setAdUnitId("ca-app-pub-9812324290382523/3601379726");
-                } else {
-                    mInterstitialAd.setAdUnitId("ca-app-pub-9812324290382523/3181011008");
-                }
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-            }
 
             TextView description = (TextView) rootView.findViewById(R.id.puzzleDescription);
             if(puzzleIndex == 0 && level >= 0) {
@@ -312,10 +291,7 @@ public class SolvePuzzle extends AppCompatActivity {
     	    hintButton.setOnClickListener(new OnClickListener() {
     	    	@Override
                 public void onClick(View unused) {
-    	    	    // Show ads before hints, but randomly and not on intro level
-                    if (mInterstitialAd.isLoaded()) {
-                        mInterstitialAd.show();
-                    }
+
     	    		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     	            builder.setMessage(hint);
     	            builder.setCancelable(true);
@@ -328,6 +304,7 @@ public class SolvePuzzle extends AppCompatActivity {
     	            );
     	            AlertDialog alert = builder.create();
     	            alert.show();
+
     	    	}
     	    });
 
