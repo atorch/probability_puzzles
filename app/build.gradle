@@ -20,5 +20,4 @@ android {
 dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation files('libs/mXparser-v.4.2.0-jdk.1.7.jar')
-    implementation 'com.google.android.gms:play-services-ads:15.0.0'
 }
