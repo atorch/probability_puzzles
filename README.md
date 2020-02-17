@@ -9,3 +9,4 @@ TODO
 [ ] Update versionName and versionCode
 [ ] Add link to github repo
 [ ] A/B test app store icon
+[ ] Add/edit ic_launcher icon
