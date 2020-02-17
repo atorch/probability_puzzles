@@ -1,4 +1,4 @@
-package com.example.probability_puzzles_2;
+package atorch.statspuzzles;
 
 import android.app.AlertDialog;
 import android.content.Context;
