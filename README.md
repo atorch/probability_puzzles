@@ -8,3 +8,4 @@ TODO
 [ ] Share button
 [ ] Update build number
 [ ] Add link to github repo
+[ ] A/B test app store icon
