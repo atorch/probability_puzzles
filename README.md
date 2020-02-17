@@ -6,6 +6,6 @@ TODO
 [ ] Add app name on horizontal bar in puzzle selection
 [ ] Add back arrow to get back to main activity when solving puzzles
 [ ] Share button
-[ ] Update build number
+[ ] Update versionName and versionCode
 [ ] Add link to github repo
 [ ] A/B test app store icon
