@@ -2,7 +2,6 @@
 
 TODO
 
-[ ] Change color from purple to black
 [ ] Share button
 [ ] Update versionName and versionCode
 [ ] Add link to github repo
