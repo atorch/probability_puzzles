@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -34,7 +37,7 @@ import org.mariuszgromada.math.mxparser.*;
 
 public class SolvePuzzle extends AppCompatActivity {
     // Following example at https://developer.android.com/training/sharing/shareaction.html
-    // private ShareActionProvider mShareActionProvider;
+    private ShareActionProvider mShareActionProvider;
 
     public final static String N_PUZZLES = "atorch.statspuzzles.N_PUZZLES";
     public final static String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
@@ -110,8 +113,8 @@ public class SolvePuzzle extends AppCompatActivity {
                 hints);
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mAppSectionsPagerAdapter);
-        /*
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrollStateChanged(int arg0) {
             }
             @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
@@ -120,7 +123,7 @@ public class SolvePuzzle extends AppCompatActivity {
                 callSetShareIntent(puzzles[puzzleIndex]);
             }
         });
-                 */
+
         mViewPager.setCurrentItem(indexFirstUnsolvedPuzzle());
     }
 
@@ -134,7 +137,6 @@ public class SolvePuzzle extends AppCompatActivity {
         return puzzles.length - 1;  // Everything solved, return last index
     }
 
-    /*
     private void callSetShareIntent(String puzzleStatement) {
         String extraText = puzzleStatement + "\n\n" + getString(R.string.app_link);
         Intent shareIntent = new Intent();
@@ -142,7 +144,7 @@ public class SolvePuzzle extends AppCompatActivity {
         shareIntent.putExtra(Intent.EXTRA_TEXT, extraText);
         shareIntent.setType("text/plain");
         setShareIntent(shareIntent);
-    }*/
+    }
 
     /*
     @Override
@@ -155,7 +157,6 @@ public class SolvePuzzle extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }*/
 
-    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.solve_puzzle, menu);
@@ -172,15 +173,12 @@ public class SolvePuzzle extends AppCompatActivity {
         return true;  // Return true to display menu
 
     }
-    */
 
-    /*
     private void setShareIntent(Intent shareIntent) {
         if (mShareActionProvider != null) {
             mShareActionProvider.setShareIntent(shareIntent);  // Should be called whenever new fragment is displayed
         }
     }
-     */
 
     public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
