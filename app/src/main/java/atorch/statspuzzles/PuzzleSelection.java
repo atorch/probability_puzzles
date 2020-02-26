@@ -37,6 +37,7 @@ public class PuzzleSelection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_puzzle_selection);
         updateCounter();
+        AppRater.app_launched(this);
     }
 
     @Override

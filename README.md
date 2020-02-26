@@ -2,7 +2,6 @@
 
 TODO
 
-[ ] Share button
 [ ] Update versionName and versionCode
 [ ] Add link to github repo
 [ ] A/B test app store icon
