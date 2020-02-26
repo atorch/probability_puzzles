@@ -15,11 +15,13 @@
             android:theme="@style/AppTheme.ActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SolvePuzzle" android:parentActivityName="atorch.statspuzzles.PuzzleSelection"/>
+        <activity
+            android:name=".SolvePuzzle"
+            android:label="@string/title_activity_solve_puzzle"
+            android:parentActivityName="atorch.statspuzzles.PuzzleSelection"/>
     </application>
 
 </manifest>
