@@ -26,7 +26,6 @@ import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.math.BigDecimal;
@@ -145,17 +144,6 @@ public class SolvePuzzle extends AppCompatActivity {
         shareIntent.setType("text/plain");
         setShareIntent(shareIntent);
     }
-
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -300,8 +288,6 @@ public class SolvePuzzle extends AppCompatActivity {
 
                 }
             });
-
-            // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
             puzzleStatement.setText(puzzle);
             Button button = (Button) rootView.findViewById(R.id.submit_answer);
