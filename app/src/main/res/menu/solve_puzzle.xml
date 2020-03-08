@@ -1,12 +1,7 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:statspuzzlesapp="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="atorch.statspuzzles.SolvePuzzle" >
-    
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/menu_item_share"
-        android:title="@string/action_share"
-        statspuzzlesapp:showAsAction="ifRoom"
-        statspuzzlesapp:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
-
+        android:title="@string/action_share" />
 </menu>

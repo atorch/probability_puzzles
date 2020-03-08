@@ -1,13 +1,15 @@
 package atorch.statspuzzles;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 
+import androidx.appcompat.app.AlertDialog;
+
 public class AppRater {
+
     private final static String APP_TITLE = "Probability Puzzles";
     private final static String APP_PACKAGE_NAME = "atorch.statspuzzles";
 
@@ -38,7 +40,7 @@ public class AppRater {
             int solved2 = appData.getInt("solved_2", 0);
             int solvedTotal = solved0 + solved1 + solved2;
             if (System.currentTimeMillis() >= minimumCurrentTime &&
-                solvedTotal >= PUZZLES_SOLVED_UNTIL_PROMPT) {
+                    solvedTotal >= PUZZLES_SOLVED_UNTIL_PROMPT) {
                 datePreviousPrompt = System.currentTimeMillis();
                 editor.putLong("date_previous_prompt", datePreviousPrompt);
                 showRateDialog(mContext, editor);
