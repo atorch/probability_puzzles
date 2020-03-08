@@ -8,7 +8,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <string name="app_name">Probability Puzzles</string>
-    <string name="new_in_this_update">This is version 3.7, released in February 2020 &#8212; now with over eighty-five puzzles (and zero ads). Enjoy!
+    <string name="new_in_this_update">This is version 3.7, released in February 2020 &#8212; now with over ninety puzzles (and zero ads). Enjoy!
     \n\nSome of the puzzles in this app will be difficult if you haven\'t studied probability. Need to brush up? Have a look at this\u00A0<a href="https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/amsbook.mac.pdf">Dartmouth book</a> and these\u00A0<a href="https://ocw.mit.edu/courses/mathematics/18-440-probability-and-random-variables-spring-2014/lecture-notes/">MIT notes</a>. You could also read through some probability problems at\u00A0<a href="https://math.stackexchange.com/questions/tagged/probability">math.stackexchange.com</a>. If you prefer to watch lectures on youtube, try\u00A0<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60hI9ATjSFgLZpbNJ7myAg6">these</a> or\u00A0<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe">these</a>.
     \n\nThis app is full of math puzzles, and uses Mariusz Gromada\'s mXparser version 4.2.0 to translate mathematical expressions to numbers: it\'ll understand .2, 0.2, 20\%, or 1/5. The parser also understands factorials and binomial coefficients: try typing 5!/(3!*2!) or\u00A0<a href="https://en.wikipedia.org/wiki/Binomial_coefficient">C(5,3)</a> with a capital C for \"5 choose 3.\" You can also type lowercase e for the base of the natural logarithm. Visit\u00A0<a href="http://mathparser.org">mathparser.org</a> for more information.
     \n\nIf you\'d like to contribute to the app (or peek at solutions), have a look at its\u00A0<a href="https://github.com/atorch/probability_puzzles">github repo</a>!</string>
@@ -220,6 +220,11 @@
         <item>clock_noon</item>
         <item></item>
         <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>seven_lines</item>
     </string-array>
     <string-array name="hints_0">
         <item>The answer is (1/2)^2 or 1/4. When events A and B are independent, Pr[A and B] = Pr[A]*Pr[B]. In this case, A denotes a head on the first toss, and B a head on the second; all you have to do is multiply their probabilities. Intuitively, independence means that the outcome of one event does not affect the probability of the other: no matter what happens on the first toss, the second still has a fifty-fifty chance of heads.</item>
@@ -255,6 +260,7 @@
         <item>The answer is easily expressed using factorials. One approach is to start with 12! &#8212; i.e. the number of ways to order 12 people &#8212; and then divide by the number of ways people can be reordered within teams. Another way is to start with C(12, 4), i.e. the number of ways people can be assigned to team A, and then multiply by the number of ways the remaining 8 people can be assigned to teams B and C.</item>
         <item>There are 6! ways to arrange 6 people in a line, and there are 10 ways for person A and person B to be next to each other. For each of those 10 configurations where A and B are neighbors, how many ways can you arrange the remaining 4 people?</item>
         <item>Coming up with this strategy is tricky, but, now that you know it, it should be easy to find the group\'s probability of winning. Interestingly, the probability is much larger than 50\%. The group will lose if all hats are white (because they will each observe two white hats and guess that their own is black); similarly, the group will lose if all hats are black. The probability that all hats are the same color is 2*(1/2)^3 = 1/4. Does the team guess correctly in all other cases? As a bonus, think about whether there exists any superior strategy (i.e. one with a higher probability of winning).</item>
+        <item>Since no two lines are parallel, any choice of three lines will produce a triangle. How many ways are there to choose a subset of three objects from a set of seven? The answer can be expressed as \"N choose K\" or C(N,K). Have a look at https://mathworld.wolfram.com/BinomialCoefficient.html if you haven\'t seen binomial coefficients before, and remember that you can type expressions like C(5,3) and the app\'s math parser will understand them. For a detailed answer to a similar puzzle, see https://www.nytimes.com/2019/08/21/science/math-equation-triangles-pemdas.html -- but try solving this one yourself first!</item>
     </string-array>
     <string-array name="puzzles_0">
         <item>Julius Caesar tosses two fair coins.
@@ -340,6 +346,7 @@
         <item>Three friends are playing a game involving black and white hats. At the beginning of the game, each person is randomly assigned a hat color, black or white, independently from everyone else and with 50-50 probability.
         \n\nImagine that people cannot see what\'s on their own head, and only observe the colors of their two friends\' hats. No communication is allowed. The players must simultaneously guess the color of their own hat (or decline to guess). The entire group wins a prize if at least one of them guesses correctly and nobody guesses incorrectly.
         \n\nSuppose the team adopts a \"contrarian\" strategy: anyone who observes two white hats will guess that their own hat is black; anyone who observes two black hats will guess that their own hat is white; and anyone who observes anything else will decline to guess. At the beginning of the game (before the hat colors are assigned), what is the probability that the group wins the prize?</item>
+        <item>How many different triangles can you form from the seven lines below? Note that none of the lines are parallel.</item>
     </string-array>
     <string-array name="answers_0">
         <item>1/4</item>
@@ -375,6 +382,7 @@
         <item>12!/(4!*4!*4!)</item>
         <item>6! - 10*4!</item>
         <item>3/4</item>
+        <item>C(7,3)</item>
     </string-array>
 
     <string-array name="images_1">
@@ -420,7 +428,7 @@
         <item>Notice that there are three ways for exactly one of your three children to be a girl: she could be born first, second or third. If you\'re still stuck, try reading up on the binomial distribution.</item>
         <item>This is another Bayes\' rule question: Pr[A | B] = Pr[A and B] / Pr[B], where Pr[A | B] is the probability of A given B. Try thinking in terms of population frequencies: how many people (on average) will test positive? Of those, how many will have the disease?</item>
         <item>This question combines Bayes\' rule and a simple application of the binomial distribution. You\'ve seen both in earlier puzzles!</item>
-        <item>The trick here is to use linearity of expectation: for any random variables X and Y, E[X + Y] = E[X] + E[Y]. The operator E denotes expectation, which is essentially an average. Can you express the answer to this problem (the total waiting time) as a sum? If you\'re still stuck, here is a big hint: this puzzle is the classic coupon collector\'s problem; see\u00A0<a href="http://mat.uab.cat/matmat/PDFv2014/v2014n02.pdf">here</a> or\u00A0<a href="https://en.wikipedia.org/wiki/Coupon_collector%27s_problem">here</a> for a detailed explanation.</item>
+        <item>The trick here is to use linearity of expectation: for any random variables X and Y, E[X + Y] = E[X] + E[Y]. The operator E denotes expectation, which is essentially an average. Can you express the answer to this problem (the total waiting time) as a sum? If you\'re still stuck, here is a big hint: this puzzle is the classic coupon collector\'s problem. See http://mat.uab.cat/matmat/PDFv2014/v2014n02.pdf or https://en.wikipedia.org/wiki/Coupon_collector%27s_problem for a detailed explanation.</item>
         <item>Here\'s a helpful fact about the binomial distribution: given n independent trials, each with success probability p, the probability of exactly k successes is: (n choose k) * p^k * (1-p)^(n-k). The (n choose k) term is the number of subsets of size k that can be created from a set of size n. If that sounds like complete gibberish, try reading up on the binomial distribution.</item>
         <item>Try solving the reduced version of the problem in which it\'s A\'s turn to shoot but B is already dead. Notice that the problem restarts whenever A and C both miss (i.e. whenever it\'s A\'s turn to shoot).</item>
         <item>You can express the answer to this problem in terms of subproblems in which the grasshopper has fewer steps to take.</item>
