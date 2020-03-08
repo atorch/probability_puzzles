@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -273,8 +276,11 @@ public class SolvePuzzle extends AppCompatActivity {
                 @Override
                 public void onClick(View unused) {
 
+                    final SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
+                    Linkify.addLinks(hintSpannable, Linkify.ALL);
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(hint);
+                    builder.setMessage(hintSpannable);
                     builder.setCancelable(true);
                     builder.setPositiveButton("Back to Puzzle",
                             new DialogInterface.OnClickListener() {
@@ -285,6 +291,9 @@ public class SolvePuzzle extends AppCompatActivity {
                     );
                     AlertDialog alert = builder.create();
                     alert.show();
+
+                    // See https://stackoverflow.com/a/3367392/610668
+                    ((TextView)alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
 
                 }
             });
