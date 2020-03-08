@@ -209,7 +209,7 @@ public class SolvePuzzle extends AppCompatActivity {
             args.putString(PUZZLE, puzzles[puzzleIndex]);
             args.putString(HINT, hints[puzzleIndex]);
             args.putString(ANSWER, answers[puzzleIndex]);
-            if(puzzleIndex < images.length - 1) {
+            if(puzzleIndex < images.length) {
                 args.putString(IMAGE_STRING, images[puzzleIndex]);
             }
             if(level >= 0) {
