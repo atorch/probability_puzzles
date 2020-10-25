@@ -420,7 +420,7 @@
         <item>vote_counting_easy_small</item>
     </string-array>
     <string-array name="hints_1">
-        <item>One approach is to sum an infinite sequence. Another is to notice that the problem either ends or restarts after the first toss: this lets you express the answer recursively, meaning you can set up an equation where the answer appears on both sides.</item>
+        <item>One approach is to sum an infinite sequence. Another is to notice that the problem either ends or restarts after the first toss: this lets you express the answer recursively, meaning you can set up an equation where the answer appears on both sides. See https://math.stackexchange.com/questions/605083/calculate-expectation-of-a-geometric-random-variable for a solution to a similar problem.</item>
         <item>For any event A, Pr[A] = 1 - Pr[!A] where !A means "not A", i.e. the complement of A. Sometimes it\'s easier to calculate Pr[!A], which in this case is the probability that all three birthdays are different.</item>
         <item>Solve the previous puzzle first, and express the answer as a function of the number of people in the group. You\'ll need a calculator for this one.</item>
         <item>Try conditioning on the outcome of the first (or first two) tosses. Notice that the problem resets whenever you toss a tail: this allows you to express the answer recursively, i.e. you can set up an equation in which the solution appears on both sides.</item>
