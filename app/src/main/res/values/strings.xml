@@ -418,6 +418,8 @@
         <item></item>
         <item></item>
         <item>vote_counting_easy_small</item>
+        <item></item>
+        <item>circle_and_triangle_alpha</item>
     </string-array>
     <string-array name="hints_1">
         <item>One approach is to sum an infinite sequence. Another is to notice that the problem either ends or restarts after the first toss: this lets you express the answer recursively, meaning you can set up an equation where the answer appears on both sides. See https://math.stackexchange.com/questions/605083/calculate-expectation-of-a-geometric-random-variable for a solution to a similar problem.</item>
