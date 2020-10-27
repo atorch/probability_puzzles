@@ -17,3 +17,5 @@ and thank you to everyone on stackoverflow who [helped me](https://stackoverflow
 [figure out](https://stackoverflow.com/questions/27443006/setshareintent-when-a-new-fragment-is-displayed)
 [how to](https://stackoverflow.com/questions/26495084/how-do-i-add-an-action-bar-to-a-swipe-view)
 write an Android app!
+
+The app has been rated 6,594 times as of October 2020, and has around 26,000 active users.
