@@ -66,7 +66,14 @@
         <item>Level: knifflig\u00A0– das war mutig, diese Schaltfläche zu drücken.</item>
     </string-array>
 
-    <string name="puzzle">Rätsel</string>
+    <string name="puzzle">Rätsel %d</string>
+    <string name="approximate_result">≈ %s</string>
+    <string name="main_menu_button">Hauptmenü</string>
+    <string name="stay_here_button">Hier bleiben</string>
+    <string name="button_back_to_puzzle">Zurück zum Rätsel</string>
+    <string name="next_puzzle_button">Nächstes Rätsel</string>
+    <string name="okay_button">Okay</string>
+    <string name="ok_button">OK</string>
 
     <string name="askUserToRate">Bitte bewerte die App</string>
     <string name="counter">gelöst</string>

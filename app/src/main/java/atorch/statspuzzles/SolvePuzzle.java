@@ -266,7 +266,7 @@ public class SolvePuzzle extends AppCompatActivity {
             }
             // Always show puzzle number
             TextView puzzleNumber = (TextView) rootView.findViewById(R.id.puzzleNumber);
-            puzzleNumber.setText(getString(R.string.puzzle) + " " + String.valueOf(puzzleIndex + 1));
+            puzzleNumber.setText(getString(R.string.puzzle, puzzleIndex + 1));
 
             TextView puzzleStatement = (TextView) rootView.findViewById(R.id.puzzleStatement);
 
@@ -282,7 +282,7 @@ public class SolvePuzzle extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                     builder.setMessage(hintSpannable);
                     builder.setCancelable(true);
-                    builder.setPositiveButton("Back to Puzzle",
+                    builder.setPositiveButton(R.string.button_back_to_puzzle,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
@@ -317,7 +317,7 @@ public class SolvePuzzle extends AppCompatActivity {
                 // Show approx equal for correct answer
                 TextView answerApprox = (TextView)rootView.findViewById(R.id.answerApprox);
                 BigDecimal bd = new BigDecimal(correctAnswer).setScale(roundingScale, RoundingMode.HALF_EVEN);
-                answerApprox.setText(" ≈ " + bd.toString());
+                answerApprox.setText(getString(R.string.approximate_result, bd));
             }
 
             // Add image below puzzle statement
@@ -347,7 +347,7 @@ public class SolvePuzzle extends AppCompatActivity {
             }
             if (!Double.isNaN(answer) && !Double.isInfinite(answer)) {
                 BigDecimal bd = new BigDecimal(answer).setScale(roundingScale, RoundingMode.HALF_EVEN);  // Number of digits after decimal point
-                answerApprox.setText(" ≈ " + bd.toString());
+                answerApprox.setText(getString(R.string.approximate_result, bd));
             } else {
                 // Empty answerApprox when answer doesn't parse or is NaN or is infinite
                 answerApprox.setText("");
@@ -368,7 +368,7 @@ public class SolvePuzzle extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.trouble_parsing_answer));
             builder.setCancelable(true);
-            builder.setPositiveButton("Okay",
+            builder.setPositiveButton(R.string.okay_button,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
@@ -421,7 +421,7 @@ public class SolvePuzzle extends AppCompatActivity {
             if(!solvedAllPuzzles) {
                 builder.setMessage(congratulations);
                 builder.setCancelable(true);
-                builder.setPositiveButton("Next Puzzle",
+                builder.setPositiveButton(R.string.next_puzzle_button,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 int next_puzzleIndex = puzzleIndex + 1;
@@ -433,7 +433,7 @@ public class SolvePuzzle extends AppCompatActivity {
                             }
                         }
                 );
-                builder.setNegativeButton("Main Menu",
+                builder.setNegativeButton(R.string.main_menu_button,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(getActivity(), PuzzleSelection.class);
@@ -448,7 +448,7 @@ public class SolvePuzzle extends AppCompatActivity {
                     builder.setMessage(getString(R.string.solved_all_intro));
                 }
                 builder.setCancelable(true);
-                builder.setPositiveButton("Main Menu",
+                builder.setPositiveButton(R.string.main_menu_button,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(getActivity(), PuzzleSelection.class);
@@ -456,7 +456,7 @@ public class SolvePuzzle extends AppCompatActivity {
                             }
                         }
                 );
-                builder.setNegativeButton("Stay Here",
+                builder.setNegativeButton(R.string.stay_here_button,
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
@@ -479,7 +479,7 @@ public class SolvePuzzle extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.accuracy));
             builder.setCancelable(true);
-            builder.setPositiveButton("OK",
+            builder.setPositiveButton(R.string.ok_button,
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             dialog.cancel();
