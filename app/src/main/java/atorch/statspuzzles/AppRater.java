@@ -14,7 +14,7 @@ public class AppRater {
     private final static String APP_PACKAGE_NAME = "atorch.statspuzzles";
 
     private final static double HOURS_BETWEEN_PROMPT = 25;  // Avoid spamming people with review prompts
-    private final static int LAUNCHES_UNTIL_PROMPT = 3;
+    private final static int LAUNCHES_UNTIL_PROMPT = 3;  // Let people open the app a few times before asking
     private final static int PUZZLES_SOLVED_UNTIL_PROMPT = 5;  // Want to prompt engaged users
 
     public static void app_launched(Context mContext) {
@@ -52,6 +52,7 @@ public class AppRater {
 
     public static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        // TODO These strings should move to values/strings.xml so that they can be translated into German, French, ...
         builder.setTitle("Rate " + APP_TITLE);
         builder.setMessage("Enjoying " + APP_TITLE + "? Please take a moment to rate the app in the Play Store. Every review counts. Thank you for helping out!");
         builder.setPositiveButton("Rate It!",
