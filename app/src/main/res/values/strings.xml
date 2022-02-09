@@ -69,7 +69,14 @@
         <item>Level: outrageous &#8212; clicking that third button was a bold move.</item>
     </string-array>
 
-    <string name="puzzle">Puzzle</string>
+    <string name="puzzle">Puzzle %d</string>
+    <string name="approximate_result">≈ %s</string>
+    <string name="main_menu_button">Main Menu</string>
+    <string name="stay_here_button">Stay Here</string>
+    <string name="button_back_to_puzzle">Back to Puzzle</string>
+    <string name="next_puzzle_button">Next Puzzle</string>
+    <string name="okay_button">Okay</string>
+    <string name="ok_button">OK</string>
 
     <string name="askUserToRate">askUserToRate</string>
     <string name="counter">solved</string>
