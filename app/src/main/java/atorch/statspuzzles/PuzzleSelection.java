@@ -48,6 +48,9 @@ public class PuzzleSelection extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
         Resources res = getResources();
 
+        // These strings need to be the same in all translations (they are not user-facing,
+        // and keeping them identical ensures that the counter values remain correct
+        // when a user switches languages after solving a puzzle)
         int countHint = sharedPref.getInt(getString(R.string.counter_intro), 0);
         int count0 = sharedPref.getInt(getString(R.string.counter_0), 0);
         int count1 = sharedPref.getInt(getString(R.string.counter_1), 0);
