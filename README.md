@@ -15,5 +15,8 @@ and thank you to everyone on stackoverflow who [helped me](https://stackoverflow
 [how to](https://stackoverflow.com/questions/26495084/how-do-i-add-an-action-bar-to-a-swipe-view)
 write an Android app!
 
+Thank you [Roland Illig](https://github.com/rillig)
+for [translating the app into German](app/src/main/res/values-de/strings.xml)!
+
 I first released this app in July 2014.
 The app has been rated 6,594 times as of October 2020, and has around 26,000 active users.
