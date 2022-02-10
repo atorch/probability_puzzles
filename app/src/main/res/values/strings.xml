@@ -1,12 +1,4 @@
 <resources>
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
     <string name="app_name">Probability Puzzles</string>
     <string name="new_in_this_update">This is version 3.8, released in October 2020 &#8212; now with over ninety puzzles (and zero ads). Enjoy!
     \n\nSome of the puzzles in this app will be difficult if you haven\'t studied probability. Need to brush up? Have a look at this\u00A0<a href="https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/amsbook.mac.pdf">Dartmouth book</a> and these\u00A0<a href="https://ocw.mit.edu/courses/mathematics/18-440-probability-and-random-variables-spring-2014/lecture-notes/">MIT notes</a>. You could also read through some probability problems at\u00A0<a href="https://math.stackexchange.com/questions/tagged/probability">math.stackexchange.com</a>. If you prefer to watch lectures on youtube, try\u00A0<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60hI9ATjSFgLZpbNJ7myAg6">these</a> or\u00A0<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe">these</a>.
@@ -78,8 +70,8 @@
     <string name="okay_button">Okay</string>
     <string name="ok_button">OK</string>
 
-    <string name="askUserToRate">askUserToRate</string>
     <string name="counter">solved</string>
+
     <string name="counter_intro">solved_intro</string>
     <string name="counter_0">solved_0</string>
     <string name="counter_1">solved_1</string>
