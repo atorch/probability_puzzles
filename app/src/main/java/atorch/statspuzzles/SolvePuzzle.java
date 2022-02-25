@@ -390,16 +390,16 @@ public class SolvePuzzle extends AppCompatActivity {
 
             String counter_key, congratulations_first;
             if (level == 2) {
-                counter_key = getString(R.string.counter_2);
+                counter_key = "solved_2";
                 congratulations_first = getString(R.string.congratulations_first_2);
             } else if (level == 1) {
-                counter_key = getString(R.string.counter_1);
+                counter_key = "solved_1";
                 congratulations_first = getString(R.string.congratulations_first_1);
             } else if (level == 0){
-                counter_key = getString(R.string.counter_0);
+                counter_key = "solved_0";
                 congratulations_first = getString(R.string.congratulations_first_0);
             } else {
-                counter_key = getString(R.string.counter_intro);
+                counter_key = "solved_intro";
                 congratulations_first = getString(R.string.congratulations_first_intro);
             }
             int puzzles_solved = preferences.getInt(counter_key, 0);

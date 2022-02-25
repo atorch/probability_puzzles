@@ -70,12 +70,7 @@
     <string name="okay_button">Okay</string>
     <string name="ok_button">OK</string>
 
-    <string name="counter">solved</string>
-
-    <string name="counter_intro">solved_intro</string>
-    <string name="counter_0">solved_0</string>
-    <string name="counter_1">solved_1</string>
-    <string name="counter_2">solved_2</string>
+    <string name="solved">solved %d / %d</string>
 
     <string name="action_share">Share</string>
     <string name="action_settings">Settings</string>
