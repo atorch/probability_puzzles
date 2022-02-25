@@ -85,6 +85,12 @@
 
     <string name="trouble_parsing_answer">I wasn\'t able to parse your answer (i.e. to translate it to a number). Please try writing it another way, using + and - for addition and subtraction, * and / for multiplication and division, and ^ for exponentiation. Use the digits 0 through 9, possibly with ( and ) as parentheses. Example valid answers are 3/(6*2) and (1/2)^3. Use dots for decimals, e.g. .2 is the same as 1/5 (or as 0.20 or 20\%).</string>
 
+    <string name="apprater_title">Rate Probability Puzzles</string>
+    <string name="apprater_message">Enjoying Probability Puzzles? Please take a moment to rate the app in the Play Store. Every review counts. Thank you for helping out!</string>
+    <string name="apprater_rate_button">Rate It!</string>
+    <string name="apprater_later_button">Maybe Later</string>
+    <string name="apprater_never_button">Never</string>
+
     <string-array name="toasts_for_incorrect_answers">
         <item>Sorry, I don\'t think that\'s correct. Please keep trying!</item>
         <item>I don\'t think that\'s right. Keep trying!</item>

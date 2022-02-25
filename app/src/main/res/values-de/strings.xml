@@ -82,6 +82,12 @@
 
     <string name="trouble_parsing_answer">Ich konnte deine Antwort nicht verstehen (also in eine Zahl umrechnen). Versuch bitte die Antwort anders zu schreiben. Du kannst + und - für Addition und Subtraktion benutzen, * und / für Multiplikation und Division, ^ für Potenzen. Benutze die Ziffern 0 bis 9, und wenn nötig ( und ) als Klammern. Gültige Antworten sind zum Beispiel 3/(6*2) oder (1/2)^3. Benutze einen Punkt für Dezimalzahlen (Komma geht nicht), also 0.2 für 1/5.</string>
 
+    <string name="apprater_title">Wahrscheinlichkeitsrätsel bewerten</string>
+    <string name="apprater_message">Gefällt dir die App? Dann lass doch eine Bewertung im Play Store da. Jede Bewertung zählt. Danke für deine Mithilfe!</string>
+    <string name="apprater_rate_button">Bewerten!</string>
+    <string name="apprater_later_button">Später</string>
+    <string name="apprater_never_button">Nie</string>
+
     <string-array name="toasts_for_incorrect_answers">
         <item>Sorry, das sieht nicht richtig aus. Versuchs noch einmal!</item>
         <item>Ich glaube nicht, dass das richtig ist. Versuch’s nochmal!</item>

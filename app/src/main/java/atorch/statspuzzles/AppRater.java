@@ -10,9 +10,6 @@ import androidx.appcompat.app.AlertDialog;
 
 public class AppRater {
 
-    private final static String APP_TITLE = "Probability Puzzles";
-    private final static String APP_PACKAGE_NAME = "atorch.statspuzzles";
-
     private final static double HOURS_BETWEEN_PROMPT = 25;  // Avoid spamming people with review prompts
     private final static int LAUNCHES_UNTIL_PROMPT = 3;  // Let people open the app a few times before asking
     private final static int PUZZLES_SOLVED_UNTIL_PROMPT = 5;  // Want to prompt engaged users
@@ -52,25 +49,25 @@ public class AppRater {
 
     public static void showRateDialog(final Context mContext, final SharedPreferences.Editor editor) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        // TODO These strings should move to values/strings.xml so that they can be translated into German, French, ...
-        builder.setTitle("Rate " + APP_TITLE);
-        builder.setMessage("Enjoying " + APP_TITLE + "? Please take a moment to rate the app in the Play Store. Every review counts. Thank you for helping out!");
-        builder.setPositiveButton("Rate It!",
+        builder.setTitle(R.string.apprater_title);
+        builder.setMessage(R.string.apprater_message);
+        builder.setPositiveButton(R.string.apprater_rate_button,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + APP_PACKAGE_NAME)));
+                        mContext.startActivity(new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("market://details?id=atorch.statspuzzles")));
                         dialog.dismiss();
                     }
                 });
 
-        builder.setNeutralButton("Maybe Later",
+        builder.setNeutralButton(R.string.apprater_later_button,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
                     }
                 });
 
-        builder.setNegativeButton("Never",
+        builder.setNegativeButton(R.string.apprater_never_button,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (editor != null) {
