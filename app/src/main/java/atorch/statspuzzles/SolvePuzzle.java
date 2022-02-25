@@ -113,7 +113,7 @@ public class SolvePuzzle extends AppCompatActivity {
                 puzzles,
                 answers,
                 hints);
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mAppSectionsPagerAdapter);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -256,7 +256,7 @@ public class SolvePuzzle extends AppCompatActivity {
                 imageString = "";
             }
 
-            TextView description = (TextView) rootView.findViewById(R.id.puzzleDescription);
+            TextView description = rootView.findViewById(R.id.puzzleDescription);
             if(puzzleIndex == 0 && level >= 0) {
                 // Only show puzzle description on first puzzle, and not in intro level
                 levelDescription = args.getString(LEVEL_DESCRIPTION);
@@ -265,12 +265,12 @@ public class SolvePuzzle extends AppCompatActivity {
                 ((ViewGroup) description.getParent()).removeView(description);
             }
             // Always show puzzle number
-            TextView puzzleNumber = (TextView) rootView.findViewById(R.id.puzzleNumber);
+            TextView puzzleNumber = rootView.findViewById(R.id.puzzleNumber);
             puzzleNumber.setText(getString(R.string.puzzle, puzzleIndex + 1));
 
-            TextView puzzleStatement = (TextView) rootView.findViewById(R.id.puzzleStatement);
+            TextView puzzleStatement = rootView.findViewById(R.id.puzzleStatement);
 
-            Button hintButton = (Button) rootView.findViewById(R.id.button_hint);
+            Button hintButton = rootView.findViewById(R.id.button_hint);
             hintButton.setVisibility(View.VISIBLE);
             hintButton.setOnClickListener(new OnClickListener() {
                 @Override
@@ -299,23 +299,23 @@ public class SolvePuzzle extends AppCompatActivity {
             });
 
             puzzleStatement.setText(puzzle);
-            Button button = (Button) rootView.findViewById(R.id.submit_answer);
+            Button button = rootView.findViewById(R.id.submit_answer);
             button.setOnClickListener(this);  // onClick defined below
 
             Expression correctAnswerExpression = new Expression(answer);
             correctAnswer = correctAnswerExpression.calculate();  // This needs to always parse correctly!
 
-            EditText user_answer = (EditText)rootView.findViewById(R.id.user_answer);
+            EditText user_answer = rootView.findViewById(R.id.user_answer);
             SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
             if (already_solved_this_puzzle) {
                 // If puzzle has already been solved, show check mark and correct answer
-                ImageView checkMark = (ImageView)rootView.findViewById(R.id.check_mark);
+                ImageView checkMark = rootView.findViewById(R.id.check_mark);
                 checkMark.setVisibility(View.VISIBLE);
                 user_answer.setText(answer);
                 // Show approx equal for correct answer
-                TextView answerApprox = (TextView)rootView.findViewById(R.id.answerApprox);
+                TextView answerApprox = rootView.findViewById(R.id.answerApprox);
                 BigDecimal bd = new BigDecimal(correctAnswer).setScale(roundingScale, RoundingMode.HALF_EVEN);
                 answerApprox.setText(getString(R.string.approximate_result, bd));
             }
@@ -323,7 +323,7 @@ public class SolvePuzzle extends AppCompatActivity {
             // Add image below puzzle statement
             String packageName = this.getActivity().getPackageName();
             if (imageString != "") {
-                ImageView imageView = (ImageView)rootView.findViewById(R.id.puzzleImage);
+                ImageView imageView = rootView.findViewById(R.id.puzzleImage);
                 int id = getResources().getIdentifier(imageString, "drawable", packageName);
                 imageView.setImageResource(id);
             }
@@ -331,11 +331,11 @@ public class SolvePuzzle extends AppCompatActivity {
         }
 
         public void onClick(View view) {
-            ImageView checkMark = (ImageView)getView().findViewById(R.id.check_mark);
+            ImageView checkMark = getView().findViewById(R.id.check_mark);
             checkMark.setVisibility(View.INVISIBLE);
-            EditText userAnswer = (EditText)getView().findViewById(R.id.user_answer);
+            EditText userAnswer = getView().findViewById(R.id.user_answer);
             String answerString = userAnswer.getText().toString();
-            TextView answerApprox = (TextView)getView().findViewById(R.id.answerApprox);
+            TextView answerApprox = getView().findViewById(R.id.answerApprox);
             double answer = Double.NaN;
             boolean hadTroubleParsing = false;
 
@@ -380,7 +380,7 @@ public class SolvePuzzle extends AppCompatActivity {
         }
 
         public void openCongratulationsAlert(View view) {
-            ImageView checkmark = (ImageView)getView().findViewById(R.id.check_mark);
+            ImageView checkmark = getView().findViewById(R.id.check_mark);
             checkmark.setVisibility(View.VISIBLE);
             SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
@@ -415,7 +415,7 @@ public class SolvePuzzle extends AppCompatActivity {
             editor.commit();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            mViewPager = (ViewPager) view.getRootView().findViewById(R.id.pager);
+            mViewPager = view.getRootView().findViewById(R.id.pager);
 
             boolean solvedAllPuzzles = puzzles_solved >= nPuzzles;
             if(!solvedAllPuzzles) {
