@@ -70,12 +70,7 @@
     <string name="okay_button">Okay</string>
     <string name="ok_button">OK</string>
 
-    <string name="counter">solved</string>
-
-    <string name="counter_intro">solved_intro</string>
-    <string name="counter_0">solved_0</string>
-    <string name="counter_1">solved_1</string>
-    <string name="counter_2">solved_2</string>
+    <string name="solved">solved %d / %d</string>
 
     <string name="action_share">Share</string>
     <string name="action_settings">Settings</string>
@@ -89,6 +84,12 @@
     <string name="accuracy">That\'s close to correct, but maybe you just got lucky. To convince me otherwise, please enter an answer accurate to within 0.00001. Remember, your answer can include formulas.</string>
 
     <string name="trouble_parsing_answer">I wasn\'t able to parse your answer (i.e. to translate it to a number). Please try writing it another way, using + and - for addition and subtraction, * and / for multiplication and division, and ^ for exponentiation. Use the digits 0 through 9, possibly with ( and ) as parentheses. Example valid answers are 3/(6*2) and (1/2)^3. Use dots for decimals, e.g. .2 is the same as 1/5 (or as 0.20 or 20\%).</string>
+
+    <string name="apprater_title">Rate Probability Puzzles</string>
+    <string name="apprater_message">Enjoying Probability Puzzles? Please take a moment to rate the app in the Play Store. Every review counts. Thank you for helping out!</string>
+    <string name="apprater_rate_button">Rate It!</string>
+    <string name="apprater_later_button">Maybe Later</string>
+    <string name="apprater_never_button">Never</string>
 
     <string-array name="toasts_for_incorrect_answers">
         <item>Sorry, I don\'t think that\'s correct. Please keep trying!</item>
