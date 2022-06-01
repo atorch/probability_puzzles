@@ -51,7 +51,7 @@ public class PuzzleSelection extends AppCompatActivity {
         updateSolved(prefs, "solved_1", R.id.counter_1, R.array.puzzles_1);
         updateSolved(prefs, "solved_2", R.id.counter_2, R.array.puzzles_2);
 
-        TextView newInThisUpdate = (TextView) findViewById(R.id.new_in_this_update);
+        TextView newInThisUpdate = findViewById(R.id.new_in_this_update);
         newInThisUpdate.setMovementMethod(LinkMovementMethod.getInstance());
     }
 

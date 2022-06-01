@@ -31,38 +31,26 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import org.mariuszgromada.math.mxparser.Expression;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
-
-import org.mariuszgromada.math.mxparser.*;
 
 public class SolvePuzzle extends AppCompatActivity {
     // Following example at https://developer.android.com/training/sharing/shareaction.html
     private ShareActionProvider mShareActionProvider;
 
-    public final static String N_PUZZLES = "atorch.statspuzzles.N_PUZZLES";
     public final static String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
-    public final static String PUZZLE = "atorch.statspuzzles.PUZZLE";
     public final static String LEVEL = "atorch.statspuzzles.LEVEL";
-    public final static String ANSWER = "atorch.statspuzzles.ANSWER";
-    public final static String HINT = "atorch.statspuzzles.HINT";
-    public final static String IMAGE_STRING = "atorch.statspuzzles.IMAGE_STRING";
-    public final static String LEVEL_DESCRIPTION = "atorch.statspuzzles.LEVEL_DESCRIPTION";
-    public final static Random random = new Random();
     private final static int roundingScale = 4;
 
     private AppSectionsPagerAdapter mAppSectionsPagerAdapter;  // Returns fragments
     private ViewPager mViewPager;  // Displays puzzles one at a time
 
     private int level;
-    private String images[];
-    private String puzzles[];
-    private String answers[];
-    private String hints[];
 
-    static private String levelDescriptions[];
-    static private String congratulationsArray[];
+    private Res res;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,42 +66,11 @@ public class SolvePuzzle extends AppCompatActivity {
             level = intent.getIntExtra(PuzzleSelection.LEVEL, 0);
         }
 
-        Resources resources = getResources();
-        levelDescriptions = resources.getStringArray(R.array.levelDescriptions);
-        congratulationsArray = resources.getStringArray(R.array.congratulations);
-        if (level == 2) {
-            images = resources.getStringArray(R.array.images_2);
-            puzzles = resources.getStringArray(R.array.puzzles_2);
-            answers = resources.getStringArray(R.array.answers_2);
-            hints = resources.getStringArray(R.array.hints_2);
-        } else if (level == 1) {
-            images = resources.getStringArray(R.array.images_1);
-            puzzles = resources.getStringArray(R.array.puzzles_1);
-            answers = resources.getStringArray(R.array.answers_1);
-            hints = resources.getStringArray(R.array.hints_1);
-        } else if (level == 0){
-            images = resources.getStringArray(R.array.images_0);
-            puzzles = resources.getStringArray(R.array.puzzles_0);
-            answers = resources.getStringArray(R.array.answers_0);
-            hints = resources.getStringArray(R.array.hints_0);
-        } else {
-            // Level -1, introduction / how to
-            images = resources.getStringArray(R.array.images_intro);
-            puzzles = resources.getStringArray(R.array.puzzles_intro);
-            answers = resources.getStringArray(R.array.answers_intro);
-            hints = resources.getStringArray(R.array.hints_intro);
-        }
-
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(fragmentManager,
-                level,
-                images,
-                levelDescriptions,
-                puzzles,
-                answers,
-                hints);
-        mViewPager = (ViewPager) findViewById(R.id.pager);
+        res = new Res(getResources());
+        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(fragmentManager, level, res);
+        mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mAppSectionsPagerAdapter);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -122,7 +79,7 @@ public class SolvePuzzle extends AppCompatActivity {
             @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
             @Override public void onPageSelected(int puzzleIndex) {
-                callSetShareIntent(puzzles[puzzleIndex]);
+                callSetShareIntent(res.getPuzzle(level, puzzleIndex));
             }
         });
 
@@ -131,12 +88,13 @@ public class SolvePuzzle extends AppCompatActivity {
 
     private int indexFirstUnsolvedPuzzle() {
         SharedPreferences preferences = getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
-        for(int i=0; i<puzzles.length; i++) {
+        int n = res.getPuzzleCount(level);
+        for (int i = 0; i < n; i++) {
             String key = level + "_" + i;
-            if(!preferences.getBoolean(key, false))
+            if (!preferences.getBoolean(key, false))
                 return i;  // Puzzle i has not been solved
         }
-        return puzzles.length - 1;  // Everything solved, return last index
+        return n - 1;  // Everything solved, return last index
     }
 
     private void callSetShareIntent(String puzzleStatement) {
@@ -160,7 +118,7 @@ public class SolvePuzzle extends AppCompatActivity {
             mShareActionProvider = new ShareActionProvider(this);
             MenuItemCompat.setActionProvider(item, mShareActionProvider);
         }
-        callSetShareIntent(puzzles[mViewPager.getCurrentItem()]);
+        callSetShareIntent(res.getPuzzle(level, mViewPager.getCurrentItem()));
         return true;  // Return true to display menu
 
     }
@@ -171,32 +129,101 @@ public class SolvePuzzle extends AppCompatActivity {
         }
     }
 
+    private static class Res {
+
+        // Level -1 is the introduction / how to.
+
+        private static final int[] PUZZLES_ID = {
+                R.array.puzzles_intro,
+                R.array.puzzles_0,
+                R.array.puzzles_1,
+                R.array.puzzles_2,
+        };
+
+        private static final int[] IMAGES_ID = {
+                R.array.images_intro,
+                R.array.images_0,
+                R.array.images_1,
+                R.array.images_2,
+        };
+
+        private static final int[] HINTS_ID = {
+                R.array.hints_intro,
+                R.array.hints_0,
+                R.array.hints_1,
+                R.array.hints_2,
+        };
+
+        private static final int[] ANSWERS_ID = {
+                R.array.answers_intro,
+                R.array.answers_0,
+                R.array.answers_1,
+                R.array.answers_2,
+        };
+
+        private static final int[] CONGRATULATIONS_FIRST_ID = {
+                R.string.congratulations_first_intro,
+                R.string.congratulations_first_0,
+                R.string.congratulations_first_1,
+                R.string.congratulations_first_2,
+        };
+
+        private final Resources resources;
+        private final Random random = new Random();
+
+        private Res(Resources resources) {
+            this.resources = resources;
+        }
+
+        String getLevelDescription(int level) {
+            return resources.getStringArray(R.array.levelDescriptions)[level];
+        }
+
+        int getPuzzleCount(int level) {
+            return resources.getStringArray(PUZZLES_ID[level + 1]).length;
+        }
+
+        String getPuzzle(int level, int puzzleIndex) {
+            return resources.getStringArray(PUZZLES_ID[level + 1])[puzzleIndex];
+        }
+
+        String getImage(int level, int puzzleIndex) {
+            String[] images = resources.getStringArray(IMAGES_ID[level + 1]);
+            return puzzleIndex < images.length ? images[puzzleIndex] : "";
+        }
+
+        String getHint(int level, int puzzleIndex) {
+            return resources.getStringArray(HINTS_ID[level + 1])[puzzleIndex];
+        }
+
+        String getAnswer(int level, int puzzleIndex) {
+            return resources.getStringArray(ANSWERS_ID[level + 1])[puzzleIndex];
+        }
+
+        String getRandomToast() {
+            String[] toasts = resources.getStringArray(R.array.toasts_for_incorrect_answers);
+            return toasts[random.nextInt(toasts.length)];
+        }
+
+        String getRandomCongratulation() {
+            String[] congratulations = resources.getStringArray(R.array.congratulations);
+            return congratulations[random.nextInt(congratulations.length)];
+        }
+
+        String getFirstCongratulation(int level) {
+            return resources.getString(CONGRATULATIONS_FIRST_ID[level + 1]);
+        }
+    }
+
     public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
-        private int level;
-        private String images[];
-        private String puzzles[];
-        private String answers[];
-        private String hints[];
+        private final int level;
+        private final Res res;
 
-        private String levelDescriptions[];
-
-        public AppSectionsPagerAdapter(
-                FragmentManager fm,
-                int level,
-                String images[],
-                String levelDescriptions[],
-                String[] puzzles,
-                String[] answers,
-                String[] hints
-        ) {
+        public AppSectionsPagerAdapter(FragmentManager fm, int level, Res res) {
             super(fm);
             this.level = level;
-            this.images = images;
-            this.levelDescriptions = levelDescriptions;
-            this.puzzles = puzzles;
-            this.answers = answers;
-            this.hints = hints;
+            this.res = res;
         }
 
         @Override
@@ -204,17 +231,7 @@ public class SolvePuzzle extends AppCompatActivity {
             Fragment fragment = new SolvePuzzleFragment();
             Bundle args = new Bundle();
             args.putInt(LEVEL, level);
-            args.putInt(N_PUZZLES, puzzles.length);
             args.putInt(PUZZLE_INDEX, puzzleIndex);
-            args.putString(PUZZLE, puzzles[puzzleIndex]);
-            args.putString(HINT, hints[puzzleIndex]);
-            args.putString(ANSWER, answers[puzzleIndex]);
-            if(puzzleIndex < images.length) {
-                args.putString(IMAGE_STRING, images[puzzleIndex]);
-            }
-            if(level >= 0) {
-                args.putString(LEVEL_DESCRIPTION, levelDescriptions[level]);
-            }
 
             fragment.setArguments(args);
             return fragment;
@@ -222,7 +239,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return puzzles.length;
+            return res.getPuzzleCount(level);
         }
     }
 
@@ -230,52 +247,39 @@ public class SolvePuzzle extends AppCompatActivity {
 
         private int level;
         private int puzzleIndex;
-        private int nPuzzles;
         private double correctAnswer;
-        private String levelDescription;
-        private String hint;
-        private String puzzle;
-        private String answer;
-        private String imageString;
         private ViewPager mViewPager;
+        private Res res;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_solve_puzzle, container, false);
+            res = new Res(getResources());
 
             Bundle args = getArguments();
-            nPuzzles = args.getInt(N_PUZZLES);
             level = args.getInt(LEVEL);
             puzzleIndex = args.getInt(PUZZLE_INDEX);
-            hint = args.getString(HINT);
-            puzzle = args.getString(PUZZLE);
-            answer = args.getString(ANSWER);
-            if(args.containsKey(IMAGE_STRING)){
-                imageString = args.getString(IMAGE_STRING);
-            } else {
-                imageString = "";
-            }
 
-            TextView description = (TextView) rootView.findViewById(R.id.puzzleDescription);
-            if(puzzleIndex == 0 && level >= 0) {
+            TextView description = rootView.findViewById(R.id.puzzleDescription);
+            if (puzzleIndex == 0 && level >= 0) {
                 // Only show puzzle description on first puzzle, and not in intro level
-                levelDescription = args.getString(LEVEL_DESCRIPTION);
-                description.setText(levelDescription);
+                description.setText(res.getLevelDescription(level));
             } else {
                 ((ViewGroup) description.getParent()).removeView(description);
             }
             // Always show puzzle number
-            TextView puzzleNumber = (TextView) rootView.findViewById(R.id.puzzleNumber);
+            TextView puzzleNumber = rootView.findViewById(R.id.puzzleNumber);
             puzzleNumber.setText(getString(R.string.puzzle, puzzleIndex + 1));
 
-            TextView puzzleStatement = (TextView) rootView.findViewById(R.id.puzzleStatement);
+            TextView puzzleStatement = rootView.findViewById(R.id.puzzleStatement);
 
-            Button hintButton = (Button) rootView.findViewById(R.id.button_hint);
+            Button hintButton = rootView.findViewById(R.id.button_hint);
             hintButton.setVisibility(View.VISIBLE);
             hintButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View unused) {
 
+                    String hint = res.getHint(level, puzzleIndex);
                     final SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
                     Linkify.addLinks(hintSpannable, Linkify.ALL);
 
@@ -298,44 +302,46 @@ public class SolvePuzzle extends AppCompatActivity {
                 }
             });
 
-            puzzleStatement.setText(puzzle);
-            Button button = (Button) rootView.findViewById(R.id.submit_answer);
+            puzzleStatement.setText(res.getPuzzle(level, puzzleIndex));
+            Button button = rootView.findViewById(R.id.submit_answer);
             button.setOnClickListener(this);  // onClick defined below
 
+            String answer = res.getAnswer(level, puzzleIndex);
             Expression correctAnswerExpression = new Expression(answer);
             correctAnswer = correctAnswerExpression.calculate();  // This needs to always parse correctly!
 
-            EditText user_answer = (EditText)rootView.findViewById(R.id.user_answer);
+            EditText user_answer = rootView.findViewById(R.id.user_answer);
             SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
             if (already_solved_this_puzzle) {
                 // If puzzle has already been solved, show check mark and correct answer
-                ImageView checkMark = (ImageView)rootView.findViewById(R.id.check_mark);
+                ImageView checkMark = rootView.findViewById(R.id.check_mark);
                 checkMark.setVisibility(View.VISIBLE);
                 user_answer.setText(answer);
                 // Show approx equal for correct answer
-                TextView answerApprox = (TextView)rootView.findViewById(R.id.answerApprox);
+                TextView answerApprox = rootView.findViewById(R.id.answerApprox);
                 BigDecimal bd = new BigDecimal(correctAnswer).setScale(roundingScale, RoundingMode.HALF_EVEN);
                 answerApprox.setText(getString(R.string.approximate_result, bd));
             }
 
             // Add image below puzzle statement
             String packageName = this.getActivity().getPackageName();
-            if (imageString != "") {
-                ImageView imageView = (ImageView)rootView.findViewById(R.id.puzzleImage);
-                int id = getResources().getIdentifier(imageString, "drawable", packageName);
+            String image = res.getImage(level, puzzleIndex);
+            if (!image.isEmpty()) {
+                ImageView imageView = rootView.findViewById(R.id.puzzleImage);
+                int id = getResources().getIdentifier(image, "drawable", packageName);
                 imageView.setImageResource(id);
             }
             return rootView;
         }
 
         public void onClick(View view) {
-            ImageView checkMark = (ImageView)getView().findViewById(R.id.check_mark);
+            ImageView checkMark = getView().findViewById(R.id.check_mark);
             checkMark.setVisibility(View.INVISIBLE);
-            EditText userAnswer = (EditText)getView().findViewById(R.id.user_answer);
+            EditText userAnswer = getView().findViewById(R.id.user_answer);
             String answerString = userAnswer.getText().toString();
-            TextView answerApprox = (TextView)getView().findViewById(R.id.answerApprox);
+            TextView answerApprox = getView().findViewById(R.id.answerApprox);
             double answer = Double.NaN;
             boolean hadTroubleParsing = false;
 
@@ -380,33 +386,24 @@ public class SolvePuzzle extends AppCompatActivity {
         }
 
         public void openCongratulationsAlert(View view) {
-            ImageView checkmark = (ImageView)getView().findViewById(R.id.check_mark);
+            ImageView checkmark = getView().findViewById(R.id.check_mark);
             checkmark.setVisibility(View.VISIBLE);
             SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
-            String congratulations = congratulationsArray[random.nextInt(congratulationsArray.length)];
+            String congratulations = res.getRandomCongratulation();
 
-            String counter_key, congratulations_first;
-            if (level == 2) {
-                counter_key = "solved_2";
-                congratulations_first = getString(R.string.congratulations_first_2);
-            } else if (level == 1) {
-                counter_key = "solved_1";
-                congratulations_first = getString(R.string.congratulations_first_1);
-            } else if (level == 0){
-                counter_key = "solved_0";
-                congratulations_first = getString(R.string.congratulations_first_0);
-            } else {
-                counter_key = "solved_intro";
-                congratulations_first = getString(R.string.congratulations_first_intro);
-            }
+            String counter_key = level == 2 ? "solved_2"
+                    : level == 1 ? "solved_1"
+                    : level == 0 ? "solved_0"
+                    : "solved_intro";
+
             int puzzles_solved = preferences.getInt(counter_key, 0);
 
             if (!already_solved_this_puzzle) {
                 if (puzzles_solved == 0) {
-                    congratulations = congratulations_first;
+                    congratulations = res.getFirstCongratulation(level);
                 }
                 puzzles_solved = puzzles_solved + 1;
                 editor.putInt(counter_key, puzzles_solved);
@@ -415,10 +412,11 @@ public class SolvePuzzle extends AppCompatActivity {
             editor.commit();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            mViewPager = (ViewPager) view.getRootView().findViewById(R.id.pager);
+            mViewPager = view.getRootView().findViewById(R.id.pager);
 
+            int nPuzzles = res.getPuzzleCount(level);
             boolean solvedAllPuzzles = puzzles_solved >= nPuzzles;
-            if(!solvedAllPuzzles) {
+            if (!solvedAllPuzzles) {
                 builder.setMessage(congratulations);
                 builder.setCancelable(true);
                 builder.setPositiveButton(R.string.next_puzzle_button,
@@ -470,9 +468,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
         public void openIncorrectAnswerToast() {
             Context context = getActivity();
-            Resources resources = getResources();
-            String[] toasts = resources.getStringArray(R.array.toasts_for_incorrect_answers);
-            Toast.makeText(context, toasts[random.nextInt(toasts.length)], Toast.LENGTH_LONG).show();
+            Toast.makeText(context, res.getRandomToast(), Toast.LENGTH_LONG).show();
         }
 
         public void openAccuracyAlert(View view) {
