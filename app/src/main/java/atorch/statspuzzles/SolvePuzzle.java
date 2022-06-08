@@ -44,7 +44,7 @@ public class SolvePuzzle extends AppCompatActivity {
     public final static String LEVEL = "atorch.statspuzzles.LEVEL";
     private final static int roundingScale = 4;
 
-    private ViewPager mViewPager;  // Displays puzzles one at a time
+    private ViewPager puzzlePager;  // Displays puzzles one at a time
 
     private int level;
 
@@ -67,10 +67,10 @@ public class SolvePuzzle extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         res = new Res(getResources());
-        mViewPager = findViewById(R.id.pager);
-        mViewPager.setAdapter(new AppSectionsPagerAdapter(fragmentManager, level, res));
+        puzzlePager = findViewById(R.id.pager);
+        puzzlePager.setAdapter(new AppSectionsPagerAdapter(fragmentManager, level, res));
 
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        puzzlePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrollStateChanged(int arg0) {
             }
             @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
@@ -80,7 +80,7 @@ public class SolvePuzzle extends AppCompatActivity {
             }
         });
 
-        mViewPager.setCurrentItem(indexFirstUnsolvedPuzzle());
+        puzzlePager.setCurrentItem(indexFirstUnsolvedPuzzle());
     }
 
     private int indexFirstUnsolvedPuzzle() {
@@ -115,7 +115,7 @@ public class SolvePuzzle extends AppCompatActivity {
             mShareActionProvider = new ShareActionProvider(this);
             MenuItemCompat.setActionProvider(item, mShareActionProvider);
         }
-        callSetShareIntent(res.getPuzzle(level, mViewPager.getCurrentItem()));
+        callSetShareIntent(res.getPuzzle(level, puzzlePager.getCurrentItem()));
         return true;  // Return true to display menu
 
     }
