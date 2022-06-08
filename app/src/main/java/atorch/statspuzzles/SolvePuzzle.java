@@ -44,7 +44,6 @@ public class SolvePuzzle extends AppCompatActivity {
     public final static String LEVEL = "atorch.statspuzzles.LEVEL";
     private final static int roundingScale = 4;
 
-    private AppSectionsPagerAdapter mAppSectionsPagerAdapter;  // Returns fragments
     private ViewPager mViewPager;  // Displays puzzles one at a time
 
     private int level;
@@ -68,9 +67,8 @@ public class SolvePuzzle extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         res = new Res(getResources());
-        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(fragmentManager, level, res);
         mViewPager = findViewById(R.id.pager);
-        mViewPager.setAdapter(mAppSectionsPagerAdapter);
+        mViewPager.setAdapter(new AppSectionsPagerAdapter(fragmentManager, level, res));
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrollStateChanged(int arg0) {
