@@ -2,7 +2,6 @@ package atorch.statspuzzles;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -275,12 +274,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
             Button hintButton = rootView.findViewById(R.id.button_hint);
             hintButton.setVisibility(View.VISIBLE);
-            hintButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View unused) {
-                    showHint();
-                }
-            });
+            hintButton.setOnClickListener(unused -> showHint());
 
             puzzleStatement.setText(res.getPuzzle(level, puzzleIndex));
             Button button = rootView.findViewById(R.id.submit_answer);
@@ -325,11 +319,7 @@ public class SolvePuzzle extends AppCompatActivity {
             builder.setMessage(hintSpannable);
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.button_back_to_puzzle,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    }
+                    (dialog, id) -> dialog.cancel()
             );
             AlertDialog alert = builder.create();
             alert.show();
@@ -377,11 +367,7 @@ public class SolvePuzzle extends AppCompatActivity {
             builder.setMessage(getString(R.string.trouble_parsing_answer));
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.okay_button,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    }
+                    (dialog, id) -> dialog.cancel()
             );
             AlertDialog alert = builder.create();
             alert.show();
@@ -422,23 +408,19 @@ public class SolvePuzzle extends AppCompatActivity {
                 builder.setMessage(congratulations);
                 builder.setCancelable(true);
                 builder.setPositiveButton(R.string.next_puzzle_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                int next_puzzleIndex = puzzleIndex + 1;
-                                if (next_puzzleIndex >= nPuzzles) {
-                                    next_puzzleIndex = 0;
-                                }
-                                mViewPager.setCurrentItem(next_puzzleIndex);
-                                dialog.cancel();
+                        (dialog, id) -> {
+                            int next_puzzleIndex = puzzleIndex + 1;
+                            if (next_puzzleIndex >= nPuzzles) {
+                                next_puzzleIndex = 0;
                             }
+                            mViewPager.setCurrentItem(next_puzzleIndex);
+                            dialog.cancel();
                         }
                 );
                 builder.setNegativeButton(R.string.main_menu_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(getActivity(), PuzzleSelection.class);
-                                startActivity(intent);
-                            }
+                        (dialog, id) -> {
+                            Intent intent = new Intent(getActivity(), PuzzleSelection.class);
+                            startActivity(intent);
                         }
                 );
             } else {
@@ -449,19 +431,13 @@ public class SolvePuzzle extends AppCompatActivity {
                 }
                 builder.setCancelable(true);
                 builder.setPositiveButton(R.string.main_menu_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(getActivity(), PuzzleSelection.class);
-                                startActivity(intent);
-                            }
+                        (dialog, id) -> {
+                            Intent intent = new Intent(getActivity(), PuzzleSelection.class);
+                            startActivity(intent);
                         }
                 );
                 builder.setNegativeButton(R.string.stay_here_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        }
+                        (dialog, id) -> dialog.cancel()
                 );
             }
             AlertDialog alert = builder.create();
@@ -478,11 +454,8 @@ public class SolvePuzzle extends AppCompatActivity {
             builder.setMessage(getString(R.string.accuracy));
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.ok_button,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
+                    (dialog, id) -> dialog.cancel()
+            );
             AlertDialog alert = builder.create();
             alert.show();
         }
