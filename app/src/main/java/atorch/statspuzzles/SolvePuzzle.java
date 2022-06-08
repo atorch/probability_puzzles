@@ -278,27 +278,7 @@ public class SolvePuzzle extends AppCompatActivity {
             hintButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View unused) {
-
-                    String hint = res.getHint(level, puzzleIndex);
-                    final SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
-                    Linkify.addLinks(hintSpannable, Linkify.ALL);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(hintSpannable);
-                    builder.setCancelable(true);
-                    builder.setPositiveButton(R.string.button_back_to_puzzle,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            }
-                    );
-                    AlertDialog alert = builder.create();
-                    alert.show();
-
-                    // See https://stackoverflow.com/a/3367392/610668
-                    ((TextView)alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-
+                    showHint();
                 }
             });
 
@@ -334,6 +314,28 @@ public class SolvePuzzle extends AppCompatActivity {
                 imageView.setImageResource(id);
             }
             return rootView;
+        }
+
+        private void showHint() {
+            String hint = res.getHint(level, puzzleIndex);
+            final SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
+            Linkify.addLinks(hintSpannable, Linkify.ALL);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(hintSpannable);
+            builder.setCancelable(true);
+            builder.setPositiveButton(R.string.button_back_to_puzzle,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    }
+            );
+            AlertDialog alert = builder.create();
+            alert.show();
+
+            // See https://stackoverflow.com/a/3367392/610668
+            ((TextView)alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         public void onClick(View view) {
