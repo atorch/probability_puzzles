@@ -197,9 +197,9 @@ public class SolvePuzzle extends AppCompatActivity {
             return resources.getStringArray(ANSWERS_ID[level + 1])[puzzleIndex];
         }
 
-        String getRandomToast() {
-            String[] toasts = resources.getStringArray(R.array.toasts_for_incorrect_answers);
-            return toasts[random.nextInt(toasts.length)];
+        String getRandomIncorrect() {
+            String[] messages = resources.getStringArray(R.array.toasts_for_incorrect_answers);
+            return messages[random.nextInt(messages.length)];
         }
 
         String getRandomCongratulation() {
@@ -444,7 +444,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
         public void openIncorrectAnswerToast() {
             Context context = getActivity();
-            Toast.makeText(context, res.getRandomToast(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, res.getRandomIncorrect(), Toast.LENGTH_LONG).show();
         }
 
         public void openAccuracyAlert(View view) {
