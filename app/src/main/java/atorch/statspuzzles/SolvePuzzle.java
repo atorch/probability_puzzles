@@ -329,11 +329,10 @@ public class SolvePuzzle extends AppCompatActivity {
             EditText userAnswer = getView().findViewById(R.id.user_answer);
             String answerString = userAnswer.getText().toString();
             TextView answerApprox = getView().findViewById(R.id.answerApprox);
-            double answer = Double.NaN;
             boolean hadTroubleParsing = false;
 
             Expression answerExpression = new Expression(answerString);
-            answer = answerExpression.calculate();
+            double answer = answerExpression.calculate();
             if (!answerExpression.checkSyntax()) {
                 openTroubleParsingDialog(view);  // TODO Don't show if user answer is empty string?
                 hadTroubleParsing = true;
