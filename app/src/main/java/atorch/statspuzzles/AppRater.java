@@ -48,7 +48,7 @@ public class AppRater {
         editor.commit();
     }
 
-    public static void showRateDialog(final Context context, final SharedPreferences.Editor editor) {
+    public static void showRateDialog(Context context, SharedPreferences.Editor editor) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.apprater_title);
         builder.setMessage(R.string.apprater_message);

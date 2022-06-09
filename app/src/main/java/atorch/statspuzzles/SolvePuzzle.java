@@ -54,7 +54,7 @@ public class SolvePuzzle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solve_puzzle);
 
-        final ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
@@ -310,7 +310,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
         private void showHint() {
             String hint = res.getHint(level, puzzleIndex);
-            final SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
+            SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
             Linkify.addLinks(hintSpannable, Linkify.ALL);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
