@@ -16,15 +16,11 @@ public class PuzzleSelection extends AppCompatActivity {
 
     public void startPuzzle(View view) {
         Intent intent = new Intent(this, SolvePuzzle.class);
-        int level = -1;
-        int view_id = view.getId();
-        if (view_id == R.id.button_0) {
-            level = 0;
-        } else if (view_id == R.id.button_1) {
-            level = 1;
-        } else if (view_id == R.id.button_2) {
-            level = 2;
-        }
+        int viewId = view.getId();
+        int level = viewId == R.id.button_0 ? 0
+                : viewId == R.id.button_1 ? 1
+                : viewId == R.id.button_2 ? 2
+                : -1;
         intent.putExtra(LEVEL, level);
         startActivity(intent);
     }
