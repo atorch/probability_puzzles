@@ -283,7 +283,7 @@ public class SolvePuzzle extends AppCompatActivity {
             correctAnswer = correctAnswerExpression.calculate();  // This needs to always parse correctly!
 
             EditText user_answer = rootView.findViewById(R.id.user_answer);
-            SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
+            SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
             if (already_solved_this_puzzle) {
@@ -298,7 +298,7 @@ public class SolvePuzzle extends AppCompatActivity {
             }
 
             // Add image below puzzle statement
-            String packageName = this.getActivity().getPackageName();
+            String packageName = getActivity().getPackageName();
             String image = res.getImage(level, puzzleIndex);
             if (!image.isEmpty()) {
                 ImageView imageView = rootView.findViewById(R.id.puzzleImage);
@@ -374,7 +374,7 @@ public class SolvePuzzle extends AppCompatActivity {
         public void openCongratulationsAlert(View view) {
             ImageView checkmark = getView().findViewById(R.id.check_mark);
             checkmark.setVisibility(View.VISIBLE);
-            SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
+            SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
