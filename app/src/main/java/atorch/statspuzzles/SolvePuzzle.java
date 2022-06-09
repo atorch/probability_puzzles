@@ -40,9 +40,9 @@ public class SolvePuzzle extends AppCompatActivity {
     // Following example at https://developer.android.com/training/sharing/shareaction.html
     private ShareActionProvider mShareActionProvider;
 
-    public final static String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
-    public final static String LEVEL = "atorch.statspuzzles.LEVEL";
-    private final static int roundingScale = 4;
+    public static final String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
+    public static final String LEVEL = "atorch.statspuzzles.LEVEL";
+    private static final int roundingScale = 4;
 
     private ViewPager puzzlePager;  // Displays puzzles one at a time
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class PuzzleSelection extends AppCompatActivity {
 
-    public final static String LEVEL = "atorch.statspuzzles.LEVEL";
+    public static final String LEVEL = "atorch.statspuzzles.LEVEL";
 
     public void startPuzzle(View view) {
         Intent intent = new Intent(this, SolvePuzzle.class);

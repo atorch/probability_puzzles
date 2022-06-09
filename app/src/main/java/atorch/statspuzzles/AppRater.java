@@ -9,9 +9,9 @@ import androidx.appcompat.app.AlertDialog;
 
 public class AppRater {
 
-    private final static long HOURS_BETWEEN_PROMPT = 25;  // Avoid spamming people with review prompts
-    private final static int LAUNCHES_UNTIL_PROMPT = 3;  // Let people open the app a few times before asking
-    private final static int PUZZLES_SOLVED_UNTIL_PROMPT = 5;  // Want to prompt engaged users
+    private static final long HOURS_BETWEEN_PROMPT = 25;  // Avoid spamming people with review prompts
+    private static final int LAUNCHES_UNTIL_PROMPT = 3;  // Let people open the app a few times before asking
+    private static final int PUZZLES_SOLVED_UNTIL_PROMPT = 5;  // Want to prompt engaged users
 
     public static void app_launched(Context mContext) {
         SharedPreferences prefs = mContext.getSharedPreferences("apprater", 0);
