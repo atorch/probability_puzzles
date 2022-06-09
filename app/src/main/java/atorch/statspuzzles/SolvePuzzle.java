@@ -261,17 +261,18 @@ public class SolvePuzzle extends AppCompatActivity {
             } else {
                 ((ViewGroup) description.getParent()).removeView(description);
             }
+
             // Always show puzzle number
             TextView puzzleNumber = rootView.findViewById(R.id.puzzleNumber);
             puzzleNumber.setText(getString(R.string.puzzle, puzzleIndex + 1));
 
             TextView puzzleStatement = rootView.findViewById(R.id.puzzleStatement);
+            puzzleStatement.setText(res.getPuzzle(level, puzzleIndex));
 
             Button hintButton = rootView.findViewById(R.id.button_hint);
             hintButton.setVisibility(View.VISIBLE);
             hintButton.setOnClickListener(unused -> showHint());
 
-            puzzleStatement.setText(res.getPuzzle(level, puzzleIndex));
             Button submitButton = rootView.findViewById(R.id.submit_answer);
             submitButton.setOnClickListener(this::onSubmit);
 
