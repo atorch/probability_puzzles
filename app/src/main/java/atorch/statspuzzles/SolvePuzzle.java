@@ -76,7 +76,7 @@ public class SolvePuzzle extends AppCompatActivity {
             @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
             @Override public void onPageSelected(int puzzleIndex) {
-                callSetShareIntent(res.getPuzzle(level, puzzleIndex));
+                prepareSharePuzzle(res.getPuzzle(level, puzzleIndex));
             }
         });
 
@@ -94,13 +94,16 @@ public class SolvePuzzle extends AppCompatActivity {
         return n - 1;  // Everything solved, return last index
     }
 
-    private void callSetShareIntent(String puzzleStatement) {
-        String extraText = puzzleStatement + "\n\n" + getString(R.string.app_link);
+    private void prepareSharePuzzle(String puzzleStatement) {
+        String text = puzzleStatement + "\n\n" + getString(R.string.app_link);
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, extraText);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         shareIntent.setType("text/plain");
-        setShareIntent(shareIntent);
+        if (mShareActionProvider != null) {
+            // Should be called whenever new fragment is displayed
+            mShareActionProvider.setShareIntent(shareIntent);
+        }
     }
 
     @Override
@@ -115,15 +118,9 @@ public class SolvePuzzle extends AppCompatActivity {
             mShareActionProvider = new ShareActionProvider(this);
             MenuItemCompat.setActionProvider(item, mShareActionProvider);
         }
-        callSetShareIntent(res.getPuzzle(level, puzzlePager.getCurrentItem()));
+        prepareSharePuzzle(res.getPuzzle(level, puzzlePager.getCurrentItem()));
         return true;  // Return true to display menu
 
-    }
-
-    private void setShareIntent(Intent shareIntent) {
-        if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(shareIntent);  // Should be called whenever new fragment is displayed
-        }
     }
 
     private static class Res {
