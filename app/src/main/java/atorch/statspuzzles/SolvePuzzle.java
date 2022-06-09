@@ -237,7 +237,7 @@ public class SolvePuzzle extends AppCompatActivity {
         }
     }
 
-    public static class SolvePuzzleFragment extends Fragment implements OnClickListener {
+    public static class SolvePuzzleFragment extends Fragment {
 
         private int level;
         private int puzzleIndex;
@@ -272,8 +272,8 @@ public class SolvePuzzle extends AppCompatActivity {
             hintButton.setOnClickListener(unused -> showHint());
 
             puzzleStatement.setText(res.getPuzzle(level, puzzleIndex));
-            Button button = rootView.findViewById(R.id.submit_answer);
-            button.setOnClickListener(this);  // onClick defined below
+            Button submitButton = rootView.findViewById(R.id.submit_answer);
+            submitButton.setOnClickListener(this::onSubmit);
 
             String answer = res.getAnswer(level, puzzleIndex);
             Expression correctAnswerExpression = new Expression(answer);
@@ -323,7 +323,7 @@ public class SolvePuzzle extends AppCompatActivity {
             ((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
         }
 
-        public void onClick(View view) {
+        private void onSubmit(View view) {
             ImageView checkMark = getView().findViewById(R.id.check_mark);
             checkMark.setVisibility(View.INVISIBLE);
             EditText userAnswer = getView().findViewById(R.id.user_answer);
