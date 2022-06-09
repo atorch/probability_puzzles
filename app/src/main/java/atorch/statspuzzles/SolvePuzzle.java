@@ -323,7 +323,7 @@ public class SolvePuzzle extends AppCompatActivity {
             alert.show();
 
             // See https://stackoverflow.com/a/3367392/610668
-            ((TextView)alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+            ((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
         }
 
         public void onClick(View view) {
@@ -337,7 +337,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
             Expression answerExpression = new Expression(answerString);
             answer = answerExpression.calculate();
-            if(!answerExpression.checkSyntax()) {
+            if (!answerExpression.checkSyntax()) {
                 openTroubleParsingDialog(view);  // TODO Don't show if user answer is empty string?
                 hadTroubleParsing = true;
             }
@@ -422,7 +422,7 @@ public class SolvePuzzle extends AppCompatActivity {
                         }
                 );
             } else {
-                if(level >= 0) {
+                if (level >= 0) {
                     builder.setMessage(getString(R.string.solved_all_puzzles));
                 } else {
                     builder.setMessage(getString(R.string.solved_all_intro));

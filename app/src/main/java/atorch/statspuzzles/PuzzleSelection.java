@@ -22,7 +22,7 @@ public class PuzzleSelection extends AppCompatActivity {
             level = 0;
         } else if (view_id == R.id.button_1) {
             level = 1;
-        } else if(view_id == R.id.button_2) {
+        } else if (view_id == R.id.button_2) {
             level = 2;
         }
         intent.putExtra(LEVEL, level);
