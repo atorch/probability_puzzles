@@ -347,12 +347,10 @@ public class SolvePuzzle extends AppCompatActivity {
             // TODO Careful with accuracy, e.g. clock puzzle
             if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.00001) {
                 openCongratulationsAlert(view);
-            } else {
-                if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.001) {
-                    openAccuracyAlert(view);
-                } else if (!hadTroubleParsing) {
-                    openIncorrectAnswerToast();  // User answer could parse to NaN
-                }
+            } else if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.001) {
+                openAccuracyAlert(view);
+            } else if (!hadTroubleParsing) {
+                openIncorrectAnswerToast();  // User answer could parse to NaN
             }
         }
 
