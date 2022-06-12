@@ -253,9 +253,9 @@ public class SolvePuzzle extends AppCompatActivity {
             level = args.getInt(LEVEL);
             puzzleIndex = args.getInt(PUZZLE_INDEX);
 
-            TextView description = rootView.findViewById(R.id.puzzleDescription);
+            TextView description = rootView.findViewById(R.id.level_description);
             if (puzzleIndex == 0 && level >= 0) {
-                // Only show puzzle description on first puzzle, and not in intro level
+                // Only show level description on first puzzle, and not in intro level
                 description.setText(res.getLevelDescription(level));
             } else {
                 ((ViewGroup) description.getParent()).removeView(description);
