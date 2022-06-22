@@ -1,6 +1,6 @@
 **Privacy Policy**
 
-The contributors listed at https://github.com/atorch/probability_puzzles/graphs/contributors built the Probability Math Puzzles app as a free app. This service is provided at no cost and is intended for use as is.
+The contributors listed at https://github.com/atorch/probability_puzzles/graphs/contributors built the [Probability Math Puzzles app](https://play.google.com/store/apps/details?id=atorch.statspuzzles) as a free app. This service is provided at no cost and is intended for use as is.
 
 **Information Collection and Use**
 
