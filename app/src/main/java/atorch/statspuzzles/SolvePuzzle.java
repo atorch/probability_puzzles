@@ -2,7 +2,6 @@ package atorch.statspuzzles;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,12 +39,11 @@ public class SolvePuzzle extends AppCompatActivity {
     // Following example at https://developer.android.com/training/sharing/shareaction.html
     private ShareActionProvider mShareActionProvider;
 
-    public final static String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
-    public final static String LEVEL = "atorch.statspuzzles.LEVEL";
-    private final static int roundingScale = 4;
+    public static final String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
+    public static final String LEVEL = "atorch.statspuzzles.LEVEL";
+    private static final int roundingScale = 4;
 
-    private AppSectionsPagerAdapter mAppSectionsPagerAdapter;  // Returns fragments
-    private ViewPager mViewPager;  // Displays puzzles one at a time
+    private ViewPager puzzlePager;  // Displays puzzles one at a time
 
     private int level;
 
@@ -56,7 +53,7 @@ public class SolvePuzzle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solve_puzzle);
 
-        final ActionBar actionBar = getSupportActionBar();
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
@@ -69,21 +66,20 @@ public class SolvePuzzle extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         res = new Res(getResources());
-        mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(fragmentManager, level, res);
-        mViewPager = findViewById(R.id.pager);
-        mViewPager.setAdapter(mAppSectionsPagerAdapter);
+        puzzlePager = findViewById(R.id.pager);
+        puzzlePager.setAdapter(new AppSectionsPagerAdapter(fragmentManager, level, res));
 
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        puzzlePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override public void onPageScrollStateChanged(int arg0) {
             }
             @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
             @Override public void onPageSelected(int puzzleIndex) {
-                callSetShareIntent(res.getPuzzle(level, puzzleIndex));
+                prepareSharePuzzle(res.getPuzzle(level, puzzleIndex));
             }
         });
 
-        mViewPager.setCurrentItem(indexFirstUnsolvedPuzzle());
+        puzzlePager.setCurrentItem(indexFirstUnsolvedPuzzle());
     }
 
     private int indexFirstUnsolvedPuzzle() {
@@ -97,13 +93,16 @@ public class SolvePuzzle extends AppCompatActivity {
         return n - 1;  // Everything solved, return last index
     }
 
-    private void callSetShareIntent(String puzzleStatement) {
-        String extraText = puzzleStatement + "\n\n" + getString(R.string.app_link);
+    private void prepareSharePuzzle(String puzzleStatement) {
+        String text = puzzleStatement + "\n\n" + getString(R.string.app_link);
         Intent shareIntent = new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, extraText);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         shareIntent.setType("text/plain");
-        setShareIntent(shareIntent);
+        if (mShareActionProvider != null) {
+            // Should be called whenever new fragment is displayed
+            mShareActionProvider.setShareIntent(shareIntent);
+        }
     }
 
     @Override
@@ -118,15 +117,9 @@ public class SolvePuzzle extends AppCompatActivity {
             mShareActionProvider = new ShareActionProvider(this);
             MenuItemCompat.setActionProvider(item, mShareActionProvider);
         }
-        callSetShareIntent(res.getPuzzle(level, mViewPager.getCurrentItem()));
+        prepareSharePuzzle(res.getPuzzle(level, puzzlePager.getCurrentItem()));
         return true;  // Return true to display menu
 
-    }
-
-    private void setShareIntent(Intent shareIntent) {
-        if (mShareActionProvider != null) {
-            mShareActionProvider.setShareIntent(shareIntent);  // Should be called whenever new fragment is displayed
-        }
     }
 
     private static class Res {
@@ -200,9 +193,9 @@ public class SolvePuzzle extends AppCompatActivity {
             return resources.getStringArray(ANSWERS_ID[level + 1])[puzzleIndex];
         }
 
-        String getRandomToast() {
-            String[] toasts = resources.getStringArray(R.array.toasts_for_incorrect_answers);
-            return toasts[random.nextInt(toasts.length)];
+        String getRandomIncorrect() {
+            String[] messages = resources.getStringArray(R.array.toasts_for_incorrect_answers);
+            return messages[random.nextInt(messages.length)];
         }
 
         String getRandomCongratulation() {
@@ -243,7 +236,7 @@ public class SolvePuzzle extends AppCompatActivity {
         }
     }
 
-    public static class SolvePuzzleFragment extends Fragment implements OnClickListener {
+    public static class SolvePuzzleFragment extends Fragment {
 
         private int level;
         private int puzzleIndex;
@@ -260,58 +253,34 @@ public class SolvePuzzle extends AppCompatActivity {
             level = args.getInt(LEVEL);
             puzzleIndex = args.getInt(PUZZLE_INDEX);
 
-            TextView description = rootView.findViewById(R.id.puzzleDescription);
+            TextView description = rootView.findViewById(R.id.level_description);
             if (puzzleIndex == 0 && level >= 0) {
-                // Only show puzzle description on first puzzle, and not in intro level
+                // Only show level description on first puzzle, and not in intro level
                 description.setText(res.getLevelDescription(level));
             } else {
                 ((ViewGroup) description.getParent()).removeView(description);
             }
+
             // Always show puzzle number
             TextView puzzleNumber = rootView.findViewById(R.id.puzzleNumber);
             puzzleNumber.setText(getString(R.string.puzzle, puzzleIndex + 1));
 
             TextView puzzleStatement = rootView.findViewById(R.id.puzzleStatement);
+            puzzleStatement.setText(res.getPuzzle(level, puzzleIndex));
 
             Button hintButton = rootView.findViewById(R.id.button_hint);
             hintButton.setVisibility(View.VISIBLE);
-            hintButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View unused) {
+            hintButton.setOnClickListener(unused -> showHint());
 
-                    String hint = res.getHint(level, puzzleIndex);
-                    final SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
-                    Linkify.addLinks(hintSpannable, Linkify.ALL);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                    builder.setMessage(hintSpannable);
-                    builder.setCancelable(true);
-                    builder.setPositiveButton(R.string.button_back_to_puzzle,
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    dialog.cancel();
-                                }
-                            }
-                    );
-                    AlertDialog alert = builder.create();
-                    alert.show();
-
-                    // See https://stackoverflow.com/a/3367392/610668
-                    ((TextView)alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
-
-                }
-            });
-
-            puzzleStatement.setText(res.getPuzzle(level, puzzleIndex));
-            Button button = rootView.findViewById(R.id.submit_answer);
-            button.setOnClickListener(this);  // onClick defined below
+            Button submitButton = rootView.findViewById(R.id.submit_answer);
+            submitButton.setOnClickListener(this::onSubmit);
 
             String answer = res.getAnswer(level, puzzleIndex);
             Expression correctAnswerExpression = new Expression(answer);
             correctAnswer = correctAnswerExpression.calculate();  // This needs to always parse correctly!
 
             EditText user_answer = rootView.findViewById(R.id.user_answer);
-            SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
+            SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
             if (already_solved_this_puzzle) {
@@ -326,7 +295,7 @@ public class SolvePuzzle extends AppCompatActivity {
             }
 
             // Add image below puzzle statement
-            String packageName = this.getActivity().getPackageName();
+            String packageName = getActivity().getPackageName();
             String image = res.getImage(level, puzzleIndex);
             if (!image.isEmpty()) {
                 ImageView imageView = rootView.findViewById(R.id.puzzleImage);
@@ -336,18 +305,35 @@ public class SolvePuzzle extends AppCompatActivity {
             return rootView;
         }
 
-        public void onClick(View view) {
+        private void showHint() {
+            String hint = res.getHint(level, puzzleIndex);
+            SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
+            Linkify.addLinks(hintSpannable, Linkify.ALL);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(hintSpannable);
+            builder.setCancelable(true);
+            builder.setPositiveButton(R.string.button_back_to_puzzle,
+                    (dialog, id) -> dialog.cancel()
+            );
+            AlertDialog alert = builder.create();
+            alert.show();
+
+            // See https://stackoverflow.com/a/3367392/610668
+            ((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        }
+
+        private void onSubmit(View view) {
             ImageView checkMark = getView().findViewById(R.id.check_mark);
             checkMark.setVisibility(View.INVISIBLE);
             EditText userAnswer = getView().findViewById(R.id.user_answer);
             String answerString = userAnswer.getText().toString();
             TextView answerApprox = getView().findViewById(R.id.answerApprox);
-            double answer = Double.NaN;
             boolean hadTroubleParsing = false;
 
             Expression answerExpression = new Expression(answerString);
-            answer = answerExpression.calculate();
-            if(!answerExpression.checkSyntax()) {
+            double answer = answerExpression.calculate();
+            if (!answerExpression.checkSyntax()) {
                 openTroubleParsingDialog(view);  // TODO Don't show if user answer is empty string?
                 hadTroubleParsing = true;
             }
@@ -361,12 +347,10 @@ public class SolvePuzzle extends AppCompatActivity {
             // TODO Careful with accuracy, e.g. clock puzzle
             if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.00001) {
                 openCongratulationsAlert(view);
-            } else {
-                if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.001) {
-                    openAccuracyAlert(view);
-                } else if (!hadTroubleParsing) {
-                    openIncorrectAnswerToast();  // User answer could parse to NaN
-                }
+            } else if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.001) {
+                openAccuracyAlert(view);
+            } else if (!hadTroubleParsing) {
+                openIncorrectAnswerToast();  // User answer could parse to NaN
             }
         }
 
@@ -375,11 +359,7 @@ public class SolvePuzzle extends AppCompatActivity {
             builder.setMessage(getString(R.string.trouble_parsing_answer));
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.okay_button,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    }
+                    (dialog, id) -> dialog.cancel()
             );
             AlertDialog alert = builder.create();
             alert.show();
@@ -388,7 +368,7 @@ public class SolvePuzzle extends AppCompatActivity {
         public void openCongratulationsAlert(View view) {
             ImageView checkmark = getView().findViewById(R.id.check_mark);
             checkmark.setVisibility(View.VISIBLE);
-            SharedPreferences preferences = this.getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
+            SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
@@ -420,46 +400,36 @@ public class SolvePuzzle extends AppCompatActivity {
                 builder.setMessage(congratulations);
                 builder.setCancelable(true);
                 builder.setPositiveButton(R.string.next_puzzle_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                int next_puzzleIndex = puzzleIndex + 1;
-                                if (next_puzzleIndex >= nPuzzles) {
-                                    next_puzzleIndex = 0;
-                                }
-                                mViewPager.setCurrentItem(next_puzzleIndex);
-                                dialog.cancel();
+                        (dialog, id) -> {
+                            int next_puzzleIndex = puzzleIndex + 1;
+                            if (next_puzzleIndex >= nPuzzles) {
+                                next_puzzleIndex = 0;
                             }
+                            mViewPager.setCurrentItem(next_puzzleIndex);
+                            dialog.cancel();
                         }
                 );
                 builder.setNegativeButton(R.string.main_menu_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(getActivity(), PuzzleSelection.class);
-                                startActivity(intent);
-                            }
+                        (dialog, id) -> {
+                            Intent intent = new Intent(getActivity(), PuzzleSelection.class);
+                            startActivity(intent);
                         }
                 );
             } else {
-                if(level >= 0) {
+                if (level >= 0) {
                     builder.setMessage(getString(R.string.solved_all_puzzles));
                 } else {
                     builder.setMessage(getString(R.string.solved_all_intro));
                 }
                 builder.setCancelable(true);
                 builder.setPositiveButton(R.string.main_menu_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(getActivity(), PuzzleSelection.class);
-                                startActivity(intent);
-                            }
+                        (dialog, id) -> {
+                            Intent intent = new Intent(getActivity(), PuzzleSelection.class);
+                            startActivity(intent);
                         }
                 );
                 builder.setNegativeButton(R.string.stay_here_button,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        }
+                        (dialog, id) -> dialog.cancel()
                 );
             }
             AlertDialog alert = builder.create();
@@ -468,7 +438,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
         public void openIncorrectAnswerToast() {
             Context context = getActivity();
-            Toast.makeText(context, res.getRandomToast(), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, res.getRandomIncorrect(), Toast.LENGTH_LONG).show();
         }
 
         public void openAccuracyAlert(View view) {
@@ -476,11 +446,8 @@ public class SolvePuzzle extends AppCompatActivity {
             builder.setMessage(getString(R.string.accuracy));
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.ok_button,
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
+                    (dialog, id) -> dialog.cancel()
+            );
             AlertDialog alert = builder.create();
             alert.show();
         }
