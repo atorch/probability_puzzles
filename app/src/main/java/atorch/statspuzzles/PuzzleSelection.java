@@ -10,9 +10,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import thing.that.does.not.exist as ThisShouldProduceAnError
+
 public class PuzzleSelection extends AppCompatActivity {
 
-    public static final String LEVEL = "atorch.statspuzzles.LEVEL";
+    public static final String LEVELLLLL = "atorch.statspuzzles.LEVEL";
 
     public void startPuzzle(View view) {
         Intent intent = new Intent(this, SolvePuzzle.class);
