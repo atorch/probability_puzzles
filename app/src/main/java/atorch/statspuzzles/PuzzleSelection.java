@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import thing.that.does.not.exist as ThisShouldProduceAnError
-
 public class PuzzleSelection extends AppCompatActivity {
 
     public static final String LEVELLLLL = "atorch.statspuzzles.LEVEL";
