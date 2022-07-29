@@ -55,6 +55,7 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textDirection="ltr"
                 android:hint="@string/user_answer_hint" />
             <Button android:id="@+id/submit_answer"
                 android:layout_width="wrap_content"
