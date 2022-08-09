@@ -6,9 +6,8 @@
     \n\nIf you\'d like to contribute to the app (or peek at solutions), have a look at its\u00A0<a href="https://github.com/atorch/probability_puzzles">github repo</a>!</string>
 
     <string name="app_link">Challenge yourself with probability puzzles &#8212; install the app at https://play.google.com/store/apps/details?id=atorch.statspuzzles</string>
-
     <string-array name="congratulations">
-        <item>?עבודה טובה! מוכנים לחידה נוספת</item>
+        <item>עבודה טובה! מוכנים לחידה נוספת</item>
         <item>!נכון מאוד &#8212; עבודה מצויינת</item>
         <item>!מרשים מאוד</item>
         <item>!בראבו, עשיתם את זה</item>
