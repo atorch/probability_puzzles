@@ -1,0 +1,704 @@
+ <resources>
+    <string name="app_name">Acertijos matemáticos de Probabilidad</string>
+    <string name="new_in_this_update">Esta es la versión 3.8, lanzada en octubre de 2020 - ahora con más de 90 acertijos (y cero publicidad). ¡Diviértete!
+    \n\nAlguno de los acertijos de esta aplicación te resultarán difíciles si no has estudiado probabilidad. ¿Necesitas ponerte al día? Echa un vistazo a este\u00A0<a href="https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/amsbook.mac.pdf">libro de Dartmouth</a> y estas\u00A0<a href="https://ocw.mit.edu/courses/mathematics/18-440-probability-and-random-variables-spring-2014/lecture-notes/">notas del MIT</a>. También podrías revisar atentamente algunos problemas de probabilidad en\u00A0<a href="https://math.stackexchange.com/questions/tagged/probability">math.stackexchange.com</a>. Si prefieres ver charlas en youtube, prueba\u00A0<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60hI9ATjSFgLZpbNJ7myAg6">estos</a> o\u00A0<a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe">estos</a>.
+    \n\nEsta aplicación esta llena de acertijos matemáticos y usa la versión 4.2.0 de mXparser de Mariusz Gromada para traducir expresiones matemáticas a números: entenderá .2, 0.2, 20\% o 1/5. El parser también entiende factoriales y coeficientes binomiales: prueba a escribir 5!/(3!*2! o\u00A0<a href="https://en.wikipedia.org/wiki/Binomial_coefficient">C(5,3)</a> con C mayúscula para \"5 sobre 3.\" También puedes escribir e minúscula para la base del logaritmo natural. Visita\u00A0<a href="http://mathparser.org">mathparser.org</a> para obtener más información.
+    \n\nSi quisieras contribuir a la aplicación (u ojear las soluciones), echa un vistazo a su\u00A0<a href="https://github.com/atorch/probability_puzzles">repositorio en github</a>!</string>
+
+    <string name="app_link">Rétate a ti mismo con acertijos matemáticos de probabilidad &#8212; instala la aplicación en https://play.google.com/store/apps/details?id=atorch.statspuzzles</string>
+
+    <string-array name="congratulations">
+        <item>¡Buen trabajo! ¿Preparado para otro?</item>
+        <item>Eso es &#8212; ¡Excelente trabajo!</item>
+        <item>¡Muy impresionante!</item>
+        <item>Bravo, ¡lo conseguiste!</item>
+        <item>¡Enhorabuena, es correcto!</item>
+        <item>¡Eres demasiado bueno en esto!</item>
+        <item>¡Lo clavaste una vez más &#8212; muy bien!</item>
+        <item>¡Date una buena palmada en la espalda, te la has ganado!</item>
+        <item>¡Excelente trabajo!</item>
+        <item>¡Extraordinario &#8212; ahora puedes impresionar a tus amigos!</item>
+        <item>¡Gran trabajo! ¿Crees que puedes resolverlos todos?</item>
+        <item>¡Si me preguntan, diré que eres un solucionador de acertijos de primera!</item>
+        <item>Eres la persona más lista que ha instalado esta aplicación. ¡No lo dejes!</item>
+        <item>¡Lo conseguiste &#8212; choca esos cinco!</item>
+        <item>Boom &#8212; ¡lo hiciste!</item>
+        <item>¡Buen trabajo! No dejes el ejercicio mental.</item>
+        <item>¡Qué bien! Te estás volviendo más listo con cada nuevo acertijo.</item>
+        <item>¡Sí, increíble trabajo! Eso es a lo que llamo resolver un acertijo.</item>
+        <item>¡Estoy impresionado&#8230; este lo has clavado!</item>
+        <item>¡Muy bonito &#8212; Laplace estaría impresionado!</item>
+        <item>¡Si hubiera un Premio Nóbel para acertijos de probabilidad, apuesto a que lo ganarías!</item>
+        <item>¡Oh yeah &#8212; lo conseguiste!</item>
+        <item>¡Sal y celébralo: te lo has ganado!</item>
+        <item>¡Eres imparable!</item>
+        <item>¡Guau, hiciste que pareciera fácil!</item>
+        <item>¡Gran trabajo! ¿Qué tal si lo celebras doblegando el siguiente acertijo?</item>
+        <item>¡Excelente trabajo! ¿Crees que puedes resolver el siguiente?</item>
+        <item>¡Impresionante! Te estás volviendo más listo con cada acertijo.</item>
+        <item>¡Eres un héroe de la probabilidad! ¿Estás preparado para el siguiente reto?</item>
+    </string-array>
+    <string name="solved_all_puzzles">¡Impresionante &#8212; has resuelto todos los acertijos de este nivel!</string>
+
+    <string name="solved_all_intro">¡Has terminado la introducción! ¿Estás preparado para algo más difícil?</string>
+
+    <string name="title_activity_new_settings">Configuración</string>
+
+    <string name="congratulations_first_intro">¡Buen trabajo! Si ya eres un experto en probabilidad, se libre de volver al menú principal y probar con algunos más difíciles.</string>
+    <string name="congratulations_first_0">¡Acabas de resolver muy bien tu primer acertijo fácil!</string>
+    <string name="congratulations_first_1">¡Bienvenido a las ligas mayores: acabas de resolver tu primer acertijo serio!</string>
+    <string name="congratulations_first_2">¡Más lento, cowboy &#8212; ese que acabas de resolver es un acertijo muy exigente!</string>
+
+    <string name="button_intro">Introducción</string>
+    <string name="button_level_0">Sencillitos</string>
+    <string name="button_level_1">Poniéndonos serios</string>
+    <string name="button_level_2">Escandalosos</string>
+    <string name="button_hint">¿Necesitas una pista?</string>
+
+    <string-array name="levelDescriptions">
+        <item>Nivel: sencillitos &#8212; solo estás calentando.</item>
+        <item>Nivel: poniéndonos serios &#8212; quizá necesites papel y lápiz.</item>
+        <item>Nivel: escandalosos &#8212; hacer clic en este tercer botón es un movimiento atrevido.</item>
+    </string-array>
+
+    <string name="puzzle">Acertijo %d</string>
+    <string name="approximate_result">≈ %s</string>
+    <string name="main_menu_button">Menú Principal</string>
+    <string name="stay_here_button">Quedarse aquí</string>
+    <string name="button_back_to_puzzle">Vuelta a Acertijos</string>
+    <string name="next_puzzle_button">Siguiente acertijo</string>
+    <string name="okay_button">De acuerdo</string>
+    <string name="ok_button">OK</string>
+
+    <string name="solved">Resueltos %d / %d</string>
+
+    <string name="action_share">Compartir</string>
+    <string name="action_settings">Configuración</string>
+    <string name="reset_user_data">Eliminar datos</string>
+    <string name="title_activity_solve_puzzle">Resolver Acertijo</string>
+    <string name="user_answer_hint">Responde aquí</string>
+    <string name="button_submit_answer">Enviar</string>
+    <string name="answer_parsing_hint">Tu respuesta puede incluir matemáticas:\n prueba 0.25 o 1/4 o (1/2)^2 o 1/(2*2).</string>
+    <string name="swipe_hint">Desliza horizontalmente para ver otro acertijo.</string>
+    <string name="check_mark_description">Marca de verificación</string>
+    <string name="accuracy">Está muy cerca de la solución, pero quizás solo has tenido suerte. Para convencerme de lo contrario, por favor introduce la solución con una precisión de 0.00001. Recuerda, la respuesta puede incluir fórmulas.</string>
+
+    <string name="trouble_parsing_answer">No he sido capaz de parsear tu respuesta (es decir, de traducirla a un número). Por favor prueba a escribirla de otra forma, usando + y - para sumar y restar, * y / para multiplicar y dividir, y ^ para elevar. Usa los dígitos 0 a 9, con posibilidad de ( y ) para los paréntesis. Ejemplos de respuestas válidas son 3/(6*2) y (1/2)^3. Usa el punto como separador decimal. Por ejemplo, .2 es lo mismo que 1/5 (o 0.20 o 20\%).</string>
+
+    <string name="apprater_title">Valora Acertijos Matemáticos de Probabilidad</string>
+    <string name="apprater_message">¿Divirtiéndote con Acertijos Matemáticos de Probabilidad? Por favor tómate un momento para valorar la aplicación en la Play Store. Cada valoración cuenta. ¡Gracias por tu ayuda!</string>
+    <string name="apprater_rate_button">¡Valóralo!</string>
+    <string name="apprater_later_button">Quizá luego</string>
+    <string name="apprater_never_button">Nunca</string>
+
+    <string-array name="toasts_for_incorrect_answers">
+        <item>Lo siento, creo que no es correcto. Por favor, ¡sigue intentándolo!</item>
+        <item>Creo que no es correcto. ¡Sigue intentándolo!</item>
+        <item>Creo que no es correcto. ¡Inténtalo de nuevo!</item>
+        <item>No tiene pinta de estar bien. ¡No te rindas!</item>
+        <item>Creo que no es la respuesta, ¡pero no te rindas!</item>
+        <item>Las respuestas pueden incluir expresiones matemáticas como 0.01 + 11*(1/12)^2.</item>
+        <item>Puedes hacerlo &#8212; ¡no te rindas!</item>
+        <item>Apuesto a que puedes hacerlo &#8212; ¡sigue con ello!</item>
+        <item>¡Sigue con ello! Estoy seguro de que puedes resolverlo.</item>
+        <item>Las respuestas pueden incluir matemáticas: prueba + - / * y ^ (para elevar).</item>
+        <item>Tómatelo como ejercicio mental. ¡Sigue intentándolo!</item>
+        <item>Albert Einstein resolvió este cuando tenía dos años.</item>
+        <item>Lo siento, no es correcto. ¡Por favor inténtalo de nuevo!</item>
+        <item>Creo que no es la respuesta correcta. ¡Sigue intentándolo!</item>
+        <item>Recuerda, la respuesta puede incluir matemáticas: prueba usando + - * / y ^.</item>
+        <item>No está bien. Por si ayuda, recuerda que puedes escribir * / y ^ para multiplicar, dividir y elevar.</item>
+        <item>¿Atascado? Desliza horizontalmente para probar otro acertijo &#8212; puedes volver a este más tarde.</item>
+        <item>¿Atascado? Puedes saltar este acertijo y volver a él más tarde. Prueba a deslizar horizontalmente.</item>
+        <item>¡Sigue intentándolo!</item>
+        <item>¿Necesitas ayuda? Usa el botón de compartir en la parte superior derecha para preguntar a un amigo.</item>
+        <item>¿Atascado? ¡Usa el botón de compartir en la parte superior derecha para pedir ayuda a tus amigos!</item>
+        <item>¿Tus amigos se divierten con acertijos matemáticos de probabilidad? ¡Usa el botón de compartir para pedirles ayuda!</item>
+        <item>Puedes pedir ayuda a tus amigos &#8212; ¡prueba a usar el botón de compartir en la parte superior derecha!</item>
+        <item>¡Sigue pensando!</item>
+        <item>¡Sigue intentándolo, apuesto a que lo resolverás pronto!</item>
+        <item>Puedes resolver este acertijo. ¡Sigue intentándolo!</item>
+        <item>¡Puedes hacerlo!</item>
+        <item>Tu cerebro está haciendo un gran ejercicio &#8212; ¡sigue intentándolo!</item>
+        <item>Piensa en él como un ejercicio mental &#8212; ¡sigue intentándolo!</item>
+        <item>Mejorarás mucho con la práctica. ¡Continúa!</item>
+        <item>Resiste &#8212; ¡no lo rehuyas!</item>
+        <item>Todavía no lo has logrado &#8212; ¡sigue intentándolo!</item>
+        <item>¡Vamos, puedes hacerlo!</item>
+        <item>¿Quién es más duro, tú o el acertijo?</item>
+        <item>Eh, ¡no dejes que este insignificante acertijo te venza!</item>
+        <item>No es la respuesta que buscaba. No te preocupes, no hay penalización por respuestas incorrectas.</item>
+        <item>No hay penalización por respuestas incorrectas. ¡Sigue intentándolo!</item>
+        <item>¡Puedes hacerlo! &#8212; ¡Concéntrate!</item>
+        <item>¡Concéntrate! Puedes resolverlo.</item>
+        <item>¡Aguanta!</item>
+        <item>Puedes resolverlo &#8212; sigue ahí.</item>
+        <item>No estarás simplemente diciendo números al azar, ¿no?</item>
+        <item>Quizá la respuesta te venga en sueños.</item>
+        <item>Prueba a dar un buen paseo &#8212; estimulará tu creatividad.</item>
+        <item>No te preocupes, nadie lo ha visto.</item>
+        <item>¿Atascado? Desliza horizontalmente para intentar otro acertijo.</item>
+        <item>Desliza horizontalmente y prueba otro acertijo si estás atascado (siempre puedes volver más tarde).</item>
+        <item>¿Estás atascado? Sigue adelante y salta al siguiente acertijo &#8212; No se lo diré a nadie.</item>
+        <item>¿Problemas? Prueba con otro acertijo y vuelve a este más tarde.</item>
+        <item>¿Este acertijo no te hace click? Desliza horizontalmente para probar otro.</item>
+        <item>Todavía no has llegado. Sigue intentándolo, ¡te sentirás muy bien cuando lo resuelvas!</item>
+        <item>¿Sigue intentándolo! La mejor manera de aprender es retarte a ti mismo.</item>
+        <item>¿Atascado? Prueba el botón de pistas en la parte inferior de la pantalla.</item>
+        <item>Prueba leyendo la pista en la parte inferior.</item> 
+        <item>¿Quieres volver a este más tarde? Desliza horizontalmente para probar con otro acertijo.</item>
+        <item>¿Problemas? Hay un botón de pistas en la parte inferior.</item>
+        <item>¿Acertijo difícil? Prueba leyendo la pista en la parte inferior de la página.</item>
+        <item>No te rindas &#8212; ¡puedes resolverlo!</item>
+        <item>Desliza horizontalmente para probar otro acertijo (puedes volver a este más tarde).</item>
+    </string-array>
+
+    <string-array name="images_intro">
+        <item></item> </string-array>
+    <string-array name="hints_intro">
+        <item>Prueba a escribir 0.4, .4 (el cero antes de la coma es opcional), 40\%, 4/10, o 2*1/5.</item>
+        <item>La respuesta es .49^3. También podrías escribir .49*0.49^2, si te apeteciera, o .49*.49*.49.</item>
+        <item>Escribe 4! (sí, ¡el signo de exclamación es parte de la respuesta!), o prueba 4*3*2.</item>
+        <item>Escribe -.7 + .2 + 0.1*4, o 70\%*(-1) + 20\% + 10\%*4 si lo prefieres. ¿Quieres evitar escribir todo eso? La respuesta es -0.1.</item>
+        <item>Escribe la letra e en minúscula.</item>
+        <item>Resuelve la ecuación para p y deberías obtener p = 6/11, que, como era de esperar, es ligeramente mayor que el 50 por ciento (es decir, Annie tiene una ligera ventaja). Si quieres un reto, prueba a obtener la misma respuesta sumando la serie infinita p = 1/6 * (1 + (5/6)^2 + (5/6)^4 + (5/6)^6 + &#8230;).</item>
+        <item>Se escoge el punto uniformemente al azar del cuadrado, así que la respuesta es simplemente el área del círculo dividido entre el área del cuadrado. El circulo tiene área pi*(D/2)^2, el cuadrado tiene área D^2, así que la respuesta es pi/4. Puedes escribir pi directamente en la respuesta.</item>
+    </string-array>
+    <string-array name="puzzles_intro">
+        <item>Hola, ¡bienvenido a la aplicación! Una probabilidad es un número entre 0 y 1 que mide el grado de posibilidad de que se produzca un suceso. Un suceso con probabilidad 1 sucede seguro, mientras un suceso con probabilidad cero nunca ocurrirá. (Busca la frase \"casi seguro\" si quieres una definición más rigurosa de lo que las probabilidades 0 y 1 significan.) Si lanzas una moneda sin trucar, por ejemplo, hay un 50\% de probabilidad de que salga cara.
+        \n\nFinjamos que acabas de solucionar un acertijo de probabilidad complicado cuya respuesta es .4, es decir 40\%. Escribe la respuesta abajo y pulsa enviar. La aplicación usa un parser (analizador de sintaxis) matemático que entiende la mayoría de las operaciones matemáticas: puedes escribir 2*0.20, .30+.10, o (80\%)/2, y todas serán aceptadas como correctas &#8212; o puedes simplificarlo todo y escribir .4, 0.4 (el cero antes de la coma es opcional), o 40\%.</item>
+        <item>Cuando dos sucesos A y B son independientes (que significa que el resultado de uno no afecta a la probabilidad del otro), puedes obtener la probabilidad de que sucedan A y B multiplicando sus probabilidades. Por ejemplo, supón que las niñas nacen con probabilidad 0.49 (y los niños con probabilidad 0.51), y que sus nacimientos son independientes. Si una pareja tiene dos hijos/as, la probabilidad de que sean dos niñas es 0.49*0.49, o 0.49^2. El símbolo ^ representa la exponenciación (es decir, elevar un número a una potencia). 
+        \n\nSi una pareja tiene tres hijos (sin especificar), ¿cuál es la probabilidad de que los tres sean niñas? Usando la misma regla de antes, la respuesta es .49^3. Escríbelo debajo. Si no te gusta el símbolo ^, puedes escribir .49*.49*.49.</item>
+        <item>¿Cuántas formas hay de ordenar a tres amigos &#8212; Alice, Bob, y Charles &#8212; en una fila? Hay tres posibilidades para el primero (A, B o C), por dos posibilidades para el segundo (porque solo quedan dos después de poner el primero de la lista). La respuesta es 3*2=6.
+        \n\n¿Cuántas formas hay de ordenar a cuatro amigos en una fila? Siguiendo un razonamiento similar, verás que la respuesta es 4*3*2. Resulta que este tipo de número aparece con frecuencia en probabilidad y combinatoria, y puedes escribirlo como 4! (se lee como \"factorial de cuatro\"). El parser matemático entiende los factoriales, prueba a escribir 4! abajo en la respuesta (o escribe 4*3*2, o 24, o cualquier otra forma que te apetezca).</item>
+        <item>Verás con frecuencia el térmico \"valor esperado\" en los problemas de probabilidad. Un valor esperado es en esencia una media ponderada de probabilidad. Por ejemplo, X denota la cantidad que ganarás la próxima vez que juegues en un casino. Si X puede tomar solo un número finito de valores, el valor esperado de X, denotado E[X], es simplemente una media ponderada de probabilidad de sus posibles valores. (Estoy describiendo variables aleatorias discretas, el valor esperado de variables aleatorias no discretas son más complicadas, pero lo dejaremos para otro momento.)
+        \n\nImaginemos una distribución simple para X: con un 70\% de probabilidad de que pierdas un euro (X=-1); con un 20\% de probabilidad de que ganes un euro (X=1); y el restante 10\% de probabilidad, de que obtengas un beneficio de cuatro euros (X=4). El valor esperado de tus ganancias es E[X] = 0.7*(-1) + 0.2*1 + 0.1*4 &#8212; ¡y esa es la respuesta a este acertijo! Encontrarás que la ganancia esperada es negativa, lo que significa que el casino gana dinero de media.</item>
+        <item>La constante matemática e &#8212; el número de Euler &#8212; a veces aparece en los problemas de probabilidad. Hay varias maneras de expresar e: una forma es el límite cuando N tiende a infinito de (1+1/N)^N. No lo verás con frecuencia en esta aplicación, pero hay algunos acertijos difíciles en cuya respuesta está involucrada e. Afortunadamente, el parser entiende las constantes matemáticas como e y pi. Prueba a escribir e minúscula en el campo de la respuesta de la parte inferior.</item>
+        <item>Aquí tienes el ejemplo de un truco que simplifica un acertijo que de otro modo sería difícil. Supón que Andrew y Annie están jugando a un juego con un dado de seis caras: en sus turnos tirarán el dado, y la persona que obtenga un seis gana. Si Annie va primero, ¿cuál es la probabilidad de que gane? Intuitivamente, debería tener ventaja (dado que puede conseguir un seis en su primera tirada y ganar inmediatamente, antes de que el pobre Andrew ni siquiera tuviera la opción de tirar). Pero, ¿cuál es la probabilidad exacta de que gane?
+        \n\nEste acertijo puede resolverse sumando series infinitas, pero hay una manera más sencilla. Llamemos p a la probabilidad de que el jugador gane el juego si es su turno. Su probabilidad de ganar en ese momento es 1/6. Además, si el juego no se ha terminado dos tiradas después (cuando es otra vez su turno), su probabilidad de ganar sigue siendo p. Por tanto tenemos la siguiente ecuación: p = (1/6) + (5/6)^2 * p, donde (5/6)^2 es la probabilidad de dos no-seises seguidos. Despeja p para obtener la probabilidad de que Annie gane al juego.</item>
+        <item>Aquí tienes un ejemplo que usa la constante matemática pi. Imagina un círculo inscrito dentro de un cuadrado: el círculo tiene diámetro D, los lados del cuadrado tienen longitud D, y el círculo y el cuadrado están centrados en el mismo punto.
+        \n\nSi seleccionas un punto completamente al azar en el cuadrado (imagina un dardo mal tirado, por ejemplo), ¿cuál es la probabilidad de que el punto caiga dentro del círculo?</item>
+    </string-array>
+    <string-array name="answers_intro">
+        <item>0.40</item>
+        <item>0.49^3</item>
+        <item>4!</item>
+        <item>0.7*(-1) + 0.2*1 + 0.1*4</item>
+        <item>e</item>
+        <item>6/11</item>
+        <item>pi/4</item>
+    </string-array>
+
+    <string-array name="images_0">
+        <item>two_heads_caesar</item>
+        <item>socks</item>
+        <item>dice_small</item>
+        <item>dice_two_six_small</item>
+        <item>two_girls_small</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>berries</item>
+        <item></item>
+        <item></item>
+        <item>eight_children_small</item>
+        <item>monty</item>
+        <item>roll_7_small</item>
+        <item>gay_straight</item>
+        <item>intransitive_dice</item>
+        <item>life_expectancy_small</item>
+        <item></item>
+        <item></item>
+        <item>backgammon_small</item>
+        <item>ct_vote_table_small</item>
+        <item>two_girls_small</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>random_breakpoint_small</item>
+        <item>clock_noon</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>seven_lines</item>
+    </string-array>
+    <string-array name="hints_0">
+        <item>La respuesta es (1/2)^2 o 1/4. Cuando los eventos A y B son independientes, Pr[A y B] = Pr[A]*Pr[B]. En este caso, A representa una cara en el primer lanzamiento, y B una cara en el segundo; todo lo que tienes que hacer es multiplicar sus probabilidades. Intuitivamente, la independencia significa que el resultado de uno de los sucesos no afecta a la probabilidad del otro: no importa que pase en el primer lanzamiento, el segundo aun tiene un 50-50 de posibilidades de salir cara.</item>
+        <item>No importa qué calcetín saques primero, la probabilidad de que el segundo sea del mismo color es&#8230; un número, que es precisamente la respuesta que estás buscando. Por ejemplo, supón que escoges uno rojo primero: sabiendo que el primer calcetín es rojo, la probabilidad de que el segundo también sea rojo es 1 de 5. Date cuenta que eso sucede sin importar qué calcetín saques primero. Visita https://math.stackexchange.com/questions/2750340/whats-the-probability-of-choosing-two-socks-of-the-same-color-from-three-pairs para una explicación detallada.</item>
+        <item>Si A, B y C son sucesos mutuamente excluyentes &#8212; como sacar un 2, un 4 o un 6 &#8212; tienes que la probabilidad Pr[A o B o C] = Pr[A]+Pr[B]+Pr[C]. Solo suma esas probabilidades. Cada resultado individual tiene probabilidad 1/6, y sumando las tres juntas obtenemos &#8230;</item>
+        <item>Hay 6*6=36 pares posibles de soluciones, que son igual de probables. ¿Cuáles suman un total de 12? Tendrías que sacar un 6 tanto en el primer como en el segundo lanzamiento. Solo hay una manera para que suceda, por lo que la solución es&#8230;</item>
+        <item>Como en la primera pregunta, la independencia significa que Pr[A y B] = Pr[A]*Pr[B]. Esta vez, A (B) denota el suceso de que el primer (segundo) hijo sea una niña. Multiplica esas probabilidades y tendrás la respuesta.</item>  
+        <item>Sea A (B) el suceso de que la primera (segunda) carta sea un as. Estos sucesos no son independientes, por lo que necesitas calcular Pr[A y B] = Pr[A]*Pr[B/A]. Pr[A] es la probabilidad de que la primera carta sea un as: es 4/52. PR[B | A] es la probabilidad de que la segunda carta sea un as, cuando la primera carta ha sido un as (la barra vertical significa \"condicionado a\"). ¿Puedes averiguar cuánto es? En ese punto, condicionado al suceso A, sabes que hay 51 cartas restantes, 3 de las cuales son ases.</item>
+        <item>Date cuenta de que hay dos formas de obtener solo un as: bien en la primera carta, o la segunda. Son sucesos mutuamente excluyentes, de modo que tienes Pr[A o B] = Pr[A] + Pr[B], donde A es el suceso de que la primera carta sea un as y la segunda no (y B es la opuesta). Calcular Pr[A] es similar a la pregunta anterior: es (4/40)*(36/39). ¿Cuánto es Pr[B]?</item>
+        <item>Un pequeño truco aquí es que no importa qué carta robes primero, la probabilidad de que la segunda sea del mismo palo es&#8230;</item>
+        <item>De las posibles preferencias, solo tres son compatibles con su primera elección. Por ejemplo, dado lo que sabes, hay probabilidad cero de que el mono prefiera azul a amarillo a rojo, pero hay 1/3 de probabilidad de que prefiera amarillo a rojo a azul. Este acertijo está inspirado en un artículo del New York Times: visita https://www.nytimes.com/2008/04/08/science/08tier.html y especialmente el debate a partir de la frase \"el Dr. Chen dice que la aversión del mono por el azul puede explicarse por completo solo con estadística.\".</item>
+        <item>Pon todas las canicas blancas en una urna (izquierda), y todas las negras en la otra (derecha). Tendrás un 50\% de probabilidad de sobrevivir. ahora quita una canica blanca de la urna izquierda y ponla en la derecha. ¿Aumenta tu probabilidad?</item>
+        <item>Date cuenta de que, de los juegos que terminan después de una ronda (es decir, después de los dos primeros lanzamientos, que deben haber sido bien CX o XC), Bob y Alice esperan que cada uno gane la mitad. Si en lugar de eso los dos primeros lanzamientos fueran CC o XX, continuaríamos con la segunda ronda. Condicionado a que el juego termine en la segunda ronda, Bob y Alice vuelven a tener las mismas probabilidades de ganar. ¿Te das cuenta del patrón?</item>
+        <item>Para cualquier suceso A, Pr[A] = 1 - Pr[!A] donde !A significa \"no A\", es decir, el complementario de A. A veces es más fácil calcular Pr[!A], que en este caso es la probabilidad de que todas las 50 familias tengan al menos un hijo de cada sexo. Empieza obteniendo la probabilidad de que una familia de 8 miembros tenga al menos un hijo de cada sexo &#8212; y llámalo p. Usando el truco \"no A\" también te ayudará a obtener p (mira al gráfico de barras: necesitas restar las probabilidades más a la derecha y a la izquierda). La respuesta final será 1 - p^50.</item>
+        <item>Antes de que Monty haga nada, la probabilidad de que tu elección inicial sea correcta es 1/10. ¿Cambia después de mostrarte 8 cabras?</item>
+        <item>Cuando se lanzan dos dados sin trucar hay 6*6 = 36 posibles resultados, todos igual de probables. La imagen tiene la intención de apuntar a la solución sin dártela inmediatamente: los círculos son más intensos cuando la suma de los dados se aproxima a siete.</item>
+        <item>Si alguien fuese homosexual la respuesta sería 0.9, mientras si alguien fuera heterosexual la respuesta sería 0.1. En la situación que estamos planteando, la respuesta es la media ponderada de esos dos números. ¿Entiendes porqué?</item>
+        <item>Una manera directa de calcular la probabilidad de que un dado gane a otro es condicionar el resultado de uno de sus lanzamientos. Por ejemplo, si en el dado rojo sale 2, hay una probabilidad de 0/3 de ganar al azul;, pero si sale 4, hay 1/3 de probabilidad. ¿Qué pasa si sale 9? ¿Ves como hacer la media de esas probabilidades condicionadas te dará la respuesta correcta?</item>
+        <item>Una primera pista es mostrarte como se calculó la expectativa de vida al nacer: 0.2*(1 + 6 + 20 + 50 + 80) = 31.4. ¿Cómo puedes modificarlo para obtener la respuesta que estamos buscando? Sabiendo que sobrevive a los 30, la probabilidad de morir antes de 30 debe ser cero. ¿Qué pasaría con la probabilidad (condicionada) entre los 70 y 90 años?</item>
+        <item>Una expectativa es en esencia una media. Si apuestas por 1000 euros, por ejemplo, tienes una probabilidad de 0.01 de acertar, por lo que ganarás 0.01 * 1000 + 0.99 * 0 = 10 euros de media. ¡Descubrirás que la respuesta no es ni la cantidad más probable (0 euros), ni la mayor (1000 euros)!</item>
+        <item>Si p es la probabilidad de que las solicitantes mujeres pidan el departamento A, la probabilidad de que soliciten el departamento B es necesariamente (1 - p), porque estamos asumiendo que cada solicitante escoge exactamente un departamento. ¿Puedes expresar el ratio de aceptación global de las mujeres como una función de p y de los dos ratios de aceptación específicos por departamento (es decir, 0.5 en A y 0.2 en B)?</item>
+        <item>Como en los dos problemas con dos dados anteriores, hay 36 posibles resultados, todos igual de probables. Todo lo que tienes que hacer es contar los que permiten al negro comer la pieza blanca, asegurándote de no contarlos dos veces. La imagen muestra dos posibles movimientos (un salto de 6, o un 4 seguido de un 2), pero hay muchos más.</item>
+        <item>T solo tiene un camino para ganar: necesita que los votantes 3 y 4 le voten. La probabilidad de que C gane es por tanto uno menos la probabilidad de que los votantes 3 y 4 vayan con su rival. El enunciado te dice que Pr[Votantes 3 y 4 escojan ambos C] = 0.6*2/3 = 0.4. ¿Puedes obtener Pr[Votantes 3 y 4 escojan T]? Intenta completar la tabla de probabilidades 2x2 en la parte inferior del acertijo. Cada votante tiene una probabilidad del 60\% de escoger C, lo que significa que la fila C y la columna C deben sumar 0.6; de manera similar, la fila y columna T deben sumar 0.4.</item>
+        <item>Un acertijo anterior te pedía la probabilidad de tener dos niñas (de dos bebés): esa probabilidad es 0.49^2. Lo que busco aquí es la probabilidad de dos niñas condicionada a tener al menos una niña (es decir, a no tener dos niños). Como la probabilidad de tener dos niños es 0.51^2, la probabilidad de que haya al menos una niña es 1-0.51^2. ¿Puedes integrar ambas informaciones para obtener la respuesta?</item>
+        <item>Irás a correr si no eres escogido para ir a nadar. La probabilidad de que no seas escogido el primero es 49/50. Si no eres escogido el primero, la probabilidad de que seas escogido el segundo es 48/49. Date cuenta de que Pr[no ser escogido primero ni segundo] = 48/50, es decir, los 49 se anulan mutuamente. Acabarás con una respuesta muy simple e intuitiva.</item>
+        <item>La respuesta podría ser más obvia si te imaginas una gran población de fondos de inversión. Supón que hay 1000 de ellos: de media, 400 aumentarán su valor si siguen operando, 300 perderán valor, y los 300 restantes perderán valor y dejarán de existir. De los que continúan operando, ¿qué fracción aumentó su valor?</item>
+        <item>La regla de Bayes de probabilidad condicionada dice que Pr[A | B] = Pr[A y B] / Pr[B]. La barra vertical quiere decir \"condicionado a\", y Pr[A | B] es la probabilidad de A cuando B ha sucedido (es decir, observamos B y nos preguntamos cuánto de probable es A, sabiendo lo que sabemos). ¿Qué podemos decir de Pr[A | B] y Pr[B | A] asumiendo que Pr[A] = Pr[B]?</item>
+        <item>La probabilidad de que el trozo derecho tenga una longitud menor que L es igual a la probabilidad de que el trozo izquierdo tenga una longitud mayor de (1 - L), lo que es simplemente 1 - (1 - L) = L. Por simetría, pues, la longitud media del trozo derecho e izquierdo deben ser iguales, es decir E[longitud del trozo izquierdo] = E[longitud del trozo derecho] donde E expresa la expectativa. Además, esos dos valores esperados deben sumar la longitud total de 1. ¿Ves cómo esto nos da la respuesta?</item>
+        <item>Para que la manecilla horaria señale las 2 después de 3 horas, necesita haberse quedado atascada una vez (y avanzar dos veces). La clave es darse cuenta de que hay tres formas de que eso pueda pasar: atascarse-moverse-moverse, moverse-atascarse-moverse o moverse-moverse-atascarse. ¿Cuál es la probabilidad de cada secuencia? Sumando esas probabilidades obtenemos la respuesta.</item>
+        <item>El enunciado te pregunta por la probabilidad de que contactes con 3 votantes indecisos, 1 que apoya a tu candidato y 1 a tu oponente &#8212; independientemente del orden. Para simplificar, calcula la probabilidad de contactar a esas personas en un orden concreto (por ejemplo I-I-I-C-O), y después multiplica esa probabilidad por el número de posibles ordenaciones de esa secuencia (por ejemplo, I-I-I-O-C es otro posible orden, como O-I-I-C-I). Resulta que hay 20 formas de reordenar esa secuencia &#8212; ¿sabes deducir porqué?</item>
+        <item>Supón que escoges una letra al azar, independientemente de lo que tu amiga haga. Tu amiga pensará en una letra, por ejemplo Z: condicionada a esa elección, la probabilidad de que adivines correctamente es 1/26. De hecho, esto es cierto independientemente de la letra que escoja, y por tanto independientemente del procedimiento que haya usado para escoger letras.</item>
+        <item>Piensa en uno de los sexos como siguiendo un orden fijo &#8212; por ejemplo, digamos que las niñas están ordenadas (A1, A2, A3, ... , A5). Todo lo que tenemos que hacer para emparejar cada niña con un niño es obtener un ordenamiento de los 5 niños; entonces emparejaremos A1 con el primero de la lista de los niños, A2 con el segundo de la lista de los niños, etcétera. ¿Cuántas maneras hay de ordenar (es decir, permutar) los 5 niños? La respuesta se expresa fácilmente usando un factorial, es decir N! para el entero N.</item>
+        <item>La respuesta se expresa fácilmente usando un factorial. Una estrategia es empezar con 12! &#8212; es decir, el número de formas de ordenar a 12 personas &#8212; y después dividirlo por el número de formas en que esas personas pueden ser reordenadas usando grupos. Otra manera es empezar con C(12,4), es decir, el número de formas que las personas pueden ser asignadas al grupo A, y luego multiplicarlas por el número de formas que las restantes 8 personas pueden ser asignadas a los grupos B y C.</item>
+        <item>Hay 6! formas de ordenar a 6 personas en una fila, y 10 formas de que A y B estén una al lado de la otra. Por cada una de esas 10 configuraciones donde A y B son vecinos, ¿cuántas formas puedes ordenar a las 4 personas restantes?</item>
+        <item>Darse cuenta de esta esta estrategia es de idea feliz, pero ahora que la sabes, debería ser fácil obtener la probabilidad de que el grupo gane. Curiosamente, la probabilidad es mucho mayor del 50\%. El grupo perderá si todos sus sombreros son blancos (porque cada uno verá dos sombreros blancos y dirá que el suyo es negro); de forma similar, el grupo perderá si todos los sombreros son negros. La probabilidad de que todos los sombreros sean del mismo color es 2*(1/2)^3 = 1/4. ¿Acertará el grupo en todos los demás casos? Como bonus, piensa si existe alguna estrategia mejor (es decir, una con una probabilidad mayor de ganar).</item>
+        <item>Puesto que no hay rectas paralelas (ni tres rectas se cortan en un mismo punto), cualquier elección de tres rectas generará un triángulo. ¿Cuántas maneras hay de escoger un subconjunto de tres objetos de un conjunto de siete? La respuesta puede expresarse como \"N sobre K\" o C(N,K). Echa un vistazo a https://mathworld.wolfram.com/BinomialCoefficient.html si nunca has visto coeficientes binomiales, y recuerda que puedes escribir expresiones como C(5,3) y el parser matemático de la aplicación lo entenderá. Si quieres ver una respuesta detallada de un acertijo similar, visita https://www.nytimes.com/2019/08/21/science/math-equation-triangles-pemdas.html -- ¡pero intenta resolver este por ti mismo primero!</item>
+        <item>Curiosamente, puedes mejorar la probabilidad de 1/3 de contratar al mejor candidato. (Hay varias estrategias que te darían 1/3 de probabilidad: por ejemplo, podrías contratar a la primera persona que entrevistes.) Considera la regla bajo la que siempre entrevistes a las dos primeras personas. Claramente, si el segundo candidato es peor que el primero, deberías rechazarlo (puesto que lo único que te importa es contratar al mejor). ¿Ves a dónde te lleva esta estrategia? Si quieres leer una solución más detallada de una versión generalizada de este problema, visita https://math.stackexchange.com/questions/45266/secretary-problem-why-is-the-optimal-solution-optimal. Ten en mente que la estrategia óptima depende de tu objetivo, que en este caso es un \"todo o nada\". Mira el acertijo 17 de la sección Poniéndonos Serios para un problema de decisiones relacionado, con una función muy diferente sobre beneficios.</item>
+    </string-array>
+    <string-array name="puzzles_0">
+        <item>Julio César lanza dos monedas justas (sin trucar).
+            \n\nAsumiendo que los lanzamientos son independientes, ¿cuál es la probabilidad de obtener dos caras?</item>
+        <item>Seis calcetines sueltos están en un cajón: dos rojos, dos azules y dos morados. Está oscuro &#8212; no ves nada.
+            \n\nEscoges un calcetín al azar, y después un segundo (también al azar) entre los cinco restantes.
+            \n\n¿Cuál es la probabilidad de que termines con dos calcetines del mismo color?</item>
+        <item>Cuando lanzas un dado de seis caras, ¿cuál es la probabilidad de obtener un número par?</item>
+        <item>Lanzas dos dados sin trucar &#8212; e independientes &#8212; de seis caras.
+            \n\n¿Cuál es la probabilidad de que la suma de los números obtenidos sea la máxima posible, es decir, 12?</item>
+        <item>Supón que de los bebés, son niños con probabilidad 0.51, niñas con probabilidad 0.49, y los nacimientos son independientes.
+            \n\nSi tienes dos bebés, cual es la probabilidad de que sean dos niñas? El gráfico inferior te da una respuesta aproximada, pero estamos buscando el número exacto.</item>
+        <item>Una amiga sitúa una baraja de 52 cartas perfectamente mezclada delante de ti, y amablemente te recuerda que una baraja estándar tiene cuatro ases.
+            \n\nSi robas dos cartas (sin mirarlas), ¿cuál es la probabilidad de que sean dos ases?</item>
+        <item>Esta es la continuación de la pregunta anterior: has robado dos cartas y, desgraciadamente, ninguna de ellas es un as.
+            \n\nTú amiga se siente generosa: te permite robar diez cartas más. Pero sin suerte. Sabes que quedan 40 cartas en la baraja, de las cuales cuatro son ases.
+            \n\nSi tu amiga roba ahora dos cartas, ¿cuál es la probabilidad de que robe exactamente un as?</item>
+        <item>Una vez más te enfrentas a una baraja de 52 cartas perfectamente mezclada &#8212; que contiene cuatro palos, cada uno con 13 cartas, como tu amiga amablemente señala.
+            \n\nSi robas dos cartas, ¿cuál es la probabilidad de que sean del mismo palo?</item>
+        <item>Imagina por un momento que los monos solo comen tres tipos de bayas &#8212; azules, rojas y amarillas &#8212; y que tienen preferencias. Por ejemplo, algunos creen que las rojas son las mejores, seguidas por las azules y por último las amarillas (R > Az > Am).
+            \n\nLas preferencias de los monos son estrictas: no hay empates, dejándonos solo seis posibles ordenaciones de bayas.
+            \n\nTodas la preferencias son igualmente probables: un sexto de los monos sienten que R > Az > Am; otro sexto creen en cambio que R > Am > Az. No te menciono las preferencias de los otros cuatro sextos, pero pueden deducirlos usando el resto de las ordenaciones de colores que quedan.
+            \n\nTe encuentras con un mono al azar y le das la opción entre una baya roja y una azul. Escoge roja. Ahora le ofreces roja o amarilla &#8212; dado su elección previa, ¿cuál es la probabilidad de que vuelva a escoger roja?</item>
+        <item>Le has robado al rey y has sido enviado a la cárcel. El rey es magnánimo, no obstante, y en lugar de descuartizarte en el acto, te permite jugar a un pequeño juego.
+            \n\nTe han dado 100 canicas &#8212; 50 negras y 50 blancas &#8212; y debes meterlas en dos urnas, de la manera que quieras, mientras obedezcas las reglas del rey.
+            \n\nDebes meter todas las canicas, y ninguna urna puede quedar vacía. Ambas urnas serán agitadas de modo que las canicas se mezclarán &#8212; así que el orden en el que las metas no importa.
+            \n\nEl rey seguirá entonces un procedimiento sencillo: escogerá una urna al azar (es decir, ambas son igual de probables de ser escogidas); y de esa urna, extraerá una canica al azar. Si es blanca, vives; pero si es negra, serás arrojado a los leones, o quizás descuartizado &#8212; el rey todavía no lo tiene claro.
+            \n\nPuedes poner todas las canicas blancas en una urna, y todas las negras en otra, en ese caso sus opciones son 50-50 &#8212; ¡pero puedes mejorarlo! Si distribuyes las canicas de la mejor forma posible, ¿cuál es tu probabilidad de sobrevivir?</item>
+        <item>Dos amigos, Alice y Bob, han encontrado una moneda trucada: tiene un 72\% de probabilidad de salir cara. No tengo ni idea de qué pinta tendría esa moneda, pero finjamos que existe.
+            \n\nAlice propone un juego: tirará la moneda dos veces; si sale cara y cruz, gana ella; si es al revés (primero cruz y luego cara), gana Bob; y si no sucede ninguna de las dos cosas, se vuelve a empezar el juego, y se continua hasta que haya un ganador.
+            \n\n¿Cuál es la probabilidad de que gane Bob?</item>
+        <item>Volvemos a pensar en niños &#8212; sigamos con la asunción de que los bebes son niños con probabilidad 0.51, niñas con probabilidad 0.49, y los nacimientos son independientes.
+            \n\nEres un investigador interesado en familias numerosas: como parte de tu último proyecto, has decidido entrevistar a 50 familias que tienen exactamente 8 hijos/as. El gráfico inferior ilustra los posibles resultados para una sola familia. ¿Cuál es la probabilidad de que encuentres una o más familias en las que los hijos son todos del mismo género (es decir, todo niños o todo niñas)? </item>
+        <item>Eres un concursante de un programa de juegos organizado por Monty Hall. Delante de ti hay 10 puertas cerradas: una esconde un coche caro, pero detrás de las otras nueve solo hay cabras.
+            \n\nEscoges una puerta. Monty hace entonces algo muy generoso: de las 9 puertas que no has escogido, abre 8 puertas con cabras. ¡Beeee! Date cuenta de que Monty siempre puede hacer esto, independientemente de si tu elección inicial fue correcta. (Si tu elección inicial fue correcta, Monty tiene varias formas de escoger que puertas abre: supón que las escoge al azar.)
+            \n\nEn este punto solo hay dos puertas cerradas: una esconde el coche, y la otra una cabra. Monty te pregunta si prefieres quedarte con tu elección inicial, o cambiar.
+            \n\nSi cambias, ¿qué probabilidad tienes de ganar el coche?</item>
+        <item>Lanzas dos dados de 6 caras sin trucar.
+            \n\nSi asumimos que los lanzamientos son independientes, ¿cuál es la probabilidad de que la suma de los números obtenidos sea 7?</item>
+        <item>Supón que el 0.05 de la población es homosexual, y por simplicidad asumamos que el 0.95 restantes es heterosexual. Susie no conoce estos números globales, pero puede adivinar la orientación sexual con un 90&#37; de precisión.
+        \n\nEn otras palabras, si alguien es homosexual, hay un 0.9 de probabilidad de que Susie la identificará correctamente como homosexual (y un 0.1 de probabilidad de que lo tome erróneamente por heterosexual); una afirmación similar sucede cuando alguien es heterosexual.
+        \n\nEs interesante que Susie sobreestimará el porcentaje global de personas que son homosexuales, y por un margen bastante amplio. Si se encuentra a alguien escogido al azar de la población, ¿cuál es la probabilidad de que ella piense que es homosexual?</item>
+        <item>Considera los tres dados de la imagen inferior: cada uno tiene seis caras, pero asumamos que las caras ocultas opuestas son idénticas a las que se muestran. Eso significa que en el dado rojo hay un 1/3 de probabilidad de salir un 9, por ejemplo.
+        \n\nEl dado rojo es \"más fuerte\" que el verde, en el sentido de que tiene 5/9 de probabilidad de sacar un número mayor. (En otras palabras, gana más de la mitad de las veces.) De modo similar, el verde es más fuerte que el azul, de nuevo con 5/9 de probabilidad de obtener un valor más alto.
+        \n\nPuede que pienses que rojo > verde > azul, que signifiqua que el rojo es globalmente el más fuerte, pero sorprendentemente, eso no es verdad. Cuando se lanzan el rojo y el azul ¿cuál es la probabilidad de que el dado rojo muestre un valor más alto?</item>
+        <item>Supón que los antiguos romanos tenían una probabilidad de 0.2 de morir en cada uno de los siguientes intervalos: [0, 2], [2, 10], [10, 30], [30, 70] y [70, 90].
+            \n\nPara que los cálculos sean directos, asumamos que, dentro de cualquiera de esos cinco bloques, la edad de la muerte está uniformemente distribuida a lo largo de los intervalos. Eso significa que, dentro de los que mueren entre 0 y 2 años, la media de los romanos vivían 1 año; entre los de 2 y 10, la media era 6 años; etcétera. Bajo esas (ficticias) cifras, la expectativa de vida al nacer era solo de 31.4 años, debido en gran parte a la mortalidad infantil.
+        \n\n¿Cuál era la expectativa de vida (es decir, la edad esperada de la muerte) de un antiguo romano que aún estaba vivo a los 30? Es mucho más de 31.4 años &#8212; ¿puedes deducir porqué?</item>
+        <item>Un amigo tuyo te propone un juego: si adivinas la cantidad de dinero que hay en su cartera, el dinero es tuyo; de lo contrario, no te llevas nada. Solo se te permite un intento.
+        \n\nCrees que hay un 50 por ciento de posibilidades de que tu amigo tenga 0 euros en su cartera, un 25 por ciento de tener 1 euro, un 24 por ciento de tener 100 euros y &#8212; emocionantemente &#8212; un 1 por ciento de tener 1.000 euros.
+        \n\n¿Qué cantidad de euros deberías apostar que tiene para maximizar tus ganancias esperadas?</item>
+        <item>La escuela universitaria de la Universidad de California, en Berkeley, está compuesta de dos departamentos &#8212; llamémosles A y B.
+        \n\nEn el departamento A el nivel de aceptación es 0.5 tanto para hombres como para mujeres. En el departamento B, sin embargo, el nivel de aceptación es 0.1 para hombres y 0.2 para mujeres &#8212; de modo que, claramente, las mujeres tienen por lo menos tanta probabilidad de ser aceptadas como los hombres, independientemente de dónde soliciten entrar.
+        \n\nSorprendentemente, no obstante, el nivel de aceptación global en Berkeley, con los dos departamentos unidos, es 0.3 para hombres pero solo 0.25 para mujeres. ¿Cómo puede ser esto?
+        \n\nAsumamos que cada solicitante escoge solo un departamento (pueden solicitar A o B, pero no los dos). Los solicitantes hombres deben repartirse con igualdad entre A y B; así debe ser, para que la aceptación global sea de (0.5 + 0.1)/2 = 0.3 entre ellos. ¿Qué fracción de solicitantes mujeres escogen el departamento A?</item>
+        <item>El Backgammon es un antiguo juego de dos jugadores que combina estrategia y suerte. Supón que es turno de mover de la jugadora que juega con negras: controla dos fichas, y le gustaría capturar una pieza blanca vulnerable que está a 6 posiciones de distancia.
+            \n\nLanzará dos dados, y podrá capturar la pieza si &#8212; y solo si &#8212; obtiene un seis, la suma de los dos dados es igual a seis, o saca dos doses. (En backgammon los dobles se juegan dos veces, de modo que un jugador que saca dos doses puede hacer cuatro movimientos de dos de distancia.) ¿Cuál es la probabilidad de que jugador de negras pueda capturar a la blanca en su próximo movimiento?</item>
+        <item>Dos candidatos, un demagogo llamado T y una mujer llamada C, compiten por la presidencia de un pequeño país con una población en edad de votar de 5 personas. Los votantes 1 y 2 votarán con seguridad a C, mientras el votante 5 ha elegido a T. (Asumamos que los candidatos no votan &#8212; o, si prefieres, C es el votante 1 y T es el votante 5.)
+            \n\nLos votantes 3 y 4 están indecisos: cada uno tiene una probabilidad del 40\% de votar a T (y un 60\% de probabilidad de votar a C). Curiosamente, sus votantes están correlacionados (quizá discuten sobre política juntos &#8212; es un pequeño país, después de todo): si el votante 3 escoge a C, hay 2/3 de probabilidad de que el votante 4 haga lo mismo.
+            \n\n¿Cuál es la probabilidad de que C gane las elecciones (es decir, que ella obtenga la mayoría de los 5 votos del país)?</item> 
+        <item>Volvamos a nuestra asunción favorita sobre los bebés: son niños con probabilidad 0.51, niñas con probabilidad 0.49, y el sexo es independiente entre nacimientos.
+        \n\nTe encuentras una pareja que te dice que tiene dos hijos/as, y les preguntas si entre ellos alguna es niña. Si la tienen (es decir, una o dos niñas), ¿cuál es la probabilidad de que ambas sean niñas?</item>
+        <item>Eres un niño de diez años en una clase de gimnasia con otros 49 niños (50 incluyéndote a ti). Las actividades del día son correr (que te encanta) y nadar (que odias).
+        \n\nEl entrenador seleccionará 20 alumnos para ir a la piscina; los restantes 30 irán a correr. Supón que el entrenador selecciona a los nadadores de la siguiente manera: escoge a la primera persona completamente al azar del grupo de 50, después a una segunda persona también al azar de las 49 restantes, y sigue hasta que ha seleccionado a 20 nadadores.
+        \n\n¿Cuál es la probabilidad de que vayas a correr?</item>
+        <item>Supón que, a lo largo del próximo año, un fondo de inversión concreto tiene un 40\% de probabilidad de obtener beneficios y un 60\% de probabilidad de generar pérdidas (quizá está mal gestionado, o le cargan altos impuestos). Si el fondo genera beneficios continuará (con seguridad) operando otro año, pero está en riesgo si genera pérdidas: en ese caso hay un 50\% de probabilidad de que los inversores enfurecidos retiren su dinero, de manera que el fondo simplemente deja de existir.
+        \n\nSi el fondo aún existe al final del segundo año, ¿cuál es la probabilidad de que haya generado ganancias? Descubrirás que es mayor que la anterior probabilidad del 40\%.</item>
+        <item>Imagina una población de mujeres las cuales tienen cada una una hija, y supón que la frecuencia de ojos azules es idéntica en ambas generaciones.
+        \n\nEntrevistas a todas las madres con ojos azules, y descubres que el 75\% de sus hijas también tienen ojos azules. Te preguntas qué pasaría si hicieras lo contrario: si entrevistaras a todas las hijas con ojos azules, ¿qué fracción de sus madres tendrían ojos azules? En otras palabras, ¿cuál es la probabilidad de que una madre tenga ojos azules, sabiendo que su hija tiene ojos azules?
+        <item>Llevas una pieza de madera de un metro de largo, cuando de repente tropiezas y se te cae al suelo. ¡Qué patoso eres! La madera se rompe en dos trozos, derecho e izquierdo, con el punto de rotura uniformemente distribuido en su longitud: para cualquier L entre o y 1, el trozo izquierdo tiene una probabilidad L de tener una longitud menor que L. Por ejemplo, hay un 60\% de probabilidad de que el trozo izquierdo tenga menos de 0.6 metros de longitud.
+        \n\n¿Cuál es la longitud esperada (es decir, la longitud media) en metros del trozo derecho?</item>
+        <item>Tienes un reloj analógico estropeado en la pared: cada sesenta minutos la manecilla horaria avanza una hora con probabilidad 0.95, pero se atasca con probabilidad 0.05. Supón que los movimientos son independientes entre horas (de modo que la probabilidad de quedarse atascado tres horas seguidas es 0.05^3, por ejemplo). Ignoremos el minutero y centrémonos en la errática manecilla horaria. 
+        \n\nAhora es mediodía. En tres horas, ¿cuál es la probabilidad de que este reloj marque las dos?</item>
+        <item>Eres voluntario en una campaña política; tu función es contactar con votantes y pedirles que apoyen a tu candidato. Usas una aplicación que escogerá una muestra de 5 números de teléfono, de una base de datos con 20 entradas. El muestreo es sin reemplazamiento &#8212; sería absurdo llamar a la misma persona dos veces.
+        \n\nSupón que 16 de los números de la base de datos pertenecen a votantes indecisos, 2 a personas que apoyan a tu contrincante, y 2 a personas que ya apoyan a tu candidato. (Idealmente solo contactarías con votantes indecisos que pudieran ser convencidos para unirse a tu candidato, pero la base de datos no es perfecta.)
+        \n\n¿Cuál es la probabilidad de que, de las 5 personas que contactes, 3 sean indecisas, 1 apoye a tu candidato y 1 apoye a tu oponente?</item>
+        <item>Una amiga selecciona una letra al azar de un alfabeto de 26 letras, y te pide que leas su mente y adivines en qué letra está pensando. Desafortunadamente, no tienes forma de saber cómo hace su elección: quizás escoge la letra Z con probabilidad 1, o quizás escoge con igual probabilidad entre las letras A, B, C y D (con un 25\% cada una). Hay una infinidad de formas de escoger una letra al azar, y ella podría seguir cualquiera de ellas.
+        \n\nSupón que decide escoger siempre la A. No tienes forma de saber la probabilidad de que tu elección es correcta: podría ser cualquiera desde 0\% al 100\%, dependiendo de cómo tu amiga selecciona su letra secreta.
+        \n\nResulta que hay una regla sencilla que puedes seguir que garantiza una probabilidad positiva de que tu elección es correcta, en el sentido de que no depende en absoluto en lo que tu amiga esté haciendo. Si sigues esa regla, ¿cuál es la probabilidad de adivinar correctamente la letra?</item>
+        <item>Una instructora de baile está enseñando a 5 chicos y 5 chicas, y le gustaría emparejarlas en pares chico-chica. ¿De cuántas maneras diferentes puede hacerlo?</item>
+        <item>¿Cuántas formas hay de poner 12 personas en 3 grupos de 4 si los grupos son distintos? Piensa en los grupos como si tuvieran nombres, es decir, grupo A, grupo B y grupo C.</item>
+        <item>¿Cuántas maneras tienen de colocarse 6 personas en una fila, si dos de ellas (llamemos A y B) son enemigas mortales, y rechazan estar una al lado de la otra?</item>
+        <item>Tres amigos están jugando a un juego que usa sombreros blancos y negros. Al principio del juego, a cada persona se le asigna un sombrero de color, blanco o negro, independientemente de los demás, con una probabilidad de 50-50.
+        \n\nImagina que las personas no pueden ver su propia cabeza, y solo observan el color de los sombreros de sus dos amigos. No se les permite comunicarse. Los jugadores deben simultáneamente adivinar el color de su propio sombrero (o quedarse callados). Todo el grupo gana un premio si al menos uno de ellos adivina correctamente y nadie falla.
+        \n\nSupón que el equipo adopta una estrategia \"opuesta\": cualquiera que observe dos sombreros blancos dirá que el suyo es negro; cualquiera que observe dos sombreros negros dirá que el suyo es blanco; y si observan dos sombreros de diferente color declinarán decir nada. Al principio del juego (antes de que se asignen los sombreros de colores), ¿cuál es la probabilidad de que el grupo gane el premio?</item>
+        <item>¿Cuántos triángulos diferentes puedes formar de las siete rectas de abajo? Date cuenta de que ninguna de las rectas son paralelas, e imagina que se extienden infinitamente más allá de los bordes de la imagen. Asumimos que nunca se cruzan más de los rectas en el mismo punto.</item>
+        <item>Estáis contratando un nuevo director ejecutivo y tres personas se postulan para el cargo. Tu objetivo es maximizar la probabilidad de que contratáis al mejor de los tres, pero no sabes por anticipado qué candidato es mejor.
+        \n\nSupón que debes entrevistar a los candidatos uno tras otro (por alguna razón no puedes entrevistarlos simultáneamente), y debes tomar una decisión inmediata de contratar o rechazarlo al final de cada entrevista. La única información en la que puedes basar tu decisión es en cómo el candidato actual ha rendido en relación con los candidatos previos: sabes si son mejores que los candidatos anteriores que has entrevistado hasta el momento, pero no sabes cómo compararlos con los que no has hablado todavía. (Por simplicidad, asume que los candidatos nunca rechazan una oferta.)  
+        \n\nPor ejemplo, puedes rechazar al primer candidato al instante, y después entrevistarte y contratar al segundo candidato, en cuyo caso nunca verás al tercero de la lista.
+        \n\nBajo la estrategia óptima de contratación, ¿cuál es la probabilidad de contratar al mejor candidato?</item>
+    </string-array>
+    <string-array name="answers_0">
+        <item>1/4</item>
+        <item>1/5</item>
+        <item>1/2</item>
+        <item>1/36</item>
+        <item>0.49^2</item>
+        <item>(4/52)*(3/51)</item>
+        <item>2*(4/40)*36/39</item>
+        <item>12/51</item>
+        <item>2/3</item>
+        <item>1/2 + (1/2)*49/99</item>
+        <item>1/2</item>
+        <item>1-(1-0.51^8-0.49^8)^50</item>
+        <item>9/10</item>
+        <item>6/36</item>
+        <item>0.05*0.9 + 0.95*0.1</item>
+        <item>4/9</item>
+        <item>65</item>
+        <item>100</item>
+        <item>1/6</item>
+        <item>17/36</item>
+        <item>1-0.2</item>
+        <item>0.49^2 / (1 - 0.51^2)</item>
+        <item>30/50</item>
+        <item>0.4/(0.4 + 0.6*0.5)</item>
+        <item>0.75</item>
+        <item>1/2</item>
+        <item>3*0.05*0.95^2</item>
+        <item>140/969</item>
+        <item>1/26</item>
+        <item>5!</item>
+        <item>12!/(4!*4!*4!)</item>
+        <item>6! - 10*4!</item>
+        <item>3/4</item>
+        <item>C(7,3)</item>
+        <item>1/2</item>
+    </string-array>
+
+    <string-array name="images_1">
+        <item></item>
+        <item>birthday_alpha</item>
+        <item>birthday_alpha</item>
+        <item>two_heads_caesar</item>
+        <item></item>
+        <item>one_girl_out_of_three_small</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>proba_join_small</item>
+        <item></item>
+        <item></item>
+        <item>dominos</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>conditional_correlation</item>
+        <item></item>
+        <item></item>
+        <item>income_small</item>
+        <item>random_breakpoint_small</item>
+        <item>clock_noon</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>vote_counting_easy_small</item>
+        <item></item>
+        <item>circle_and_triangle_alpha</item>
+    </string-array>
+    <string-array name="hints_1">
+        <item>Un enfoque es sumar la secuencia infinita. Otro es darse cuenta de que el problema termina o vuelve a comenzar después del primer lanzamiento: esto permite expresar la respuesta recursivamente, lo que significa que puedes plantear una ecuación donde la respuesta aparece en ambos lados. Visita https://math.stackexchange.com/questions/605083/calculate-expectation-of-a-geometric-random-variable para ver la solución detallada de un problema similar.</item>
+        <item>Para un suceso cualquiera A, Pr[A] = 1 - Pr[!A] donde !A significa "no A", es decir, el complementario de A. A veces es más fácil calcular Pr[!A], que en este caso es la probabilidad de que los tres cumpleaños sean diferentes.</item>
+        <item>Resuelve el acertijo anterior primero, y expresa la respuesta como una función del número de personas en el grupo. Necesitarás calculadora para este.</item>
+        <item>Prueba a condicionarlo en el resultado del primer (o los dos primeros) lanzamientos. Date cuenta que el problema se reinicia cuando sacas cruz: esto te permite expresar la solución recursivamente, es decir, puedes plantear una ecuación en la que la solución aparece en ambos lados.</item>
+        <item>Este es una pregunta clásica de la regla de Bayes: Pr[A | B] = Pr[A y B] / Pr[B], donde Pr[A | B] es la probabilidad de A dado B. Intuitivamente, estás restringiéndote a los casos en los que B sucede (la moneda sale cara), y preguntando con qué frecuencia también sucede A (la moneda no está trucada).</item>
+        <item>Date cuenta que hay tres formas para que exactamente uno de los tres hijos sea niña: puede nacer primera, segunda o tercera. Si todavía estás atascado, prueba a buscar información sobre distribución binomial.</item>
+        <item>Este es otra de las preguntas de la regla de Bayes: Pr[A | B] = Pr[A y B] / Pr[B], donde Pr[A | B] es la probabilidad de A dado B. Prueba a pensar en términos de frecuencias de población: ¿cuántas personas (de media) darán positivo en el test? De esas, ¿cuántas tendrán la enfermedad?</item>
+        <item>Esta pregunta combina la regla de Bayes y una aplicación simple de la distribución binomial. ¡Has visto ambos en acertijos anteriores!</item>
+        <item>El truco aquí es usar la linealidad de la expectativa: para cualquier variable aleatoria X e Y, E[X + Y] = E[X] + E[Y]. El operador E representa la expectativa, que es en esencia una media. ¿Puedes expresar la respuesta a este problema (el tiempo total de espera) como una suma? Si todavía estás atascado, aquí va una gran pista: este acertijo es el problema clásico del coleccionista de cupones. Visita http://mat.uab.cat/matmat/PDFv2014/v2014n02.pdf o https://en.wikipedia.org/wiki/Coupon_collector%27s_problem para tener una explicación detallada.</item>
+        <item>Aquí hay un hecho útil sobre las distribuciones binomiales: dados n intentos independientes, cada uno con probabilidad de éxito p, la probabilidad de que haya exactamente k éxitos es: (n sobre k) * p^k * (1-p)^(n-k). El término (n sobre k) es el número de subconjuntos de tamaño k que se pueden crear de un conjunto de tamaño n. Si esto te suena a algo incomprensible, prueba a buscar información sobre distribución binomial.</item>
+        <item>Intenta resolver la versión reducida del problema en el cual le toca disparar a A pero B ya está muerto. Date cuenta de que el problema vuelve a empezar cuando tanto A como C fallan (es decir, cuando le toca disparar a A).</item>
+        <item>Puedes expresar la respuesta de este problema en términos de subproblemas en los cuales el saltamontes tiene menos pasos que dar.</item>
+        <item>Este es muy fácil si ya has resuelto el anterior. Si no lo has hecho, prueba a responder a la misma pregunta en un tablero de 2x1, de 2x2, 2x3, etcétera, y mira a ver si encuentras algún patrón.</item>
+        <item>Avanzarás muy rápido en este problema si has resuelto los dos anteriores. Como bonus, intenta encontrar la fórmula general como una función de la longitud de la cadena.</item>
+        <item>Este juego termina después de tres etapas, así que puedes usar inducción inversa: encuentra la estrategia óptima de la tercera etapa; después la estrategia óptima de la segunda etapa, etcétera.</item>
+        <item>Date cuenta que el problema finaliza &#8212; en el sentido de que sabes si alguien se sentará en el asiento de la última persona &#8212; tan pronto como alguien se siente en el primer o el último sitio.</item>
+        <item>Si rechazas la propuesta, el juego efectivamente vuelve a comenzar: eso sugiere que la regla para aceptar debería ser la misma en cada período. Además, deberás seguir una regla de corte sencilla, es decir, acepta si y solo si la propuesta está por encima de cierto límite. Puedes expresar el valor en función del momento de corte, que es fácil si usas el hecho de que el juego vuelve al empezar cuando rechazas. Recuerda rebajar el valor si continúas.</item>
+        <item>Prueba a resolver el acertijo cuando la población inicial es uno en lugar de dos. ¿Ves la conexión entre ese número y la respuesta que estamos buscando? La población muere si todas las ramas mueren, donde "rama" significa todos los descendientes de una bacteria particular de la población inicial. Si necesitas más ayuda, busca procesos de ramificación y probabilidades de extinción (visita http://wwwf.imperial.ac.uk/~ejm/M3S4/NOTES2.PDF o https://web.ma.utexas.edu/users/gordanz/notes/lecture7.pdf por ejemplo).</item>
+        <item>Intenta usar el principio de inclusión-exclusión: para cualquiera dos sucesos A y B, Pr[A o B] = Pr[A] + Pr[B] - Pr[A y B]. ¿Puedes averiguar como extender este principio a tres sucesos?</item>
+        <item>Si intentas calcular la probabilidad de cada posible número de bloques, probablemente te atascarás. En lugar de eso, intenta definir la respuesta como suma usando la linealidad de la expectativa.</item>
+        <item>Sigue la misma pista que en el acertijo anterior: usa la linealidad de la expectativa. Como bonus, deberías comprobar que la distribución del tiempo dada en el enunciado es de verdad estacionaria dada las probabilidades de las transiciones.</item>
+        <item>Recuerda, estamos asumiendo que, inicialmente, hay un número igual de canicas rojas y negras en la urna. Para que el enunciado tenga sentido, necesitamos cuatro o más canicas en total. ¿Puedes plantear una ecuación con una incógnita que te de la solución?</item>
+        <item>Condicionado a que asista a la universidad, la habilidad matemática deja de estar uniformemente distribuida &#8212; verás que su centro se desplaza a la derecha. Intenta obtener la probabilidad de tener una habilidad matemática menor que x, condicionado a que asista a la universidad</item>
+        <item>El enunciado pregunta por la probabilidad de que un hijo escogido al azar &#8212; de entre todos los niños y niñas de la población &#8212; sea niña. No es lo mismo que la fracción esperada de niñas en una familia, con la expectativa tomada uniformemente entre familias. Una buena aproximación es pensar primero en generar una lista ordenada de sexos al azar, por ejemplo O O O A A O A A&#8230; y después asignarlos a las familias. Date cuenta de que esta asignación no afecta a la fracción de niñas de la población.</item>
+        <item>Si estuviéramos interesados en el numero de hijos que nacieran de una pareja concreta, la respuesta vendría de una distribución geométrica con probabilidad de éxito 0.49. ¿Puedes encontrar como modificar esta distribución para explicar el hecho de que estamos estudiando niños y no familias?</item>
+        <item>Los rangos percentiles están, por definición, uniformemente distribuidas en [0,100], y su valor esperado es por tanto 50. ¿Ves como eso define la pendiente? Curiosamente, la pendiente también es igual a la correlación entre los rangos percentiles de padres e hijos.</item>
+        <item>Intenta calcular la longitud esperada del trozo izquierdo, condicionado a que el trozo izquierdo sea más largo que el derecho. Eso significa que el punto de rotura es uniforme en [0.5, 1.0]. Date cuenta de que, por simetría, E[longitud del trozo derecho | el izquierdo es más largo] = E[longitud del trozo derecho | el derecho es más largo].</item>
+        <item>La manecilla horaria sigue un proceso de Markov de primer orden cuyos estados son los enteros de 1 a 12. ¿Hacia dónde converge la distribución? Date cuenta de que la distribución uniforme es estacionaria: si cada hora tiene probabilidad 1/12 en el momento N, lo mismo será verdad en el momento N+1. ¿Qué nos dice eso sobre la distribución límite cuando la manecilla horaria está inicialmente apuntando al mediodía?</item>
+        <item>El número de personas en la habitación A sigue un proceso de Markov de primer orden sobre los enteros de 0 a 10. ¿Cuál es su distribución estacionaria? Comprueba si funcionaría una distribución binomial. La cadena es periódica con período 2 &#8212; alterna entre estados pares e impares &#8212; pero date cuenta de que la distribución inicial tiene igual probabilidad en los estados pares e impares, es decir, el número inicial de personas en la habitación A es bien 10 o 9, cada uno con probabilidad &#189;. Busca en internet cadena de Ehrenfest para obtener una explicación más detallada.</item>
+        <item>Recuerda la regla de Bayes: Pr[A | B] = Pr[A y B] / Pr[B]. En este caso A es el valor subiendo y B el suceso de que N+1 señales apunten a subir (y las restantes N a que bajen). Condicionado al movimiento del valor (que sube o baja con igual probabilidad), el número de señales que indican que sube sigue una distribución binomial. Escribe la probabilidad condicionada en la que estamos interesados, e intenta despejar tantos términos como sea posible. Terminarás con una solución muy sencilla.</item>
+        <item>Céntrate en la probabilidad de que el primer objeto de la colección original acaba en la muestra. El acercamiento más sencillo es usar Pr[A] = 1 - Pr[!A], donde !A representa el complementario de A, es decir, la probabilidad de que el objeto nunca forme parte de la muestra. Encontrarás que el límite por el que está preguntando el problema implica la constante matemática e (la base del logaritmo natural). Puedes escribir e minúscula en la respuesta.</item>
+        <item>La imagen muestra unos pocos caminos posibles del recuento de votos netos para C (es decir, el recuento de votos de C menos los de T). Nos interesa la probabilidad de que este camino nunca pase por cero después de contar el primer voto. Resulta que hay una forma muy elegante pero de idea feliz de resolver este problema &#8212; vete a los acertijos difíciles si estás interesado. Tomemos la aproximación por fuerza bruta por ahora: el camino pasará por cero si y solo si empieza con T, C-T, C-C-T-T-, C-C-C-T-T-T o C-C-T-C-T-T. Escribe uno menos la suma de esas probabilidades, despeja tantos términos como puedas y terminarás con una solución muy sencilla.</item>
+        <item>Cualquier par (mensaje original, mensaje codificado) implica una secuencia única. Por ejemplo, (1111, 1110) implica que la secuencia debió haber sido _ _ _ X. El problema está preguntando Pr[mensaje original | mensaje codificado]. La primera parte de la pista te dice que Pr[mensaje original | mensaje codificado] = (1/2)^4, es decir, la probabilidad de que se escogiera una secuencia particular, para cualquier par (mensaje original, mensaje codificado). Descubrirás que esto implica que las creencias finales de Eve (después de observar el mensaje codificado) son idénticas a las creencias iniciales (antes de ver el mensaje codificado).</item>
+        <item>Empieza asumiendo que sabes la posición de los primeros dos puntos (llámalos A y B, por ejemplo), y calcula la probabilidad de que el triángulo ABC contenga el centro del círculo condicionado a los puntos A y B. Si puedes expresar esa probabilidad como una función de las posiciones de A y B (o de la distancia entre A y B), puedes entonces calcular la solución a este acertijo integrando sobre las posibles posiciones de A y B (o de B relativo a A, lo único que importa es la distancia entre ellos). Si quieres ver una respuesta detallada a este problema, echa un vistazo bien a https://math.stackexchange.com/questions/268635/what-is-the-probability-that-the-center-of-the-circle-is-contained-within-the-tr o https://math.stackexchange.com/questions/172296/probabilty-of-random-points-on-perimeter-containing-center.</item>
+    </string-array>
+    <string-array name="puzzles_1">
+        <item>Estás atrapado en una isla desierta &#8212; y para pasar el tiempo, has decidido lanzar un dado sin trucar repetidamente. Tomemos la razonable asunción de que los lanzamientos son independientes.
+            \n\nDe media, ¿cuántos lanzamientos necesitamos para sacar un número mayor que cuatro?</item>
+        <item>Tres amigos están pasando el rato. Para simplificar las cosas, asumamos que sus cumpleaños están uniforme e independientemente distribuidos a lo largo del año.
+            \n\n¿Cuál es la probabilidad de que algunos (es decir, dos o tres) de ellos cumplan años el mismo día?</item>
+        <item>Usando la configuración del problema anterior, ¿cuál es el grupo más pequeño en el que la probabilidad de que más de uno cumplan años el mismo día sea mayor de &#189;?
+            \n\nEste es el problema del cumpleaños, también conocido como la paradoja del cumpleaños: la respuesta es menor de lo que la mayoría de gente espera.</item>
+        <item>Una vez más estás atrapado en una isla. Tienes un montón de tiempo libre en tus manos, y decides lanzar repetidamente una moneda sin trucar; como siempre, asume que los lanzamientos son independientes.
+            \n\nDe media, ¿cuántos lanzamientos necesitamos para obtener dos caras seguidas?</item>
+        <item>Metes tres monedas en un frasco: una normal, una con dos caras y una con dos cruces.
+            \n\nAlguien selecciona una moneda al azar del frasco y la lanza. Si sale cara, ¿cuál es la probabilidad de que sea la moneda sin trucar (con una cara y una cruz)?</item>
+        <item>Supón que los bebés son niños con probabilidad 0.51, las niñas con probabilidad 0.49, y los nacimientos son independientes.
+            \n\nSi tienes tres hijos, ¿cuál es la probabilidad de tener dos niños y una niña?</item>
+        <item>Una enfermedad desagradable afecta a 150 personas, de media, de cada 100.000.
+            \n\nLos científicos han desarrollado un test con una impresionante precisión del 99\%. En otras palabras, si una persona tiene la enfermedad, el test dará positivo con una probabilidad de 0.99; si no, dará positivo con una probabilidad de 0.01.
+            \n\nSi una persona escogida al azar de la población da positivo en el test, ¿cuál es la probabilidad de que tenga la enfermedad?</item>
+        <item>Te enfrentas a un frasco lleno de monedas. Esta vez hay diez monedas: una tiene dos caras; las otras nueve son normales. Cuando se lanzan, ambos lados de las monedas son igualmente probables de salir.
+            \n\nAlguien escoge una moneda al azar del frasco y la lanza tres veces. Si sale cara las tres veces, ¿cuál es la probabilidad de que estés lanzando la moneda de doble cara?</item>
+        <item>Tienes cinco años y eres un ávido consumidor de cereales. Cada vez que terminas una caja, el fabricante te envía un juguete.
+            \n\nIntroduzcamos algo de probabilidad: hay cuatro tipos diferentes de juguetes, y cada vez que la compañía los envía escogen un tipo de juguete al azar.
+            \n\nDe media, ¿cuántas cajas de cereales debes terminar para conseguir la colección completa, es decir, tener al menos uno de cada tipo?</item>
+        <item>Estás intentando entrar en un equipo de baloncesto, y el entrenador te da dos opciones: puedes lanzar seis tiros, o cuatro tiros. En ambos casos tienes que encestar al menos la mitad de los lanzamientos, o no formarás parte del equipo.
+            \n\nEl número de lanzamientos sigue una distribución binomial: tienes una probabilidad fija de encestar un tiro &#8212; llamamos eso habilidad &#8212; y los sucesivos lanzamientos son independientes.
+            \n\nSi tu habilidad es uno, te es indiferente: de ambas maneras conseguirás entrar en el equipo. Una afirmación similar se puede hacer si tu nivel de habilidad es 0.
+            \n\nCuriosamente, hay un tercer nivel de habilidad en el cual te es indiferente lanzar seis o cuatro veces. A la izquierda de ese límite, prefieres lanzar menos tiros; y a la derecha, prefieres lanzar más.
+            \n\n¿Cuál es ese límite del nivel de habilidad?</item>
+        <item>Tres hombres &#8212; convenientemente llamados A, B y C &#8212; se están batiendo en un duelo con pistolas. Le toca disparar a A.
+            \n\nLas reglas de este duelo son bastante peculiares: los duelistas no disparan simultáneamente, sino que van por turnos. A dispara a B, B dispara a C, y C dispara a A; el ciclo se repite hasta que solo haya un superviviente. Si aciertas con tu objetivo, dispararás a la siguiente persona en tu próximo turno.
+            \n\nPor ejemplo, A puede disparar y acertar a B. Con B fuera del duelo, sería el turno de C de disparar &#8212; supón que él falla. Ahora es nuevamente el turno de A, y dispara a C; si acierta, se termina el duelo, con A como único superviviente.
+            \n\nPor añadir un poco de probabilidad, supongamos que A y C aciertan a sus objetivos con probabilidad 0.5, pero B es mejor tirador, y acierta con probabilidad 0.75 &#8212; todos los disparos son independientes.
+            \n\n¿Cuál es la probabilidad de que A gane el duelo?</item>
+        <item>Un saltamontes está parado en una pequeña piedra, que podemos llamar piedra cero. Delante de él, alienados, están las piedras uno, dos, tres, etcétera, hasta nueve.
+            \n\nAl saltamontes le gustaría alcanzar la piedra 9, por razones desconocidas. Lo que sabemos es que llegará allí sumando pequeños saltos, cada uno de los cuales llevará a nuestro amigo bien uno o dos piedras adelante. Para aclararlo, esto quiere decir que el saltamontes tiene exactamente dos maneras de alcanzar la piedra dos: puede hacer un salto grande, o dos pequeños. 
+            \n\n¿De cuántas maneras diferentes puede llegar el saltamontes a su destino?</item>
+        <item>¿De cuántas maneras se puede rellenar un tablero de 2 por 10 con dominós de 2 por 1?
+            \n\nLas reglas son sencillas: tu disposición debe cubrir el tablero completamente; ningún dominó puede sobresalir; y no pueden solaparse.</item>
+        <item>Para el propósito de este acertijo, una \"cadena\" significa una secuencia de unos y ceros, por ejemplo 1011.
+            \n\nConsidera todas las diferentes cadenas de longitud ocho &#8212; un buen primer paso sería deducir cuantas de estas existen.
+            \n\nSi escoges una cadena de longitud ocho al azar, ¿cuál es la probabilidad de que contenga dos (o más) unos consecutivos?</item>
+        <item>Estás jugando a un juego de tres etapas. En cada etapa, tu amigo lanza un dado de seis caras: sale un número, digamos el 2 por ejemplo.
+            \n\nEn este punto, puedes o bien coger 2 euros (es decir, la cantidad que haya salido en el dado), en cuyo caso el juego termina; o, si te queda alguna etapa, puedes elegir esperar, con la esperanza de obtener un número más alto en el futuro.
+            \n\nLa cantidad que obtengas depende tanto del resultado de los lanzamientos como de tu estrategia. Asumamos que escoges la estrategia que maximiza tus ganancias.
+            \n\n¿Cuánto obtendrás en el juego? En otras palabras, antes de jugar la primera etapa, ¿cuál es tu beneficio esperado?</item>
+        <item>Cuatrocientos cuarenta pasajeros están esperando para subirse a un avión que tiene exactamente ese número de asientos. El primer pasajero ha perdido su tarjeta de embarque &#8212; pero quiere probar suerte, y escoge un asiento al azar.
+            \n\nLos pasajeros restantes tienen todos sus tarjetas de embarque. Si el asiento asignado está libre, se sientan ahí; si no, escogen un asiento libre al azar.
+            \n\nCuando el último pasajero finalmente va a su asiendo asignado, ¿cuál es la probabilidad de que encuentre a alguien sentado allí?</item>
+        <item>Delante de ti hay una máquina que propone cantidades de dinero, que puedes aceptar o rechazar. Si aceptas, la máquina te da la cantidad propuesta, pero se apaga y nunca te ofrecerá nada más. Si la rechazas, te mostrará una nueva propuesta la próxima vez.
+            \n\nCada propuesta se elige sobre una distribución uniforme en el intervalo [0,100]. El tiempo entre períodos es largo &#8212; varios meses, digamos &#8212; y eres impaciente: un euro valdrá solo 0.9 a día de hoy; y de forma similar, un euro dentro de dos períodos equivaldrán a 0.9*0.9 = 0.81 hoy, etcétera.
+            \n\nSi tu estrategia fuera aceptar siempre, esperarías obtener 50 euros, es decir, la media de la primera propuesta. Si en lugar de eso decidieras aceptar cualquier proposición por encima de 50, y &#8212; en caso de que rechazaras la primera  &#8212; aceptaras la segunda cualquiera que sea, tus beneficios esperados serían de 60 euros. ¡Pero lo puedes mejorar!
+            \n\nSi sigues la estrategia que maximiza los beneficios esperados, ¿cuál es el límite sobre el que deberías aceptar la primera propuesta de la máquina?</item>
+        <item>Eres un biólogo estudiando la población de una bacteria: inicialmente solo hay dos de ellas, nadando felizmente en su placa de Petri.
+            \n\nEn cada período, cada bacteria bien muere (con probabilidad 0.25), o se divide en dos felices bacterias. Supón que las muertes son independientes en el tiempo y en los individuos, y que este proceso continúa por siempre. Para simplificar las cosas ignora la posibilidad de que la colonia llene la placa de Petri o agote los nutrientes.
+            \n\nSobre un horizonte infinito en el tiempo, ¿cuál es la probabilidad de que toda la población se muera?</item>
+        <item>Escoges un número al azar del conjunto \{1, 2, &#8230; , 1000\}.
+            \n\n¿Cuál es la probabilidad que se sea múltiplo de uno (o más) de los números 7, 11 y 13?</item>   
+        <item>Imagina que, un cierto día, el tiempo puede ser soleado (con probabilidad 0.4), nublado (también 0.4), o lluvioso (con probabilidad 0.2). Hagamos la heroica asunción de que el tiempo es independiente entre días.
+            \n\nDefinimos "bloques" de tiempo como los grupos (más largos posibles) de días consecutivos en los que el tiempo es el mismo. Por ejemplo, si llovió 8 días, seguidos por un día de sol, y luego un día de lluvia, tendríamos tres bloques.
+            \n\nA lo largo de un período de diez días, ¿cuál es el número esperado de bloques con el mismo tiempo?</item>
+        <item>Hagamos la misma pregunta que en el acertijo anterior, pero con una configuración más realista: seguimos teniendo 0.4 de probabilidad de sol, lo mismo para nuboso, y 0.2 de probabilidad de lluvia, pero abandonemos la asunción de que el tiempo es independiente a lo largo de los días.
+        \n\nEn su lugar, el tiempo sigue un proceso de primer orden de Markov: si está soleado o nuboso, las probabilidades para el tiempo de mañana son: 0.5 de probabilidad de sol, 0.25 de nubes y 0.25 de lluvia; si está lloviendo hoy, tendremos nubes mañana con probabilidad 1 &#8212; nunca llueve dos días seguidos.
+        \n\nAhora, también a lo largo de un período de diez días, ¿cuál es el número esperado de bloques con el mismo tiempo?</item>
+        <item>Un sabio te presenta una urna que contiene igual número de canicas rojas y negras.
+        \n\nSi metes la mano y escoges dos canicas (uniforme e independientemente) al azar, la probabilidad de que coincidan de color es necesariamente menor que &#189;. Aquí viene la parte curiosa: si los colores de esas dos canicas coinciden, y metes la mano para coger otras dos, la probabilidad de que esas dos sean del mismo color es exactamente &#189;.
+        \n\n¿Cómo puede ser? ¿Cuál es el número total de bolas en la urna &#8212; rojas más negras &#8212; antes de sacar ninguna?</item>
+        <item>Supón que, en la población general, las habilidades matemáticas y de escritura son independientes y uniformemente distribuidas en el intervalo [0, 1].
+        \n\nLa gente va a la universidad si y solo si la suma de sus habilidades matemáticas y de escritura es mayor que uno. Entre la gente que ha ido a la universidad, ¿qué fracción tienen las habilidades matemáticas por encima de 0.9, es decir en el top 10\% de la población?</item>
+        <item>Sigamos con nuestra típica asunción sobre los bebés: son niñas con probabilidad 0.49, niños con probabilidad 0.51, y el sexo es independiente entre nacimientos.
+        \n\nSi un gran número de padres siguen teniendo hijos hasta que tengan una niña &#8212; punto en el cual paran, independientemente de si es hija única o tiene muchos hermanos &#8212; ¿cuál será la fracción de niñas en la población general?</item>
+        <item>Mantengamos la asunción de la pregunta anterior: los padres continuarán teniendo hijos hasta que tengan una niña, punto en el cual dejan de tenerlos; y los bebés son niñas con probabilidad 0.49.
+        \n\nSi seleccionamos un bebé al azar (de toda la población de bebés), ¿cuál es la probabilidad de que él o ella tenga exactamente un hermano (o hermana)?</item>
+        <item>El rango percentil de ingresos es un número de 0 a 100 que indica donde te sitúas en la distribución de ingresos &#8212; por ejemplo, 75 significaría que ganas más que tres cuartas partes de la gente, pero menos que la cuarta parte de mayor ingresos.
+        \n\nAsumamos que el percentil de ingresos esperados de un niño es una función lineal del percentil de ingresos de sus padres. Resulta que la intersección es suficiente para precisar la pendiente. ¿Ves porqué? Si la intersección es 20 &#8212; significa que los padres con los ingresos más bajos tienen hijos que acabarán en el percentil 20, de media &#8212; ¿cuál es la pendiente?</item>
+        <item>Llevas una pieza de madera de un metro de largo, cuando de repente tropiezas y se te cae al suelo. ¡Qué patoso eres! La madera se rompe en dos trozos, derecho e izquierdo, con el punto de rotura uniformemente distribuido en su longitud: para cualquier L entre o y 1, el trozo izquierdo tiene una probabilidad L de tener una longitud menor que L. Por ejemplo, hay un 60\% de probabilidad de que el trozo izquierdo tenga menos de 0.6 metros de longitud.
+        \n\n¿Cuál es la longitud esperada (es decir, la longitud media) en metros del trozo más largo?</item>
+        <item>Tienes un reloj analógico estropeado en la pared: cada sesenta minutos la manecilla horaria avanza una hora con probabilidad 0.99, pero se atasca (queda en el sitio) con probabilidad 0.01. Los movimientos son independientes entre horas: la probabilidad de moverse-quedarse atascado-moverse es 0.99*0.01*0.99, por ejemplo.
+        \n\nAhora es mediodía. Nos interesa si la manecilla horaria señala las 3, dentro de N horas. ¿Hacia dónde converge la probabilidad cuando N tiende a infinito?</item>
+        <item>Diez personas están asistiendo a una fiesta en un apartamento de dos habitaciones e, inicialmente, es igual de probable que los diez estén en la habitación A o que nueve estén en la habitación A y uno esté en la B. No es una fiesta normal, cada minuto, se escoge una persona al azar (independientemente de lo que haya ocurrido en el pasado), y debe irse a la otra habitación (es decir, si estaba en la habitación A debe moverse a la B, y viceversa).
+        \n\nPor ejemplo, supón que estamos en el 50\% de los casos donde todo el mundo está inicialmente en la habitación A. Al final del primer minuto se escogerá a alguien al azar y se irá a la habitación B, quedando nueve personas en la habitación A. Al final del segundo minuto, con una probabilidad de 9/10 se seleccionará alguien en la habitación A (en cuyo caso se uniría a la persona de la habitación B) o, con probabilidad 1/10, la persona en la habitación B volverá a la habitación A, volviendo la configuración inicial. 
+        \n\nNos interesa la probabilidad de que el grupo esté dividido por igual entre las habitaciones A y B (es decir, 5 personas en cada una), después de N minutos. ¿Hacia dónde converge esta probabilidad cuando N tiende a infinito?</item>
+        <item>Eres un comerciante estudiando un valor cuyo próximo movimiento de precio de mercado puede subir o bajar con igual probabilidad. Afortunadamente, tienes acceso a una señal predictiva binaria del cambio de precio (y observable con antelación). La señal es un 60\% precisa: sabiendo que el valor aumenta, hay una probabilidad de 0.6 de que la señal diga que sube (y probabilidad de 0.4 de que diga que baja); lo mismo sucede si el valor baja. 
+        \n\nTienes acceso a muchas de esas señales, todas con la misma precisión. Asumamos que son independientes dado el movimiento de precio (es decir, sabiendo que el valor sube, hay una probabilidad de 0.6^2 de que las señales una y dos digan que sube). Supón que observas N+1 señales de que suben y N de que bajan (de un total de 2N+1 señales, es decir, el número total debe ser impar). ¿Cuál es la probabilidad de que el valor suba?</item>
+        <item>Te dan una colección de N objetos distintos de los que escoges una muestra al azar de tamaño N con reemplazamiento &#8212; lo que significa que un mismo objeto puede escogerse varias veces. Generar una muestra así está relacionado con una técnica estadística llamada bootstrap.
+        \n\nNos interesa la fracción esperada de la colección inicial que forma parte de la muestra (es decir, la probabilidad de que un objeto de la colección inicial aparece al menos una vez en la muestra). ¿Hacia dónde converge la probabilidad cuando N tiene a infinito?</item>
+        <item>Imagina un país en el cual 10 personas han votado en unas elecciones que enfrentan a una mujer llamada C y un demagogo llamado T. Supón que C recibe 7 votos, mientras 3 votaron por el candidato T &#8212; pero el público aún no lo sabe porque los votos no han sido contados todavía.
+        \n\nLas papeletas de los votantes se meten en una gran urna. Antes de que sea abierta, se agita la urna de forma que se mezclan todas las papeletas al azar, con todos los ordenamientos son igual de probables. Se abre entonces la urna y se extraen las papeletas una a una y se cuentan. Dado que 7 personas votaron por C (y 3 por T), sabes que C terminará con una ventaja neta de 4 votos al final del recuento. Hay azar en como se llega ahí, no obstante.
+        \n\n¿Cuál es la probabilidad de que C vaya estrictamente por delante de T en todo momento del recuento?</item>
+        <item>A Alice le gustaría enviar a Bob un mensaje binario secreto de cuatro dígitos, por ejemplo 0000 o 0011, a través del correo postal, pero está preocupada de que su carta sea interceptada por una tercera persona. Afortunadamente, Alice y Bob tienen una manera de encriptar sus mensajes: la última vez que se vieron, generaron una secuencia secreta de un solo uso, formada por cuatro caracteres de X y guiones bajos, por ejemplo XX_X. Usaron esta secuencia para encriptar su mensaje.
+        \n\nHay 2^4 posibles secuencias: Alice escogió una de ellas al azar y la compartió con Bob antes de separarse. Acordaron el siguiente protocolo: cuando Alice necesite enviar a Bob un mensaje binario de cuatro dígitos, lo encriptará usando la secuencia. Cuando la secuencia diga X, volteará el bit correspondiente del mensaje (es decir, 1 se convierte en 0 y 0 se convierte en 1); y deja el resto del mensaje sin cambiar (es decir, en los espacios donde la secuencia dice _ ). Enviará el mensaje codificado por correo, y Bob usará su copia de la secuencia para descifrarlo. 
+        \n\nEve es una espía leyendo el mensaje de Alice y Bob. Sabe la metodología detrás de esta secuencia de un solo uso, y sabe que Alice escogió la secuencia al azar. Además, Eve cree que hay un 30\% de probabilidad de que el mensaje original (sin codificar) sea 0000, un 60\% de probabilidad de que sea 1111, y un 10\% de probabilidad de que sea 0011.
+        \n\nEve intercepta la carta de Alice a Bob y descubre el mensaje (codificado) 1110. Viendo lo que Eve ha observado, ¿cuál es la probabilidad de que el mensaje original de Alice a Bob sea 1111?</item>
+        <item>Si seleccionas tres puntos al azar del perímetro de un círculo, ¿cuál es la probabilidad de que el triángulo resultante contenga el centro del círculo?</item>
+    </string-array>
+    <string-array name="answers_1">
+        <item>3</item>
+        <item>1 - 364*363/365^2</item>
+        <item>23</item>
+        <item>6</item>
+        <item>1/3</item>
+        <item>3 * 0.51^2 * 0.49</item>
+        <item>148.5/(148.5 + 998.5)</item>
+        <item>0.1/(0.1 + 0.9*0.5^3)</item>
+        <item>4*(1/4 + 1/3 + 1/2 + 1)</item>
+        <item>3/5</item>
+        <item>128/315</item>
+        <item>55</item>
+        <item>89</item>
+        <item>201/256</item>
+        <item>14/3</item>
+        <item>1/2</item>
+        <item>100*(1-0.19^0.5)/0.9</item>
+        <item>1/9</item>
+        <item>280/1000</item>
+        <item>1+9*0.8^2</item>
+        <item>1+9*0.7</item>
+        <item>6</item>
+        <item>1-0.9^2</item>
+        <item>0.49</item>
+        <item>2*0.51*0.49^2</item>
+        <item>0.6</item>
+        <item>3/4</item>
+        <item>1/12</item>
+        <item>252*0.5^10</item>
+        <item>0.6</item>
+        <item>1 - e^(-1)</item>
+        <item>4/10</item>
+        <item>0.6</item>
+        <item>1/4</item>
+    </string-array>
+
+    <string-array name="images_2">
+        <item>hound</item>
+        <item>mouse_grid_horizontal</item>
+        <item>mouse_grid_horizontal_with_trap</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>conditional_correlation</item>
+        <item>hats</item>
+        <item>gambling_small</item>
+        <item></item>
+        <item>particle_v2</item>
+        <item>table_small</item>
+        <item>ant_and_spider</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>gambler_broke_11_bets_small</item>
+        <item>vote_counting_small</item>
+    </string-array>
+    <string-array name="hints_2">
+        <item>La linealidad de la expectativa nos ayudará: llama a los zorros 1, 2, &#8230;, 5, y sea X_i un indicador de si el zorro i es seguido por un sabueso. La respuesta es E[X_1 + &#8230; + X_5] = E[X_1] + &#8230; + E[X_5]. Dado que la probabilidad de ser seguido por un sabueso es la misma para todos los zorros, la respuesta se simplifica a 5*E[X_1], es decir, lo único que tienes que hacer es calcular la probabilidad de que un zorro específico sea seguido por un sabueso, y multiplicarlo por cinco.</item>
+        <item>Date cuenta de que todos los caminos tienen el mismo número total de pasos &#8212; y además, el mismo número de pasos hacia el este. Puedes por tanto representar cualquier camino como una secuencia de N palabras, de las cuales K dicen \"este\" y las restantes dicen \"norte\". ¿Cuántas formas hay de organizar una secuencia así?</item>
+        <item>Prueba a contar el número de caminos que hay que atraviesan la trampa. Un primer paso útil es contar el número de caminos desde la posición inicial hasta la trampa &#8212; que ya sabes como hacer si resolviste el anterior acertijo.</item>
+        <item>Puedes usar el hecho de que E[X] = E[E[X|Y]]. En este caso, haz que X sea la respuesta al acertijo. Una buena elección para Y es un indicador de si el tren A llega antes o después de la marca de tres minutos: si llega después, sabes que cogerás el tren B (dado que llegará como mucho en tres minutos). Si quieres olvidarte de la historia del tren, el acertijo te está pidiendo E[min(X_1, X_2)] donde X_1 ~ Uniform([0, 5]), X_2 ~ Uniform([0, 3]) y las Xs son independientes.</item>
+        <item>Este es muy similar al acertijo del zorro: la respuesta es sencilla si usas la linealidad de la expectativa. Si te centras en las mujeres, por ejemplo, la respuesta es 8*E[X_1], donde X_1 es el número de hombres sentados al lado de la mujer uno, es decir, X_1 es bien 0, 1 o 2.</item>
+        <item>Intenta resolver el acertijo anterior primero (lee su pista si estás atascado). La única diferencia aquí es tener en cuenta la probabilidad de sentarse en los extremos de la mesa, en cuyo caso solo tienes un vecino. Intuitivamente, debería llevarte a un número menor que en el acertijo anterior. Visita https://stats.stackexchange.com/a/509919/9330 si quieres una solución detallada.</item>
+        <item>La definición de correlación es Corr[X, Y] = Cov[X, Y] / (Var[X]*Var[Y])^0.5, y puedes hallar la respuesta siguiendo las definiciones e integrando. Un truco es pensar en una regresión de la habilidad de escribir sobre la habilidad matemática condicionada a asistir a la universidad &#8212; la pendiente de la recta de regresión nos dará la correlación. ¡Asegúrate de que entiendes porqué funciona!</item>
+        <item>Usa el principio de inclusión-exclusión. La versión con dos sucesos es Pr[A o B] = Pr[A] + Pr[B] - Pr[A y B]; necesitas usar la versión con n sucesos donde n es el número de personas (y también el número de sombreros).</item>
+        <item>Empezando en cualquier capital inicial x, piensa sobre la probabilidad de alcanzar alguna vez el estado (x-1). La respuesta que buscas es justo el cuadrado de esa probabilidad: para arruinarte tienes que en algún punto alcanzar el capital de 1 euro, y entonces, habiendo llegado ahí, en algún momento alcanzar la fortuna de 0 euros.</item>
+        <item>Supón que estuviera preguntando por un remuestreo de tamaño cinco de una colección de cinco objetos. Imagina cinco puntos y cuatro barras juntas dispuestas en línea, como esto: oolollool. Esa secuencia concreta representa un remuestreo en el cual el primer objeto se toma dos veces, el segundo una, el tercero ninguna, el cuarto dos y el quinto nunca. ¿Cuántas secuencias diferentes se pueden generar usando el mismo número de círculos y barras?</item>
+        <item>Empieza calculando el número esperado de visitas totales al origen. ¿Cuál es la conexión entre ese número y la probabilidad de volver alguna vez?</item>
+        <item>Si el anfitrión empieza pasándola a la derecha, sabes que has perdido. Céntrate en el conjunto de personas que no han tenido la moneda, y piensa sobre los que abandonan ese conjunto. El ganador es el último que queda. Mientras haya más de una persona en el conjunto, la siguiente persona en salir debe ser uno de los dos de los extremos (en el dibujo, serías tú o la persona D, por ejemplo).</item>
+        <item>El cubo tiene ocho esquinas (vértices), pero puedes simplificar el problema centrándote en la distancia de la araña a la hormiga &#8212; inicialmente 3, y en general un número de \{0, 1, 2, 3\} &#8212; que convenientemente sigue un proceso de primer orden de Markov.</item>
+        <item>La respuesta es necesariamente mayor que 4. Un truco para resolverlo fácilmente a mano es usar una martingala. Supón que en cada momento N una persona llega y apuesta 1 euro a que el N-ésimo lanzamiento sale C. Si gana, entonces apuesta 2 a X; si vuelve a ganar, 4 en X; y si vuelve a ganar, 8 a C. Deja de apostar tan pronto como pierda una vez o gane cuatro veces seguidas. La cantidad acumulada que gana con estas apuestas es una martingala de media cero, y puedes usar este hecho para resolver la cantidad esperada de tiempo hasta el primer C X X C.</item>
+        <item>Intenta resolver el acertijo anterior primero &#8212; si entiendes el truco de la martingala, este te será fácil. Una pregunta interesante es pensar porqué un patrón aparece antes, de media, que otro.</item>
+        <item>Este acertijo es directo si conoces las series de potencias de la función exponencial, es decir, que e^x es igual a la suma desde N=0 a infinito de (x^N)/(N!). Prueba a jugar con la expresiones (e^x + e^(-x)) y (e^x - e^(-x)).</item>
+        <item>Para cualquier número N, sea F(N) el número de caminos de longitud N (es decir, trayectorias del capital sobre un curso de N apuestas) que empiezan con un capital de uno, terminan con un capital de uno, y nunca pasan por el cero. Por ejemplo F(0)=1, F(2)=1 y F(4)=2; los dos caminos para F(4) son arriba-arriba-abajo-abajo y arriba-abajo-arriba-abajo. La solución está relacionada con F(10). ¿Sabrías expresar F recursivamente? Investiga sobre los números de Catalan si te atascas.</item>
+        <item>El gráfico ilustra varios caminos de ejemplo para el recuento de votos netos de C. Estamos buscando la probabilidad de que el camino nunca pase por cero después del primer voto. Varios hechos ayudarán: primero, la probabilidad de que el primer voto extraído sea para C es 70/100. Segundo, supón que el camino pasa por cero (por ejemplo en el círculo naranja en el dibujo): en ese punto, cuando el camino toca a cero por primera vez, hemos contado los mismos votos para T y C. Podemos por tanto \"reflejar\" la parte izquierda del camino &#8212; la parte desde el origen hasta el círculo naranja &#8212; alrededor del eje horizontal, dándonos un camino alternativo que necesariamente tiene la misma probabilidad que el camino original. Por tanto, sabiendo que el camino pasa por cero (en el círculo naranja), el primero voto extraído de la urna es igual de probable de haber sido para C que para T. Une ambos hechos para obtener la respuesta.</item>
+    </string-array>
+    <string-array name="puzzles_2">
+        <item>Cinco zorros y siete sabuesos se meten en una madriguera de zorro. Mientras están dentro se mezclan y desordenan, de manera que todas las ordenaciones son igualmente probables.
+            \n\nLos zorros y los sabuesos salen del agujero formando una linea. De media, ¿cuántos zorros van inmediatamente seguidos por un sabueso?</item>
+        <item>Un ratón hambriento está sentado en la esquina suroeste de una retícula de 4x7, elegantemente representada debajo. El ratón huele a su alrededor y detecta un trozo de queso en la esquina nordeste.
+            \n\nSupón que el ratón se mueve solo a lo largo de las líneas de la cuadrícula, y escoge moverse solo hacia el norte o el este, como si quisiera alcanzar su comida rápidamente. Por ejemplo, el ratón podría alcanzar el queso moviéndose tres veces al norte, siete veces al este, y finalmente una vez al norte.
+            \n\n¿Cuántos caminos diferentes puede tomar el ratón para alcanzar el queso?</item>
+        <item>Esta es una continuación del anterior acertijo: se aplican las mismas reglas en cuanto al movimiento del ratón.
+            \n\nAhora hay una trampa &#8212; grande, roja y circular &#8212; entre el ratón y su cena. El ratón empieza su camino en la posición (0, 0); la trampa espera en (5, 2); y el delicioso queso se sitúa en (7, 4).
+            \n\nSi el ratón escoge un camino completamente al azar entre su posición y la del queso, ¿cuál es la probabilidad de que sobreviva a la trampa?</item>
+        <item>Entras en una estación de metro con mucha prisa, y decides tomar el primer tren que llega. 
+            \n\nHay dos líneas que atraviesan esa estación: una pasa cada 5 minutos (línea A), y la otra cada 3 minutos (línea B). Siendo preciso, supón que la próxima llegada del tren A está uniformemente distribuida en el intervalo [0,5], y de forma similar para el tren B en [0,3]. Las dos llegadas son independientes.
+            \n\nEl tren circula como un reloj de precisión: la única duda que hay es la próxima llegada del tren. Por ejemplo, si el tren B llega en el minuto 0.87, puedes estar absolutamente seguro de que habrá otro a los 3.87 minutos.
+            \n\n¿Cuántos minutos esperarás de media hasta que te subes a un tren?</item>
+        <item>Cinco hombres y ocho mujeres están sentados al azar alrededor de una mesa circular, de manera que todas las ordenaciones son igualmente probables.
+            \n\nAsumamos que todo son heterosexuales (y solteros), de modo que hay una "pareja potencial" cada vez que un hombre y una mujer están sentados juntos. Fíjate que una persona puede ser parte de (hasta) dos parejas potenciales: una con la persona sentada a la izquierda, y otra con la persona sentada a la derecha.
+            \n\nDe media, ¿cuántas parejas potenciales estarán sentadas en la mesa?</item>
+        <item>Esta es una variación del anterior acertijo: todavía tenemos cinco hombres y ocho mujeres, pero hemos perdido la mesa circular y nuestros huéspedes están sentados ahora en línea. Como antes, están sentados al azar de modo que todos los ordenamientos son igualmente probables.
+            \n\n¿Cuál es el número esperado de parejas potenciales?</item>
+        <item>Supón que las capacidades matemáticas y de escritura son independientes &#8212; y por lo tanto sin correlación &#8212; en la población general.
+            \n\nPara hacer las cosas manejables, imagina que estas capacidades están uniforme e independientemente distribuidas en el intervalo [0,1], y que los alumnos asisten a la universidad si y solo si la suma de sus capacidades matemáticas y de escritura son mayores que uno.
+            \n\nCada punto abajo es la simulación de una persona; el color indica si asisten a la universidad. Entre la población de alumnos universitarios, ¿cuál es la correlación entre las capacidades matemáticas y de escritura?</item>
+        <item>Invitas a algunos amigos a una fiesta de sombreros. Según avanza la noche, decides jugar a un juego: todos formarán una línea y pondrán su sombrero en el suelo delante de ellos. Los invitados se reordenarán al azar, con todos los ordenamientos igualmente probables. Después, cada invitado coge el sombrero que tiene delante de él.
+            \n\nNos interesa la probabilidad de que al menos uno de los invitados lleve su propio sombrero al final del juego. ¿Hacia donde converge esta probabilidad cuando el número de invitados crece infinitamente?</item>    
+        <item>Encuentras 2 euros en tu bolsillo y decides jugártelos. Afortunadamente, el juego que estás jugando tiene probabilidades favorables: cada vez que juegas, ganas 1 euro con probabilidad 3/4 y pierdes 1 euro con probabilidad 1/4.
+            \n\nSupón que continúas jugando mientras tengas dinero en tu bolsillo. Si pierdes las dos primeras apuestas, te arruinas y te vas a casa después de solo dos rondas; pero si ganas siempre, jugarás indefinidamente.
+            \n\n¿Cuál es la probabilidad de que te arruines a la larga?</item>
+        <item>Empiezas con una colección de 10 objetos distintos, y defines un "remuestreo" como una muestra de tamaño 10, con reemplazamiento, escogida de la colección inicial. Si la colección inicial es {1, 2, &#8230; , 10}, por ejemplo, hay un remuestreo en el cual el número 2 aparece diez veces, otro en el cual cada número original aparece una vez, y otro en el cual los números 1 y 2 aparecen cinco veces. Hay obviamente muchos más.  
+            \n\n¿Cuál es el número de remuestreos diferentes?</item>
+        <item>Una partícula vive en una cuadrícula bidimensional y empieza su viaje en el origen, (0,0). Cada segundo saltará bien al noroeste, nordeste, suroeste o sureste con igual probabilidad, como se muestra en la imagen inferior. Después de saltar una vez, la partícula tiene un 0.25 de probabilidad de estar en la posición (1,1), por ejemplo.
+            \n\n¿Cuál es la probabilidad de que la partícula retorne alguna vez al origen?</item>
+        <item>Una anfitriona y 9 invitados están sentados en una mesa circular. La anfitriona se siente generosa: sitúa una moneda de oro delante de ella, y anuncia que uno de vosotros se la llevará a casa.
+            \n\nQuién tenga la moneda &#8212; empezando con la anfitriona &#8212; la lanzará: si sale cara, la pasará a la izquierda; si sale cruz, a la derecha. Se procede así hasta que todos el mundo haya tenido la moneda al menos una vez &#8212; en ese instante, el juego termina, y la persona que tenga la moneda se la lleva. En otras palabras, el ganador es la última persona que reciba la moneda por primera vez. 
+            \n\nEn el ejemplo inferior, la moneda va de la anfitriona a A, y de A a B. Entonces circula entre A y B unos momentos, para ir de B a C. En ese escenario hipotético, sería imposible que la anfitriona, A, B o C ganaran (pero tú todavía tendrías oportunidad de hacerlo).
+            \n\nEstás sentado justo a la derecha de la anfitriona y el juego está a punto de empezar. ¿Cuál es la probabilidad de que ganes?</item>
+        <item>Imagina una gran habitación &#8212; o, de un modo más abstracto, un cubo &#8212; habitado por dos pequeñas criaturas: una araña hambrienta, en una esquina, y en el vértice completamente opuesto, una aterrada hormiga.
+            \n\nSiendo preciso, supón que la araña está inicialmente en la esquina nordeste del techo, mientras la hormiga está escondiéndose lo mejor posible en la esquina suroeste del suelo, como en la imagen inferior.
+            \n\nLa araña está petrificada por el miedo y no se mueve nunca. Mientras, la araña sigue un camino completamente al azar: cada vez que llega a una esquina, escoge una arista completamente al azar (independientemente de sus elecciones pasadas), y la sigue hasta llegar a la siguiente esquina.
+            \n\nDe media, ¿cuántas aristas recorrerá la araña antes de alcanzar a la hormiga?</item>
+        <item>Cuando consideramos una secuencia infinita de lanzamientos de una moneda sin trucar, ¿cuántos lanzamientos de media tendremos que hacer hasta que aparece el patrón C X X C ?</item>
+        <item>Jack y Jill están jugando a un juego consistente en infinitos lanzamientos de una moneda. Jack apuesta a que el patrón C C C C ocurrirá primero, mientras Jill pone su dinero en C X X C.
+           \n\nSea T_a el número de lanzamientos hasta que el patrón de Jack aparece por primera vez, mientras T_i denota lo mismo pero para Jill. Si Jack promete pagar a Jill (T_a - T_i), que podría ser tanto positivo como negativo, ¿cuánto recibiría Jill de media?</item>
+        <item>Considera una variable aleatoria de Poisson con un valor esperado de 1, es decir Pr[X = k] = e^(-1) / (k!) para cualquier k entero no negativo (y cero en caso contrario), donde k! es el factorial de k. ¿Cuál es la probabilidad de que X sea par?</item>
+        <item>Considera a un jugador cuya fortuna inicial es un euro, y que apuesta repetidamente de modo que su fortuna o bien se incrementa o bien se reduce en un euro (es decir, cada resultado tiene probabilidad &#189;). Continúa apostando hasta que se queda sin dinero. Si sabemos que el jugador se arruinará en su apuesta número once, ¿cuál es la probabilidad de que la trayectoria de su fortuna haya subido directamente hasta 6 euros y después descendido abruptamente a 0?</item>
+        <item>Imagina una país en el que 100 personas han votado en una elección que enfrentaba a una mujer llamada C y un demagogo llamado T. Supón que C recibe 70 votos, mientras que 30 votaron por el candidato T &#8212; pero el público aun no lo sabe porque los votos no se han contado todavía.
+           \n\nLas papeletas de los votantes se meten en una gran urna. Antes de que sea abierta, se agita la urna de modo que desordena al azar todas las papeletas, y todos los ordenamientos son igualmente probables. La urna se abre entonces y se extraen y cuentan las papeletas de una a una.
+           \n\nDado que 70 personas votaron por C (y 30 por T), sabemos que C terminará con una ventaja de 40 votos al final del recuento. Hay azar en cómo se llega a ese punto, no obstante.
+           \n\n¿Cuál es la probabilidad de que C vaya estrictamente por delante de T en todo momento del proceso del recuento?</item>
+    </string-array>
+    <string-array name="answers_2">
+        <item>5*7/12</item>
+        <item>C(11,7)</item>
+        <item>1 - C(7,2)*C(4,2)/C(11,7)</item>
+        <item>1.2</item>
+        <item>5*4/3</item>
+        <item>5*48/39</item>
+        <item>-1/2</item>
+        <item>1-1/e</item>
+        <item>1/9</item>
+        <item>92378</item>
+        <item>1</item>
+        <item>1/9</item>
+        <item>10</item>
+        <item>18</item>
+        <item>30-18</item>
+        <item>0.5*(1 + e^(-2))</item>
+        <item>1/42</item>
+        <item>40/100</item>
+    </string-array>
+
+
+</resources>
