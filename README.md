@@ -12,6 +12,10 @@ Thank you [Roland Illig](https://github.com/rillig)
 for [translating the app into German](app/src/main/res/values-de/strings.xml), and
 thank you Roberto Espiño for [translating the app into Spanish](app/src/main/res/values-es/strings.xml)!
 
+Thank you [Mariusz Gromada](https://github.com/mariuszgromada)
+for publishing [mXparser](https://github.com/mariuszgromada/MathParser.org-mXparser),
+which is used in [SolvePuzzle.java](app/src/main/java/atorch/statspuzzles/SolvePuzzle.java).
+
 Thank you Andrew Gelman for
 [featuring the app on your blog](https://statmodeling.stat.columbia.edu/2015/05/05/hes-looking-for-probability-puzzles/),
 and thank you to everyone on stackoverflow who [helped me](https://stackoverflow.com/questions/48960080/empty-space-above-the-app-bar)
