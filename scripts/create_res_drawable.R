@@ -7,8 +7,16 @@
 
 library(ggplot2)
 library(grid)
+library(optparse)
 
 source("utils.R")
+
+opt_list <- list(make_option("--filename_suffix", default="", type="character"),
+                 make_option("--voter_x_label", default="voter 4", type="character"),
+                 make_option("--voter_y_label", default="voter 3", type="character"))
+opt <- parse_args(OptionParser(option_list=opt_list))
+
+message("command line options: ", paste(sprintf("%s=%s", names(opt), opt), collapse=", "))
 
 set_ggplot_theme()
 theme_update(panel.grid.major=element_blank())
@@ -28,10 +36,10 @@ p <- (ggplot(df, aes(x=x, y=y, label=label)) +
       geom_rect(xmin=0.5, xmax=1.5, ymin=-1.5, ymax=0.5, fill="white", color=colors[2], size=3.0, alpha=0) +  # Vertical
       annotate("text", x=1, y=0.65, color=colors[2], label="0.6", size=11) +
       geom_text(size=8) +
-      scale_y_continuous("voter 3", breaks=c(-1, 0), labels=c("C", "T"), lim=c(-2, 1)) +
-      scale_x_continuous("voter 4", breaks=c(0, 1), labels=c("T", "C"), lim=c(-1, 2)))
+      scale_y_continuous(opt$voter_y_label, breaks=c(-1, 0), labels=c("C", "T"), lim=c(-2, 1)) +
+      scale_x_continuous(opt$voter_x_label, breaks=c(0, 1), labels=c("T", "C"), lim=c(-1, 2)))
 p
-ggsave("CT_vote_table.png", p, width=8, height=8)
+ggsave(sprintf("CT_vote_table%s.png", opt$filename_suffix), p, width=8, height=8)
 
 set_ggplot_theme()
 df <- data.frame(number_bets=seq(0, 11), fortune=c(seq(1, 6), seq(5, 0)))
