@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -434,6 +435,7 @@ public class SolvePuzzle extends AppCompatActivity {
             }
             AlertDialog alert = builder.create();
             alert.show();
+            hideSoftKeyboard();
         }
 
         public void openIncorrectAnswerToast() {
@@ -450,6 +452,19 @@ public class SolvePuzzle extends AppCompatActivity {
             );
             AlertDialog alert = builder.create();
             alert.show();
+        }
+
+        @Override
+        public void onPause() {
+            hideSoftKeyboard();
+            super.onPause();
+        }
+
+        public void hideSoftKeyboard() {
+            View editBox = getView().findViewById(R.id.user_answer);
+            editBox.clearFocus();
+            InputMethodManager IMM = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            IMM.hideSoftInputFromWindow(editBox.getWindowToken(), 0);
         }
 
     }
