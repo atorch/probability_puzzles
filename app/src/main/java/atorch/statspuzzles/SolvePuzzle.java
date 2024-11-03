@@ -21,20 +21,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
+
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
 
 public class SolvePuzzle extends AppCompatActivity {
     // Following example at https://developer.android.com/training/sharing/shareaction.html
@@ -44,7 +49,8 @@ public class SolvePuzzle extends AppCompatActivity {
     public static final String LEVEL = "atorch.statspuzzles.LEVEL";
     private static final int roundingScale = 4;
 
-    private ViewPager puzzlePager;  // Displays puzzles one at a time
+    // Displays puzzles one at a time
+    private ViewPager2 puzzlePager;
 
     private int level;
 
@@ -64,18 +70,14 @@ public class SolvePuzzle extends AppCompatActivity {
             level = intent.getIntExtra(PuzzleSelection.LEVEL, 0);
         }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
         res = new Res(getResources());
         puzzlePager = findViewById(R.id.pager);
-        puzzlePager.setAdapter(new AppSectionsPagerAdapter(fragmentManager, level, res));
+        puzzlePager.setAdapter(new AppSectionsPagerAdapter(this, level, res));
 
-        puzzlePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override public void onPageScrollStateChanged(int arg0) {
-            }
-            @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-            @Override public void onPageSelected(int puzzleIndex) {
+        puzzlePager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int puzzleIndex) {
+                super.onPageSelected(puzzleIndex);
                 prepareSharePuzzle(res.getPuzzle(level, puzzleIndex));
             }
         });
@@ -209,30 +211,32 @@ public class SolvePuzzle extends AppCompatActivity {
         }
     }
 
-    public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
+    // TODO FragmentPagerAdapter is deprecated
+    public static class AppSectionsPagerAdapter extends FragmentStateAdapter {
 
         private final int level;
         private final Res res;
 
-        public AppSectionsPagerAdapter(FragmentManager fm, int level, Res res) {
-            super(fm);
+        public AppSectionsPagerAdapter(@NonNull FragmentActivity fa, int level, Res res) {
+            super(fa);
             this.level = level;
             this.res = res;
         }
 
+        @NonNull
         @Override
-        public Fragment getItem(int puzzleIndex) {
+        public Fragment createFragment(int puzzleIndex) {
             Fragment fragment = new SolvePuzzleFragment();
             Bundle args = new Bundle();
             args.putInt(LEVEL, level);
             args.putInt(PUZZLE_INDEX, puzzleIndex);
-
             fragment.setArguments(args);
             return fragment;
         }
 
+
         @Override
-        public int getCount() {
+        public int getItemCount() {
             return res.getPuzzleCount(level);
         }
     }
@@ -242,7 +246,7 @@ public class SolvePuzzle extends AppCompatActivity {
         private int level;
         private int puzzleIndex;
         private double correctAnswer;
-        private ViewPager mViewPager;
+        private ViewPager2 mViewPager;
         private Res res;
 
         @Override
@@ -335,7 +339,8 @@ public class SolvePuzzle extends AppCompatActivity {
             Expression answerExpression = new Expression(answerString);
             double answer = answerExpression.calculate();
             if (!answerExpression.checkSyntax()) {
-                openTroubleParsingDialog(view);  // TODO Don't show if user answer is empty string?
+                // TODO Don't show if user answer is empty string?
+                openTroubleParsingDialog();
                 hadTroubleParsing = true;
             }
             if (!Double.isNaN(answer) && !Double.isInfinite(answer)) {
@@ -349,13 +354,13 @@ public class SolvePuzzle extends AppCompatActivity {
             if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.00001) {
                 openCongratulationsAlert(view);
             } else if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.001) {
-                openAccuracyAlert(view);
+                openAccuracyAlert();
             } else if (!hadTroubleParsing) {
                 openIncorrectAnswerToast();  // User answer could parse to NaN
             }
         }
 
-        public void openTroubleParsingDialog(View view) {
+        public void openTroubleParsingDialog() {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.trouble_parsing_answer));
             builder.setCancelable(true);
@@ -443,7 +448,7 @@ public class SolvePuzzle extends AppCompatActivity {
             Toast.makeText(context, res.getRandomIncorrect(), Toast.LENGTH_LONG).show();
         }
 
-        public void openAccuracyAlert(View view) {
+        public void openAccuracyAlert() {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.accuracy));
             builder.setCancelable(true);
