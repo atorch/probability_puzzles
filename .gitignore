@@ -4,3 +4,4 @@ app/release/*
 app/build/*
 .gradle/*
 build/*
+.idea/*
