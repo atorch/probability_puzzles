@@ -2,3 +2,5 @@
 local.properties
 app/release/*
 app/build/*
+.gradle/*
+build/*
