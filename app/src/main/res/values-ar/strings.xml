@@ -70,7 +70,7 @@
     <string name="okay_button">حسناً</string>
     <string name="ok_button">موافق</string>
 
-    <string name="solved">تم حل %d / %d</string>
+    <string name="solved" formatted="false">تم حل %d / %d</string>
 
     <string name="action_share">مشاركة</string>
     <string name="action_settings">الإعدادات</string>
