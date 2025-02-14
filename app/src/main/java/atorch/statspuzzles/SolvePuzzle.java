@@ -1,6 +1,6 @@
 package atorch.statspuzzles;
 
-import android.app.AlertDialog;
+import android.app.AlertDialogs;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -46,7 +46,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
     private ViewPager puzzlePager;  // Displays puzzles one at a time
 
-    private int level;
+    private int lev
 
     private Res res;
 
