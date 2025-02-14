@@ -46,7 +46,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
     private ViewPager puzzlePager;  // Displays puzzles one at a time
 
-    private int lev
+    private int level;
 
     private Res res;
 
