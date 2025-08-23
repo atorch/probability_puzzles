@@ -27,3 +27,21 @@ write an Android app, back in the dark ages before LLMs!
 
 I first released this app in July 2014.
 The app has been rated 6,594 times as of October 2020, and has around 26,000 active users.
+
+## Running Tests
+
+To run the unit tests for this project, execute the following command:
+
+```bash
+./gradlew test
+```
+
+## Building the App
+
+To build the app and run all checks, including linting, execute the following command:
+
+```bash
+./gradlew build
+```
+
+This is the same command that is run in the GitHub Actions CI. Running this locally will help you find and fix issues before pushing your changes.

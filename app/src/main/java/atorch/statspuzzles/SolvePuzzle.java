@@ -330,28 +330,30 @@ public class SolvePuzzle extends AppCompatActivity {
             EditText userAnswer = getView().findViewById(R.id.user_answer);
             String answerString = userAnswer.getText().toString();
             TextView answerApprox = getView().findViewById(R.id.answerApprox);
-            boolean hadTroubleParsing = false;
 
-            Expression answerExpression = new Expression(answerString);
-            double answer = answerExpression.calculate();
-            if (!answerExpression.checkSyntax()) {
-                openTroubleParsingDialog(view);  // TODO Don't show if user answer is empty string?
-                hadTroubleParsing = true;
-            }
-            if (!Double.isNaN(answer) && !Double.isInfinite(answer)) {
-                BigDecimal bd = new BigDecimal(answer).setScale(roundingScale, RoundingMode.HALF_EVEN);  // Number of digits after decimal point
-                answerApprox.setText(getString(R.string.approximate_result, bd));
-            } else {
-                // Empty answerApprox when answer doesn't parse or is NaN or is infinite
+            String correctAnswer = res.getAnswer(level, puzzleIndex);
+            AnswerChecker.Result result = AnswerChecker.checkAnswer(correctAnswer, answerString);
+
+            if (result == AnswerChecker.Result.INVALID) {
+                openTroubleParsingDialog(view);
                 answerApprox.setText("");
+            } else {
+                Expression answerExpression = new Expression(answerString);
+                double answer = answerExpression.calculate();
+                BigDecimal bd = new BigDecimal(answer).setScale(roundingScale, RoundingMode.HALF_EVEN);
+                answerApprox.setText(getString(R.string.approximate_result, bd));
             }
-            // TODO Careful with accuracy, e.g. clock puzzle
-            if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.00001) {
-                openCongratulationsAlert(view);
-            } else if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.001) {
-                openAccuracyAlert(view);
-            } else if (!hadTroubleParsing) {
-                openIncorrectAnswerToast();  // User answer could parse to NaN
+
+            switch (result) {
+                case CORRECT:
+                    openCongratulationsAlert(view);
+                    break;
+                case INACCURATE:
+                    openAccuracyAlert(view);
+                    break;
+                case INCORRECT:
+                    openIncorrectAnswerToast();
+                    break;
             }
         }
 
