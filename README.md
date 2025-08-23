@@ -25,3 +25,11 @@ write an Android app!
 
 I first released this app in July 2014.
 The app has been rated 6,594 times as of October 2020, and has around 26,000 active users.
+
+## Running Tests
+
+To run the unit tests for this project, execute the following command:
+
+```bash
+./gradlew test
+```
