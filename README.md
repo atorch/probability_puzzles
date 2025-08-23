@@ -33,3 +33,13 @@ To run the unit tests for this project, execute the following command:
 ```bash
 ./gradlew test
 ```
+
+## Building the App
+
+To build the app and run all checks, including linting, execute the following command:
+
+```bash
+./gradlew build
+```
+
+This is the same command that is run in the GitHub Actions CI. Running this locally will help you find and fix issues before pushing your changes.

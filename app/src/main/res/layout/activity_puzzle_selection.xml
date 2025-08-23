@@ -39,6 +39,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/activity_horizontal_margin_half"
+                android:paddingLeft="@dimen/activity_horizontal_margin_half"
                 android:text="" />
 
         </LinearLayout>
@@ -64,6 +65,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/activity_horizontal_margin_half"
+                android:paddingLeft="@dimen/activity_horizontal_margin_half"
                 android:text="" />
 
         </LinearLayout>
@@ -89,6 +91,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/activity_horizontal_margin_half"
+                android:paddingLeft="@dimen/activity_horizontal_margin_half"
                 android:text="" />
 
         </LinearLayout>
@@ -114,6 +117,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:paddingStart="@dimen/activity_horizontal_margin_half"
+                android:paddingLeft="@dimen/activity_horizontal_margin_half"
                 android:text="" />
 
         </LinearLayout>
