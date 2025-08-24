@@ -31,6 +31,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Set locale properties
+        id: locale_props
+        run: |
+          echo "language=$(echo ${{ matrix.locale }} | cut -d'-' -f1)" >> $GITHUB_OUTPUT
+          echo "country=$(echo ${{ matrix.locale }} | cut -d'-' -f2)" >> $GITHUB_OUTPUT
+
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -42,5 +48,5 @@ jobs:
         with:
           api-level: 33
           arch: x86_64
-          emulator-options: "-no-window -no-snapshot -prop persist.sys.language=${{ matrix.locale.split('-')[0] }} -prop persist.sys.country=${{ matrix.locale.split('-')[1] }}"
+          emulator-options: "-no-window -no-snapshot -prop persist.sys.language=${{ steps.locale_props.outputs.language }} -prop persist.sys.country=${{ steps.locale_props.outputs.country }}"
           script: ./gradlew connectedAndroidTest
