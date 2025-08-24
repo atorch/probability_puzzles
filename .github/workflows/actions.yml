@@ -1,4 +1,5 @@
-name: Build
+name: Build and Test
+
 on:
   push:
     branches: [ master ]
@@ -19,3 +20,33 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
       - name: Build with Gradle
         run: ./gradlew build
+
+  instrumented-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        locale: ['en-US', 'de-DE', 'es-ES', 'ar-EG']
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Set locale properties
+        id: locale_props
+        run: |
+          echo "language=$(echo ${{ matrix.locale }} | cut -d'-' -f1)" >> $GITHUB_OUTPUT
+          echo "country=$(echo ${{ matrix.locale }} | cut -d'-' -f2)" >> $GITHUB_OUTPUT
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Run Instrumented Tests for ${{ matrix.locale }}
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          arch: x86_64
+          emulator-options: "-no-window -no-snapshot -prop persist.sys.language=${{ steps.locale_props.outputs.language }} -prop persist.sys.country=${{ steps.locale_props.outputs.country }}"
+          script: ./gradlew connectedAndroidTest
