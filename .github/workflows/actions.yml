@@ -24,6 +24,9 @@ jobs:
   instrumented-tests:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        locale: ['en-US', 'de-DE', 'es-ES', 'ar-EG']
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -34,9 +37,10 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
 
-      - name: Run Instrumented Tests
+      - name: Run Instrumented Tests for ${{ matrix.locale }}
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 33
           arch: x86_64
+          emulator-options: "-no-window -no-snapshot -prop persist.sys.language=${{ matrix.locale.split('-')[0] }} -prop persist.sys.country=${{ matrix.locale.split('-')[1] }}"
           script: ./gradlew connectedAndroidTest

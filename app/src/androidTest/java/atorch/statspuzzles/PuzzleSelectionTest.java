@@ -1,10 +1,13 @@
 package atorch.statspuzzles;
 
+import android.content.Context;
+import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
+import static androidx.test.espresso.action.ViewActions.click;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,7 +22,16 @@ public class PuzzleSelectionTest {
 
     @Test
     public void mainActivityLoads() {
-        Espresso.onView(ViewMatchers.withText("Probability Puzzles"))
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.app_name)))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void easyPuzzlesButton_loadsEasyPuzzles() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.button_level_0))).perform(click());
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.puzzle, 1)))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }

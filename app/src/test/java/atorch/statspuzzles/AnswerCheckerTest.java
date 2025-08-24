@@ -9,7 +9,7 @@ public class AnswerCheckerTest {
     public void testCorrectAnswer() {
         assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("2+2", "4"));
         assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("1/2", "0.5"));
-	assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("3!", "6.0"));
+        assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("3!", "6.0"));
         // Note that we have a Result.INACCURATE version of this test as well
         assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("1/3", "0.33333333333333"));
         assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("C(5, 3)", "10"));
