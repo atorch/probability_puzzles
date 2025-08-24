@@ -40,4 +40,5 @@ jobs:
           api-level: 30
           target: google_apis
           arch: arm64-v8a
+          disable-acceleration: true
           script: ./gradlew connectedAndroidTest
