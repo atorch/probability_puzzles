@@ -54,6 +54,9 @@
     <string name="button_level_1">Poniéndonos serios</string>
     <string name="button_level_2">Escandalosos</string>
     <string name="button_hint">¿Necesitas una pista?</string>
+    <string name="button_gemini_hint">Talk to Gemini</string>
+    <string name="puzzle_copied_to_clipboard">Puzzle copied to clipboard.</string>
+    <string name="gemini_not_installed">Gemini app not installed. Opening Play Store.</string>
 
     <string-array name="levelDescriptions">
         <item>Nivel: sencillitos &#8212; solo estás calentando.</item>

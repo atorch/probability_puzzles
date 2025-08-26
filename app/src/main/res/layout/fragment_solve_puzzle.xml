@@ -100,6 +100,16 @@
             android:textAlignment="center"
             android:text="@string/button_hint" />
 
+        <Button android:gravity="center_horizontal"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:id="@+id/button_gemini_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:text="@string/button_gemini_hint" />
+
         <TextView
             android:layout_marginTop="@dimen/activity_vertical_margin_double"
             android:gravity="center_horizontal"
