@@ -13,6 +13,7 @@ public class AnswerCheckerTest {
         // Note that we have a Result.INACCURATE version of this test as well
         assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("1/3", "0.33333333333333"));
         assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("C(5, 3)", "10"));
+        assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer("e*pi", "3.56"));
     }
 
     @Test
