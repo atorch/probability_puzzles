@@ -30,7 +30,7 @@ public class PuzzleSelectionTest {
     @Test
     public void easyPuzzlesButton_loadsEasyPuzzles() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        Espresso.onView(ViewMatchers.withText(context.getString(R.string.button_level_5))).perform(click());
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.button_level_0))).perform(click());
         Espresso.onView(ViewMatchers.withText(context.getString(R.string.puzzle, 1)))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
