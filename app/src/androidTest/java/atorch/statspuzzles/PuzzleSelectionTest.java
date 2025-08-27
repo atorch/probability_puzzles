@@ -8,6 +8,7 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.swipeLeft;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,6 +33,17 @@ public class PuzzleSelectionTest {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
         Espresso.onView(ViewMatchers.withText(context.getString(R.string.button_level_0))).perform(click());
         Espresso.onView(ViewMatchers.withText(context.getString(R.string.puzzle, 1)))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+    }
+
+    @Test
+    public void swipeHorizontally_showsNextPuzzle() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.button_level_1))).perform(click());
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.puzzle, 1)))
+                .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
+        Espresso.onView(ViewMatchers.withId(R.id.pager)).perform(swipeLeft());
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.puzzle, 2)))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 }
