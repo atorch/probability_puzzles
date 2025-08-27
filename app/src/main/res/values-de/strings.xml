@@ -51,9 +51,9 @@
     <string name="button_level_1">Jetzt wird’s ernst</string>
     <string name="button_level_2">Knifflig</string>
     <string name="button_hint">Brauchst du einen Tipp?</string>
-    <string name="button_gemini_hint">Talk to Gemini</string>
-    <string name="puzzle_copied_to_clipboard">Puzzle copied to clipboard.</string>
-    <string name="gemini_not_installed">Gemini app not installed. Opening Play Store.</string>
+    <string name="button_gemini_hint">Mit Gemini sprechen</string>
+    <string name="puzzle_copied_to_clipboard">Rätsel in die Zwischenablage kopiert.</string>
+    <string name="gemini_not_installed">Gemini-App nicht installiert. Play Store wird geöffnet.</string>
 
     <string-array name="levelDescriptions">
         <item>Level: kinderleicht\u00A0– nur so zum Aufwärmen.</item>
