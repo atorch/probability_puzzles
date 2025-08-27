@@ -8,9 +8,11 @@ For code that checks some of the answers using simulations (Monte Carlo), see ht
 Are you looking for the puzzles?
 They're defined in [app/src/main/res/values/strings.xml](app/src/main/res/values/strings.xml).
 
-Thank you [Roland Illig](https://github.com/rillig)
-for [translating the app into German](app/src/main/res/values-de/strings.xml), and
-thank you Roberto Espiño for [translating the app into Spanish](app/src/main/res/values-es/strings.xml)!
+Several contributors have translated the app into other languages:
+- Thank you [Roland Illig](https://github.com/rillig)
+for [translating the app into German](app/src/main/res/values-de/strings.xml)
+- Thank you Roberto Espiño for [translating the app into Spanish](app/src/main/res/values-es/strings.xml)
+- Thank you [Ahmad Alhour](https://github.com/aalhour) for [translating the app into Arabic](app/src/main/res/values-ar/strings.xml)
 
 Thank you [Mariusz Gromada](https://github.com/mariuszgromada)
 for publishing [mXparser](https://github.com/mariuszgromada/MathParser.org-mXparser),
@@ -21,7 +23,25 @@ Thank you Andrew Gelman for
 and thank you to everyone on stackoverflow who [helped me](https://stackoverflow.com/questions/48960080/empty-space-above-the-app-bar)
 [figure out](https://stackoverflow.com/questions/27443006/setshareintent-when-a-new-fragment-is-displayed)
 [how to](https://stackoverflow.com/questions/26495084/how-do-i-add-an-action-bar-to-a-swipe-view)
-write an Android app!
+write an Android app, back in the dark ages before LLMs!
 
 I first released this app in July 2014.
 The app has been rated 6,594 times as of October 2020, and has around 26,000 active users.
+
+## Running Tests
+
+To run the unit tests for this project, execute the following command:
+
+```bash
+./gradlew test
+```
+
+## Building the App
+
+To build the app and run all checks, including linting, execute the following command:
+
+```bash
+./gradlew build
+```
+
+This is the same command that is run in the GitHub Actions CI. Running this locally will help you find and fix issues before pushing your changes.

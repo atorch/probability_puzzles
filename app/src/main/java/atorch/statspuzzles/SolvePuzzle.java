@@ -245,7 +245,6 @@ public class SolvePuzzle extends AppCompatActivity {
 
         private int level;
         private int puzzleIndex;
-        private double correctAnswer;
         private ViewPager2 mViewPager;
         private Res res;
 
@@ -281,8 +280,6 @@ public class SolvePuzzle extends AppCompatActivity {
             submitButton.setOnClickListener(this::onSubmit);
 
             String answer = res.getAnswer(level, puzzleIndex);
-            Expression correctAnswerExpression = new Expression(answer);
-            correctAnswer = correctAnswerExpression.calculate();  // This needs to always parse correctly!
 
             EditText user_answer = rootView.findViewById(R.id.user_answer);
             SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
@@ -295,7 +292,9 @@ public class SolvePuzzle extends AppCompatActivity {
                 user_answer.setText(answer);
                 // Show approx equal for correct answer
                 TextView answerApprox = rootView.findViewById(R.id.answerApprox);
-                BigDecimal bd = new BigDecimal(correctAnswer).setScale(roundingScale, RoundingMode.HALF_EVEN);
+                Expression correctAnswerExpression = new Expression(answer);
+                double correctAnswerValue = correctAnswerExpression.calculate();
+                BigDecimal bd = new BigDecimal(correctAnswerValue).setScale(roundingScale, RoundingMode.HALF_EVEN);
                 answerApprox.setText(getString(R.string.approximate_result, bd));
             }
 
@@ -334,33 +333,34 @@ public class SolvePuzzle extends AppCompatActivity {
             EditText userAnswer = getView().findViewById(R.id.user_answer);
             String answerString = userAnswer.getText().toString();
             TextView answerApprox = getView().findViewById(R.id.answerApprox);
-            boolean hadTroubleParsing = false;
 
-            Expression answerExpression = new Expression(answerString);
-            double answer = answerExpression.calculate();
-            if (!answerExpression.checkSyntax()) {
-                // TODO Don't show if user answer is empty string?
-                openTroubleParsingDialog();
-                hadTroubleParsing = true;
-            }
-            if (!Double.isNaN(answer) && !Double.isInfinite(answer)) {
-                BigDecimal bd = new BigDecimal(answer).setScale(roundingScale, RoundingMode.HALF_EVEN);  // Number of digits after decimal point
-                answerApprox.setText(getString(R.string.approximate_result, bd));
-            } else {
-                // Empty answerApprox when answer doesn't parse or is NaN or is infinite
+            String correctAnswer = res.getAnswer(level, puzzleIndex);
+            AnswerChecker.Result result = AnswerChecker.checkAnswer(correctAnswer, answerString);
+
+            if (result == AnswerChecker.Result.INVALID) {
+                openTroubleParsingDialog(view);
                 answerApprox.setText("");
+            } else {
+                Expression answerExpression = new Expression(answerString);
+                double answer = answerExpression.calculate();
+                BigDecimal bd = new BigDecimal(answer).setScale(roundingScale, RoundingMode.HALF_EVEN);
+                answerApprox.setText(getString(R.string.approximate_result, bd));
             }
-            // TODO Careful with accuracy, e.g. clock puzzle
-            if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.00001) {
-                openCongratulationsAlert(view);
-            } else if (!Double.isNaN(answer) && Math.abs(answer - correctAnswer) < 0.001) {
-                openAccuracyAlert();
-            } else if (!hadTroubleParsing) {
-                openIncorrectAnswerToast();  // User answer could parse to NaN
+
+            switch (result) {
+                case CORRECT:
+                    openCongratulationsAlert(view);
+                    break;
+                case INACCURATE:
+                    openAccuracyAlert(view);
+                    break;
+                case INCORRECT:
+                    openIncorrectAnswerToast();
+                    break;
             }
         }
 
-        public void openTroubleParsingDialog() {
+        public void openTroubleParsingDialog(View view) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.trouble_parsing_answer));
             builder.setCancelable(true);
@@ -448,7 +448,7 @@ public class SolvePuzzle extends AppCompatActivity {
             Toast.makeText(context, res.getRandomIncorrect(), Toast.LENGTH_LONG).show();
         }
 
-        public void openAccuracyAlert() {
+        public void openAccuracyAlert(View view) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(getString(R.string.accuracy));
             builder.setCancelable(true);
