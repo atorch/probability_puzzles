@@ -211,7 +211,6 @@ public class SolvePuzzle extends AppCompatActivity {
         }
     }
 
-    // TODO FragmentPagerAdapter is deprecated
     public static class AppSectionsPagerAdapter extends FragmentStateAdapter {
 
         private final int level;
@@ -245,7 +244,6 @@ public class SolvePuzzle extends AppCompatActivity {
 
         private int level;
         private int puzzleIndex;
-        private ViewPager2 mViewPager;
         private Res res;
 
         @Override
@@ -398,7 +396,7 @@ public class SolvePuzzle extends AppCompatActivity {
             editor.commit();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            mViewPager = view.getRootView().findViewById(R.id.pager);
+            ViewPager2 viewPager = view.getRootView().findViewById(R.id.pager);
 
             int nPuzzles = res.getPuzzleCount(level);
             boolean solvedAllPuzzles = puzzles_solved >= nPuzzles;
@@ -411,7 +409,7 @@ public class SolvePuzzle extends AppCompatActivity {
                             if (next_puzzleIndex >= nPuzzles) {
                                 next_puzzleIndex = 0;
                             }
-                            mViewPager.setCurrentItem(next_puzzleIndex);
+                            viewPager.setCurrentItem(next_puzzleIndex);
                             dialog.cancel();
                         }
                 );
