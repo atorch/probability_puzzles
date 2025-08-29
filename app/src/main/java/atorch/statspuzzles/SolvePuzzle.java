@@ -25,20 +25,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import org.mariuszgromada.math.mxparser.Expression;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Random;
+
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
+
 
 public class SolvePuzzle extends AppCompatActivity {
     // Following example at https://developer.android.com/training/sharing/shareaction.html
@@ -48,7 +53,8 @@ public class SolvePuzzle extends AppCompatActivity {
     public static final String LEVEL = "atorch.statspuzzles.LEVEL";
     private static final int roundingScale = 4;
 
-    private ViewPager puzzlePager;  // Displays puzzles one at a time
+    // Displays puzzles one at a time
+    private ViewPager2 puzzlePager;
 
     private int level;
 
@@ -68,18 +74,14 @@ public class SolvePuzzle extends AppCompatActivity {
             level = intent.getIntExtra(PuzzleSelection.LEVEL, 0);
         }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
         res = new Res(getResources());
         puzzlePager = findViewById(R.id.pager);
-        puzzlePager.setAdapter(new AppSectionsPagerAdapter(fragmentManager, level, res));
+        puzzlePager.setAdapter(new AppSectionsPagerAdapter(this, level, res));
 
-        puzzlePager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override public void onPageScrollStateChanged(int arg0) {
-            }
-            @Override public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-            @Override public void onPageSelected(int puzzleIndex) {
+        puzzlePager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int puzzleIndex) {
+                super.onPageSelected(puzzleIndex);
                 prepareSharePuzzle(res.getPuzzle(level, puzzleIndex));
             }
         });
@@ -213,30 +215,31 @@ public class SolvePuzzle extends AppCompatActivity {
         }
     }
 
-    public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
+    public static class AppSectionsPagerAdapter extends FragmentStateAdapter {
 
         private final int level;
         private final Res res;
 
-        public AppSectionsPagerAdapter(FragmentManager fm, int level, Res res) {
-            super(fm);
+        public AppSectionsPagerAdapter(@NonNull FragmentActivity fa, int level, Res res) {
+            super(fa);
             this.level = level;
             this.res = res;
         }
 
+        @NonNull
         @Override
-        public Fragment getItem(int puzzleIndex) {
+        public Fragment createFragment(int puzzleIndex) {
             Fragment fragment = new SolvePuzzleFragment();
             Bundle args = new Bundle();
             args.putInt(LEVEL, level);
             args.putInt(PUZZLE_INDEX, puzzleIndex);
-
             fragment.setArguments(args);
             return fragment;
         }
 
+
         @Override
-        public int getCount() {
+        public int getItemCount() {
             return res.getPuzzleCount(level);
         }
     }
@@ -245,8 +248,6 @@ public class SolvePuzzle extends AppCompatActivity {
 
         private int level;
         private int puzzleIndex;
-        private double correctAnswer;
-        private ViewPager mViewPager;
         private Res res;
 
         @Override
@@ -284,8 +285,6 @@ public class SolvePuzzle extends AppCompatActivity {
             submitButton.setOnClickListener(this::onSubmit);
 
             String answer = res.getAnswer(level, puzzleIndex);
-            Expression correctAnswerExpression = new Expression(answer);
-            correctAnswer = correctAnswerExpression.calculate();  // This needs to always parse correctly!
 
             EditText user_answer = rootView.findViewById(R.id.user_answer);
             SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
@@ -298,7 +297,9 @@ public class SolvePuzzle extends AppCompatActivity {
                 user_answer.setText(answer);
                 // Show approx equal for correct answer
                 TextView answerApprox = rootView.findViewById(R.id.answerApprox);
-                BigDecimal bd = new BigDecimal(correctAnswer).setScale(roundingScale, RoundingMode.HALF_EVEN);
+                Expression correctAnswerExpression = new Expression(answer);
+                double correctAnswerValue = correctAnswerExpression.calculate();
+                BigDecimal bd = new BigDecimal(correctAnswerValue).setScale(roundingScale, RoundingMode.HALF_EVEN);
                 answerApprox.setText(getString(R.string.approximate_result, bd));
             }
 
@@ -427,7 +428,7 @@ public class SolvePuzzle extends AppCompatActivity {
             editor.commit();
 
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            mViewPager = view.getRootView().findViewById(R.id.pager);
+            ViewPager2 viewPager = view.getRootView().findViewById(R.id.pager);
 
             int nPuzzles = res.getPuzzleCount(level);
             boolean solvedAllPuzzles = puzzles_solved >= nPuzzles;
@@ -440,7 +441,7 @@ public class SolvePuzzle extends AppCompatActivity {
                             if (next_puzzleIndex >= nPuzzles) {
                                 next_puzzleIndex = 0;
                             }
-                            mViewPager.setCurrentItem(next_puzzleIndex);
+                            viewPager.setCurrentItem(next_puzzleIndex);
                             dialog.cancel();
                         }
                 );
