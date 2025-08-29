@@ -134,7 +134,25 @@ sudo apt-get install -y openjdk-17-jdk
     ```
     The Gradle script will automatically detect the running emulator and execute the tests on it.
 
-3.  **Shut down the emulator when you're done:**
+### 6. Running Tests for a Different Locale
+
+To reproduce the CI environment for a specific locale, you need to start the emulator with the desired language settings. The CI runs tests against English, German, Spanish, and Arabic.
+
+First, make sure the emulator is not running (`adb emu kill`).
+
+Then, start the emulator with the desired locale. For example, to start the emulator with the German locale, run:
+
+```bash
+emulator -avd pixel_33 -no-window -prop persist.sys.language=de -prop persist.sys.country=DE &
+```
+
+Wait for the emulator to boot up, and then run the tests:
+
+```bash
+./gradlew connectedAndroidTest
+```
+
+### 7. Shut down the emulator when you're done:
     ```bash
     adb emu kill
     ```

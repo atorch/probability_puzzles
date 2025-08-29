@@ -249,7 +249,6 @@ public class SolvePuzzle extends AppCompatActivity {
         private int level;
         private int puzzleIndex;
         private Res res;
-        private Button geminiHintButton;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -279,7 +278,7 @@ public class SolvePuzzle extends AppCompatActivity {
             hintButton.setVisibility(View.VISIBLE);
             hintButton.setOnClickListener(unused -> showHint());
 
-            geminiHintButton = rootView.findViewById(R.id.button_gemini_hint);
+            Button geminiHintButton = rootView.findViewById(R.id.button_gemini_hint);
             geminiHintButton.setOnClickListener(v -> onGeminiHint());
 
             Button submitButton = rootView.findViewById(R.id.submit_answer);
@@ -496,27 +495,6 @@ public class SolvePuzzle extends AppCompatActivity {
             );
             AlertDialog alert = builder.create();
             alert.show();
-        }
-
-        // The user might be swiping between puzzles. The ViewPager2 keeps off-screen fragments
-        // in the view hierarchy. We need to make sure the button is only visible on the current
-        // puzzle, otherwise Espresso tests might find multiple buttons with the same ID and fail
-        // with an AmbiguousViewMatcherException.
-        @Override
-        public void onResume() {
-            super.onResume();
-            if (geminiHintButton != null) {
-                geminiHintButton.setVisibility(View.VISIBLE);
-            }
-        }
-
-        @Override
-        public void onPause() {
-            hideSoftKeyboard();
-            if (geminiHintButton != null) {
-                geminiHintButton.setVisibility(View.INVISIBLE);
-            }
-            super.onPause();
         }
 
         public void hideSoftKeyboard() {
