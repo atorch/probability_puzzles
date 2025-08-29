@@ -1,10 +1,14 @@
 package atorch.statspuzzles;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -274,6 +278,9 @@ public class SolvePuzzle extends AppCompatActivity {
             hintButton.setVisibility(View.VISIBLE);
             hintButton.setOnClickListener(unused -> showHint());
 
+            Button geminiHintButton = rootView.findViewById(R.id.button_gemini_hint);
+            geminiHintButton.setOnClickListener(v -> onGeminiHint());
+
             Button submitButton = rootView.findViewById(R.id.submit_answer);
             submitButton.setOnClickListener(this::onSubmit);
 
@@ -323,6 +330,39 @@ public class SolvePuzzle extends AppCompatActivity {
 
             // See https://stackoverflow.com/a/3367392/610668
             ((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        }
+
+        private void onGeminiHint() {
+            String puzzleText = res.getPuzzle(level, puzzleIndex);
+            String prompt = getString(R.string.gemini_prompt_template) + puzzleText;
+
+            // TODO: Consider including the existing hint string in the prompt to Gemini,
+            // asking it to expand on that hint. This might help the bot provide a better,
+            // more context-aware hint.
+            // For example:
+            // String hint = res.getHint(level, puzzleIndex);
+            // String prompt = getString(R.string.gemini_prompt_template) + puzzleText +
+            //         "\n\nHere's the current hint, please expand on it: " + hint;
+
+            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("puzzle", prompt);
+            clipboard.setPrimaryClip(clip);
+
+            Toast.makeText(getActivity(), R.string.puzzle_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+
+            String geminiPackageName = "com.google.android.apps.gemini";
+            PackageManager pm = getActivity().getPackageManager();
+            Intent intent = pm.getLaunchIntentForPackage(geminiPackageName);
+            if (intent != null) {
+                getActivity().startActivity(intent);
+            } else {
+                Toast.makeText(getActivity(), R.string.gemini_not_installed, Toast.LENGTH_SHORT).show();
+                try {
+                    getActivity().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + geminiPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    getActivity().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + geminiPackageName)));
+                }
+            }
         }
 
         private void onSubmit(View view) {
@@ -455,12 +495,6 @@ public class SolvePuzzle extends AppCompatActivity {
             );
             AlertDialog alert = builder.create();
             alert.show();
-        }
-
-        @Override
-        public void onPause() {
-            hideSoftKeyboard();
-            super.onPause();
         }
 
         public void hideSoftKeyboard() {

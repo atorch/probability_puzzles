@@ -49,4 +49,5 @@ jobs:
           api-level: 33
           arch: x86_64
           emulator-options: "-no-window -no-snapshot -prop persist.sys.language=${{ steps.locale_props.outputs.language }} -prop persist.sys.country=${{ steps.locale_props.outputs.country }}"
+          device: "pixel_6"
           script: ./gradlew connectedAndroidTest
