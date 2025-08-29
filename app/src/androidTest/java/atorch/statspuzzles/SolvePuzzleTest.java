@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
@@ -41,9 +42,10 @@ public class SolvePuzzleTest {
         intent.putExtra(SolvePuzzle.LEVEL, 0);
         ActivityScenario.launch(intent);
 
-        // In a ViewPager2, multiple fragments can be in the view hierarchy.
-        // isDisplayed() ensures we're clicking the button on the current, visible fragment.
-        Espresso.onView(allOf(withId(R.id.button_gemini_hint), isDisplayed())).perform(click());
+        // On smaller screens, the button might be off-screen, so we scroll to it first.
+        // isDisplayed() is still needed to ensure we click the button in the currently visible
+        // fragment, as multiple fragments can exist in a ViewPager2.
+        Espresso.onView(allOf(withId(R.id.button_gemini_hint), isDisplayed())).perform(scrollTo(), click());
 
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),

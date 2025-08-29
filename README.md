@@ -118,7 +118,7 @@ sudo apt-get install -y openjdk-17-jdk
     ```bash
     avdmanager create avd -n pixel_33 -k "system-images;android-33;default;x86_64" --device "pixel_6"
     ```
-    This creates an AVD named `pixel_33` using the Pixel 6 device profile.
+    This creates an AVD named `pixel_33` using the `"pixel_6"` device profile, which simulates the screen size and characteristics of a Google Pixel 6 phone. The GitHub Actions CI is configured to use the same device profile to ensure that tests run in a consistent environment.
 
 ### 5. Run the Tests
 
