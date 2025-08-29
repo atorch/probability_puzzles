@@ -45,3 +45,96 @@ To build the app and run all checks, including linting, execute the following co
 ```
 
 This is the same command that is run in the GitHub Actions CI. Running this locally will help you find and fix issues before pushing your changes.
+
+## Running Instrumented Tests (Locally from the Terminal)
+
+Running the instrumented tests (`./gradlew connectedAndroidTest`) requires a connected Android device or an emulator. The following steps describe how to set up and run an Android emulator on Ubuntu entirely from the command line.
+
+### 1. KVM Hardware Acceleration Setup
+
+For better performance, the Android emulator should use KVM hardware acceleration.
+
+First, check if your CPU supports virtualization:
+```bash
+sudo apt-get update
+sudo apt-get install -y cpu-checker
+kvm-ok
+```
+If the output includes `KVM acceleration can be used`, you are good to go. Otherwise, you may need to enable virtualization (e.g., VT-x or AMD-V) in your computer's BIOS/UEFI settings.
+
+Next, install required KVM packages and add your user to the `kvm` group.
+```bash
+sudo apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+sudo adduser $USER kvm
+```
+You will need to **reboot your system** for the group change to take effect.
+
+### 2. Install Java (JDK)
+
+The Android command-line tools require a Java Development Kit.
+```bash
+sudo apt-get install -y openjdk-17-jdk
+```
+
+### 3. Install Android SDK Command-Line Tools
+
+1.  **Download and set up the SDK:**
+    ```bash
+    # Download the latest command-line tools from Google
+    wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+
+    # Create the necessary directory structure and unzip the tools
+    mkdir -p ~/android_sdk/cmdline-tools
+    unzip commandlinetools-linux-*.zip -d ~/android_sdk/cmdline-tools
+    mv ~/android_sdk/cmdline-tools/cmdline-tools ~/android_sdk/cmdline-tools/latest
+    rm commandlinetools-linux-*.zip
+    ```
+
+2.  **Set environment variables:**
+    Add the following to your `~/.bashrc` or `~/.zshrc` file:
+    ```bash
+    export ANDROID_HOME=$HOME/android_sdk
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
+    export PATH=$PATH:$ANDROID_HOME/emulator
+    ```
+    Then, source the file to apply the changes (e.g., `source ~/.bashrc`).
+
+### 4. Download System Image and Create AVD
+
+1.  **Accept SDK licenses:**
+    ```bash
+    sdkmanager --licenses
+    ```
+    Accept all licenses by typing `y` and pressing Enter.
+
+2.  **Install the system image and other tools:**
+    The CI uses API level 33. We will install the corresponding system image.
+    ```bash
+    sdkmanager "platform-tools" "build-tools;33.0.2" "system-images;android-33;default;x86_64" "emulator"
+    ```
+
+3.  **Create the Android Virtual Device (AVD):**
+    ```bash
+    avdmanager create avd -n pixel_33 -k "system-images;android-33;default;x86_64" --device "pixel_6"
+    ```
+    This creates an AVD named `pixel_33` using the Pixel 6 device profile.
+
+### 5. Run the Tests
+
+1.  **Start the emulator in the background:**
+    ```bash
+    emulator -avd pixel_33 -no-window &
+    ```
+    Wait a minute or two for the emulator to fully boot up.
+
+2.  **Run the connected tests:**
+    ```bash
+    ./gradlew connectedAndroidTest
+    ```
+    The Gradle script will automatically detect the running emulator and execute the tests on it.
+
+3.  **Shut down the emulator when you're done:**
+    ```bash
+    adb emu kill
+    ```
