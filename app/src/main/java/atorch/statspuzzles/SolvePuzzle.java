@@ -249,6 +249,7 @@ public class SolvePuzzle extends AppCompatActivity {
         private int level;
         private int puzzleIndex;
         private Res res;
+        private Button geminiHintButton;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -278,7 +279,7 @@ public class SolvePuzzle extends AppCompatActivity {
             hintButton.setVisibility(View.VISIBLE);
             hintButton.setOnClickListener(unused -> showHint());
 
-            Button geminiHintButton = rootView.findViewById(R.id.button_gemini_hint);
+            geminiHintButton = rootView.findViewById(R.id.button_gemini_hint);
             geminiHintButton.setOnClickListener(v -> onGeminiHint());
 
             Button submitButton = rootView.findViewById(R.id.submit_answer);
@@ -334,7 +335,15 @@ public class SolvePuzzle extends AppCompatActivity {
 
         private void onGeminiHint() {
             String puzzleText = res.getPuzzle(level, puzzleIndex);
-            String prompt = "Can you give me a hint for this puzzle, without giving away the answer? Here's the puzzle: " + puzzleText;
+            String prompt = getString(R.string.gemini_prompt_template) + puzzleText;
+
+            // TODO: Consider including the existing hint string in the prompt to Gemini,
+            // asking it to expand on that hint. This might help the bot provide a better,
+            // more context-aware hint.
+            // For example:
+            // String hint = res.getHint(level, puzzleIndex);
+            // String prompt = getString(R.string.gemini_prompt_template) + puzzleText +
+            //         "\n\nHere's the current hint, please expand on it: " + hint;
 
             ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("puzzle", prompt);
@@ -489,9 +498,24 @@ public class SolvePuzzle extends AppCompatActivity {
             alert.show();
         }
 
+        // The user might be swiping between puzzles. The ViewPager2 keeps off-screen fragments
+        // in the view hierarchy. We need to make sure the button is only visible on the current
+        // puzzle, otherwise Espresso tests might find multiple buttons with the same ID and fail
+        // with an AmbiguousViewMatcherException.
+        @Override
+        public void onResume() {
+            super.onResume();
+            if (geminiHintButton != null) {
+                geminiHintButton.setVisibility(View.VISIBLE);
+            }
+        }
+
         @Override
         public void onPause() {
             hideSoftKeyboard();
+            if (geminiHintButton != null) {
+                geminiHintButton.setVisibility(View.INVISIBLE);
+            }
             super.onPause();
         }
 

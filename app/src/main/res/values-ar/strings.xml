@@ -617,5 +617,6 @@
         <item>1/42</item>
         <item>40/100</item>
     </string-array>
+    <string name="gemini_prompt_template">هل يمكنك أن تعطيني تلميحًا لهذا اللغز، دون الكشف عن الإجابة؟ إليك اللغز: </string>
 </resources>
 

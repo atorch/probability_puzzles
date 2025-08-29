@@ -705,4 +705,5 @@
     </string-array>
 
 
+    <string name="gemini_prompt_template">Can you give me a hint for this puzzle, without giving away the answer? Here\'s the puzzle: </string>
 </resources>

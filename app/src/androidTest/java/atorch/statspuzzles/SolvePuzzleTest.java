@@ -40,7 +40,9 @@ public class SolvePuzzleTest {
         intent.putExtra(SolvePuzzle.LEVEL, 0);
         ActivityScenario.launch(intent);
 
-        Espresso.onView(withId(R.id.button_gemini_hint)).perform(click());
+        // In a ViewPager2, multiple fragments can be in the view hierarchy.
+        // isDisplayed() ensures we're clicking the button on the current, visible fragment.
+        Espresso.onView(allOf(withId(R.id.button_gemini_hint), isDisplayed())).perform(click());
 
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
