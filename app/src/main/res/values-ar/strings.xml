@@ -56,7 +56,7 @@
     <string name="button_hint">تحتاج تلميحاً؟</string>
     <string name="button_gemini_hint">التحدث إلى Gemini</string>
     <string name="puzzle_copied_to_clipboard">تم نسخ اللغز إلى الحافظة.</string>
-    <string name="gemini_not_installed">تطبيق Gemini غير مثبت. جارٍ فتح متجر Play.</string>
+    <string name="gemini_not_installed">تطبيق Gemini غير مثبت. جارٍ فتح Google Play.</string>
 
     <string-array name="levelDescriptions">
         <item>المستوى: سهل جداً — أنت تقوم بالإحماء فقط.</item>
