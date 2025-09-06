@@ -47,9 +47,12 @@ public class SolvePuzzleTest {
         // fragment, as multiple fragments can exist in a ViewPager2.
         Espresso.onView(allOf(withId(R.id.button_gemini_hint), isDisplayed())).perform(scrollTo(), click());
 
+        // This tests the logic in SolvePuzzle's showGeminiHint, which tries to open the Gemini app
+        // directly if it's installed, and otherwise falls back to the Play Store.
+        // The test framework doesn't have Gemini installed, so it should always go to the Play Store.
         intended(allOf(
                 hasAction(Intent.ACTION_VIEW),
-                hasData("market://details?id=com.google.android.apps.gemini")
+                hasData("market://details?id=com.google.android.apps.bard")
         ));
     }
 }

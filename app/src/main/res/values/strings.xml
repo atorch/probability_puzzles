@@ -706,4 +706,5 @@
 
 
     <string name="gemini_prompt_template">Can you give me a hint for this puzzle, without giving away the answer? Here\'s the puzzle: </string>
+    <string name="gemini_expand_hint">Here\'s the current hint, please expand on it:</string>
 </resources>

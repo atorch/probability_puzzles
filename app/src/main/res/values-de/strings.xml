@@ -565,5 +565,6 @@
         <item>40/100</item>
     </string-array>
 
-    <string name="gemini_prompt_template">Können Sie mir einen Hinweis zu diesem Rätsel geben, ohne die Antwort zu verraten? Hier ist das Rätsel: </string>
+        <string name="gemini_prompt_template">Können Sie mir einen Hinweis zu diesem Rätsel geben, ohne die Antwort zu verraten? Hier ist das Rätsel: </string>
+    <string name="gemini_expand_hint">Hier ist der aktuelle Hinweis, bitte erweitern Sie ihn:</string>
 </resources>

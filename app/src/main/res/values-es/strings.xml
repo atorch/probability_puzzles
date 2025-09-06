@@ -704,5 +704,6 @@
     </string-array>
 
 
-    <string name="gemini_prompt_template">¿Puedes darme una pista para este rompecabezas, sin revelar la respuesta? Aquí está el rompecabezas: </string>
+        <string name="gemini_prompt_template">¿Puedes darme una pista para este rompecabezas, sin revelar la respuesta? Aquí está el rompecabezas: </string>
+    <string name="gemini_expand_hint">Aquí está la pista actual, por favor amplíala:</string>
 </resources>

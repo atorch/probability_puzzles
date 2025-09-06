@@ -156,3 +156,109 @@ Wait for the emulator to boot up, and then run the tests:
     ```bash
     adb emu kill
     ```
+
+## Running the App on a Physical Device
+
+You can also install and run the app on a physical Android device using the command line.
+
+### 1. Enable USB Debugging on Your Device
+
+1.  On your Android device, open **Settings**.
+2.  Go to **About phone**.
+3.  Tap **Build number** seven times to enable **Developer options**.
+4.  Go back to the main **Settings** menu, then go to **System** > **Developer options**.
+5.  Enable **USB debugging**.
+
+### 2. Connect Your Device via USB
+
+Connect your Android device to your computer using a USB cable. A prompt might appear on your device asking you to authorize the computer for debugging. Accept it.
+
+### 3. Build and Install the App
+
+1.  **Navigate to the project directory:**
+    ```bash
+    cd /home/adrian/probability_puzzles
+    ```
+
+2.  **Build the debug APK:**
+    ```bash
+    ./gradlew assembleDebug
+    ```
+    Note: Gradle uses an incremental build process. If you haven't made any code changes, Gradle may not rebuild the APK. To force a rebuild, you can run `./gradlew clean assembleDebug`.
+
+3.  **Install the APK on your device:**
+    ```bash
+    adb install -r app/build/outputs/apk/debug/app-debug.apk
+    ```
+
+The `-r` flag reinstalls the app, keeping its data. After the command completes, the app will be installed on your device, and you can run it by tapping its icon.
+
+## Running the App on a Physical Device (Wireless Debugging)
+
+You can also connect to your device wirelessly. This is especially useful if you have issues with USB drivers or cables.
+
+### 1. Enable Wireless Debugging
+
+1.  On your Android device, open **Settings** > **System** > **Developer options**.
+2.  Enable **Wireless debugging**.
+3.  Make sure your device and your computer are on the same Wi-Fi network.
+
+### 2. Pair Your Device
+
+You only need to pair your device once.
+
+**Option A: Pairing with QR Code (Recommended)**
+
+1.  In Android Studio, go to the **Device Manager** and select **Pair devices using Wi-Fi**.
+2.  A QR code will be displayed.
+3.  On your device, under **Wireless debugging**, select **Pair device with QR code** and scan the QR code on your computer.
+
+**Option B: Pairing with Command Line**
+
+1.  On your device, under **Wireless debugging**, select **Pair device with pairing code**.
+2.  You will see a pairing code and an IP address with a port (e.g., `192.168.1.100:41234`).
+3.  On your computer, run the following command, replacing the IP, port, and pairing code with the ones from your device:
+    ```bash
+    adb pair 192.168.1.100:41234 123456
+    ```
+
+### 3. Connect to Your Device
+
+After pairing, you need to connect to your device.
+
+1.  On your device, under **Wireless debugging**, you will see an IP address and port for the connection (e.g., `192.168.1.100:38765`). This port is different from the pairing port.
+2.  On your computer, run the following command, replacing the IP and port with the ones from your device:
+    ```bash
+    adb connect 192.168.1.100:38765
+    ```
+3.  You can verify the connection by running `adb devices`. You should see your device listed.
+
+### 4. Troubleshooting Wireless Debugging
+
+Wireless debugging can sometimes be tricky. Here are some common issues and how to solve them:
+
+*   **`adb devices` shows `offline`:**
+    *   On your device, go to **Settings** > **System** > **Developer options** and tap **Revoke USB debugging authorizations**.
+    *   Toggle **Wireless debugging** off and on again.
+    *   Reconnect to your device.
+
+*   **`adb pair` fails with `protocol fault`:**
+    *   This can be a network issue. Make sure you are not on a VPN.
+    *   Check if your firewall is blocking the connection.
+    *   Some routers have an "AP Isolation" feature that prevents devices from communicating. Make sure it's disabled.
+    *   Restart the ADB server with `adb kill-server`.
+
+*   **Build fails with `IOException: Unable to delete directory`:**
+    *   This is likely a file ownership issue caused by running Android Studio with `sudo`. **Do not run Android Studio with `sudo`!**
+    *   To fix this, you need to change the ownership of the project files back to your user. Run the following command, replacing `your_user` with your username:
+        ```bash
+        sudo chown -R your_user:your_user /path/to/your/project
+        ```
+    *   You might also need to stop the Gradle daemon with `./gradlew --stop`.
+
+*   **Installation fails with `INSTALL_FAILED_UPDATE_INCOMPATIBLE`:**
+    *   This means the app is already installed with a different signature (e.g., from the Play Store).
+    *   Uninstall the app from your device and try again. You can do this from the command line:
+        ```bash
+        adb uninstall atorch.statspuzzles
+        ```

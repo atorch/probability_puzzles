@@ -30,6 +30,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -336,29 +337,26 @@ public class SolvePuzzle extends AppCompatActivity {
         private void onGeminiHint() {
             final FragmentActivity activity = requireActivity();
             String puzzleText = res.getPuzzle(level, puzzleIndex);
-            String prompt = getString(R.string.gemini_prompt_template) + puzzleText;
+            String hint = res.getHint(level, puzzleIndex);
+            String prompt = getString(R.string.gemini_prompt_template) + " " + puzzleText +
+                    "\n\n" + getString(R.string.gemini_expand_hint) + " " + hint;
 
-            // TODO: Consider including the existing hint string in the prompt to Gemini,
-            // asking it to expand on that hint. This might help the bot provide a better,
-            // more context-aware hint.
-            // For example:
-            // String hint = res.getHint(level, puzzleIndex);
-            // String prompt = getString(R.string.gemini_prompt_template) + puzzleText + 
-            //         "\n\nHere's the current hint, please expand on it: " + hint;
-
+            // Copy to clipboard
             ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("puzzle", prompt);
             clipboard.setPrimaryClip(clip);
-
             Toast.makeText(activity, R.string.puzzle_copied_to_clipboard, Toast.LENGTH_SHORT).show();
 
-            String geminiPackageName = "com.google.android.apps.gemini";
+            // The package name for the Google Gemini app is com.google.android.apps.bard.
+            String geminiPackageName = "com.google.android.apps.bard";
             PackageManager pm = activity.getPackageManager();
             Intent intent = pm.getLaunchIntentForPackage(geminiPackageName);
+
             if (intent != null) {
+                // The Gemini app is installed. Launch it.
                 activity.startActivity(intent);
             } else {
-                Toast.makeText(activity, R.string.gemini_not_installed, Toast.LENGTH_SHORT).show();
+                // If the Gemini app is not installed, open the Play Store.
                 try {
                     activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + geminiPackageName)));
                 } catch (android.content.ActivityNotFoundException anfe) {
