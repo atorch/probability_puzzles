@@ -54,6 +54,9 @@
     <string name="button_level_1">Getting Serious</string>
     <string name="button_level_2">Outrageous</string>
     <string name="button_hint">Need a hint?</string>
+    <string name="button_gemini_hint">Talk to Gemini</string>
+    <string name="puzzle_copied_to_clipboard">Puzzle copied to clipboard.</string>
+    <string name="gemini_not_installed">Gemini app not installed. Opening Play Store.</string>
 
     <string-array name="levelDescriptions">
         <item>Level: easy peasy &#8212; you\'re just warming up.</item>
@@ -702,4 +705,6 @@
     </string-array>
 
 
+    <string name="gemini_prompt_template">Can you give me a hint for this puzzle, without giving away the answer? Here\'s the puzzle: </string>
+    <string name="gemini_expand_hint">Here\'s the current hint, please expand on it:</string>
 </resources>

@@ -1,10 +1,14 @@
 package atorch.statspuzzles;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
@@ -26,6 +30,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -249,6 +254,7 @@ public class SolvePuzzle extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_solve_puzzle, container, false);
+            final FragmentActivity activity = requireActivity();
             res = new Res(getResources());
 
             Bundle args = getArguments();
@@ -274,13 +280,16 @@ public class SolvePuzzle extends AppCompatActivity {
             hintButton.setVisibility(View.VISIBLE);
             hintButton.setOnClickListener(unused -> showHint());
 
+            Button geminiHintButton = rootView.findViewById(R.id.button_gemini_hint);
+            geminiHintButton.setOnClickListener(v -> onGeminiHint());
+
             Button submitButton = rootView.findViewById(R.id.submit_answer);
             submitButton.setOnClickListener(this::onSubmit);
 
             String answer = res.getAnswer(level, puzzleIndex);
 
             EditText user_answer = rootView.findViewById(R.id.user_answer);
-            SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
+            SharedPreferences preferences = activity.getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
             if (already_solved_this_puzzle) {
@@ -297,7 +306,7 @@ public class SolvePuzzle extends AppCompatActivity {
             }
 
             // Add image below puzzle statement
-            String packageName = getActivity().getPackageName();
+            String packageName = activity.getPackageName();
             String image = res.getImage(level, puzzleIndex);
             if (!image.isEmpty()) {
                 ImageView imageView = rootView.findViewById(R.id.puzzleImage);
@@ -312,7 +321,7 @@ public class SolvePuzzle extends AppCompatActivity {
             SpannableString hintSpannable = new SpannableString(hint); // msg should have url to enable clicking
             Linkify.addLinks(hintSpannable, Linkify.ALL);
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
             builder.setMessage(hintSpannable);
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.button_back_to_puzzle,
@@ -323,6 +332,37 @@ public class SolvePuzzle extends AppCompatActivity {
 
             // See https://stackoverflow.com/a/3367392/610668
             ((TextView) alert.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
+        }
+
+        private void onGeminiHint() {
+            final FragmentActivity activity = requireActivity();
+            String puzzleText = res.getPuzzle(level, puzzleIndex);
+            String hint = res.getHint(level, puzzleIndex);
+            String prompt = getString(R.string.gemini_prompt_template) + " " + puzzleText +
+                    "\n\n" + getString(R.string.gemini_expand_hint) + " " + hint;
+
+            // Copy to clipboard
+            ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("puzzle", prompt);
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(activity, R.string.puzzle_copied_to_clipboard, Toast.LENGTH_SHORT).show();
+
+            // The package name for the Google Gemini app is com.google.android.apps.bard.
+            String geminiPackageName = "com.google.android.apps.bard";
+            PackageManager pm = activity.getPackageManager();
+            Intent intent = pm.getLaunchIntentForPackage(geminiPackageName);
+
+            if (intent != null) {
+                // The Gemini app is installed. Launch it.
+                activity.startActivity(intent);
+            } else {
+                // If the Gemini app is not installed, open the Play Store.
+                try {
+                    activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + geminiPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + geminiPackageName)));
+                }
+            }
         }
 
         private void onSubmit(View view) {
@@ -359,7 +399,7 @@ public class SolvePuzzle extends AppCompatActivity {
         }
 
         public void openTroubleParsingDialog(View view) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
             builder.setMessage(getString(R.string.trouble_parsing_answer));
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.okay_button,
@@ -370,9 +410,10 @@ public class SolvePuzzle extends AppCompatActivity {
         }
 
         public void openCongratulationsAlert(View view) {
+            final FragmentActivity activity = requireActivity();
             ImageView checkmark = getView().findViewById(R.id.check_mark);
             checkmark.setVisibility(View.VISIBLE);
-            SharedPreferences preferences = getActivity().getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
+            SharedPreferences preferences = activity.getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             String key = level + "_" + puzzleIndex;
             boolean already_solved_this_puzzle = preferences.getBoolean(key, false);
@@ -395,7 +436,7 @@ public class SolvePuzzle extends AppCompatActivity {
             editor.putBoolean(key, true);
             editor.commit();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             ViewPager2 viewPager = view.getRootView().findViewById(R.id.pager);
 
             int nPuzzles = res.getPuzzleCount(level);
@@ -415,7 +456,7 @@ public class SolvePuzzle extends AppCompatActivity {
                 );
                 builder.setNegativeButton(R.string.main_menu_button,
                         (dialog, id) -> {
-                            Intent intent = new Intent(getActivity(), PuzzleSelection.class);
+                            Intent intent = new Intent(activity, PuzzleSelection.class);
                             startActivity(intent);
                         }
                 );
@@ -428,7 +469,7 @@ public class SolvePuzzle extends AppCompatActivity {
                 builder.setCancelable(true);
                 builder.setPositiveButton(R.string.main_menu_button,
                         (dialog, id) -> {
-                            Intent intent = new Intent(getActivity(), PuzzleSelection.class);
+                            Intent intent = new Intent(activity, PuzzleSelection.class);
                             startActivity(intent);
                         }
                 );
@@ -442,12 +483,12 @@ public class SolvePuzzle extends AppCompatActivity {
         }
 
         public void openIncorrectAnswerToast() {
-            Context context = getActivity();
+            Context context = requireActivity();
             Toast.makeText(context, res.getRandomIncorrect(), Toast.LENGTH_LONG).show();
         }
 
         public void openAccuracyAlert(View view) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
             builder.setMessage(getString(R.string.accuracy));
             builder.setCancelable(true);
             builder.setPositiveButton(R.string.ok_button,
@@ -457,16 +498,10 @@ public class SolvePuzzle extends AppCompatActivity {
             alert.show();
         }
 
-        @Override
-        public void onPause() {
-            hideSoftKeyboard();
-            super.onPause();
-        }
-
         public void hideSoftKeyboard() {
             View editBox = getView().findViewById(R.id.user_answer);
             editBox.clearFocus();
-            InputMethodManager IMM = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager IMM = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             IMM.hideSoftInputFromWindow(editBox.getWindowToken(), 0);
         }
 
