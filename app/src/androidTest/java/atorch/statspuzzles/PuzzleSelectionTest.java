@@ -24,7 +24,7 @@ public class PuzzleSelectionTest {
     @Test
     public void mainActivityLoads() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        Espresso.onView(ViewMatchers.withText(context.getString(R.string.app_name)))
+        Espresso.onView(ViewMatchers.withText(context.getString(R.string.button_intro)))
                 .check(ViewAssertions.matches(ViewMatchers.isDisplayed()));
     }
 

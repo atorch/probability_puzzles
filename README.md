@@ -262,3 +262,48 @@ Wireless debugging can sometimes be tricky. Here are some common issues and how 
         ```bash
         adb uninstall atorch.statspuzzles
         ```
+
+## Generating and Testing a Release App Bundle
+
+Here's how to generate a signed Android App Bundle (AAB) for release and test it on a physical device.
+
+### 1. Generate a Signed App Bundle
+
+To create a release-ready App Bundle, you'll need a signing key. If you don't have one, you can generate one using `keytool`. Make sure you have configured your `app/build.gradle` to use your keystore for release builds.
+
+Once your signing configuration is set up, run the following command:
+
+```bash
+./gradlew bundleRelease
+```
+
+This will generate a signed AAB file at `app/build/outputs/bundle/release/app-release.aab`.
+
+### 2. Test the App Bundle on Your Device
+
+You can't install an AAB file directly. You need to use `bundletool` to generate a set of APKs and install them on your device.
+
+1.  **Download `bundletool`:**
+    Download the `bundletool` jar from the [Android Developer website](https://developer.android.com/studio/command-line/bundletool).
+
+2.  **Connect your device:**
+    Make sure your device is connected via Wi-Fi debugging as described in the "Running the App on a Physical Device (Wireless Debugging)" section.
+
+3.  **Generate APKs from the App Bundle:**
+    Use `bundletool` to build the APKs. You will need to provide your keystore information.
+
+    ```bash
+    java -jar /path/to/bundletool.jar build-apks --bundle=app/build/outputs/bundle/release/app-release.aab --output=app.apks \
+      --ks=/path/to/your/keystore.jks \
+      --ks-pass=pass:YOUR_KEYSTORE_PASSWORD \
+      --ks-key-alias=YOUR_KEY_ALIAS \
+      --key-pass=pass:YOUR_KEY_PASSWORD
+    ```
+    **Important:** Replace the placeholder values (`/path/to/bundletool.jar`, `/path/to/your/keystore.jks`, `YOUR_KEYSTORE_PASSWORD`, `YOUR_KEY_ALIAS`, `YOUR_KEY_PASSWORD`) with your actual information.
+
+4.  **Install the APKs on your device:**
+    ```bash
+    java -jar /path/to/bundletool.jar install-apks --apks=app.apks
+    ```
+
+    `bundletool` will install the correct APKs for your device's architecture. You can now test the release version of your app.

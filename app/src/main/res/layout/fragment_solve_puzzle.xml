@@ -64,6 +64,7 @@
                 android:gravity="start"
                 android:textAlignment="viewStart" />
             <Button android:id="@+id/submit_answer"
+                style="@style/GreyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/button_submit_answer" />
@@ -90,9 +91,7 @@
         </LinearLayout>
 
         <Button android:gravity="center_horizontal"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_marginTop="@dimen/activity_vertical_margin_double"
-            android:visibility="gone"
+            style="@style/BlackTextButton"
             android:id="@+id/button_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,7 +100,7 @@
             android:text="@string/button_hint" />
 
         <Button android:gravity="center_horizontal"
-            style="?android:attr/borderlessButtonStyle"
+            style="@style/BlackTextButton"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:id="@+id/button_gemini_hint"
             android:layout_width="match_parent"
