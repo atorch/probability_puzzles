@@ -1,12 +1,31 @@
 apply plugin: 'com.android.application'
 
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
 android {
     compileSdkVersion 35
+
+    signingConfigs {
+        release {
+            if (localPropertiesFile.exists()) {
+                keyAlias localProperties['signing.key.alias']
+                keyPassword localProperties['signing.key.password']
+                storeFile file(localProperties['signing.store.file'])
+                storePassword localProperties['signing.store.password']
+            }
+        }
+    }
 
     defaultConfig {
         applicationId "atorch.statspuzzles"
         minSdkVersion 19
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode 32
         versionName "4.0"
 
@@ -17,6 +36,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     namespace 'atorch.statspuzzles'

@@ -28,8 +28,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ShareActionProvider;
-import androidx.core.view.MenuItemCompat;
+
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -48,7 +47,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 public class SolvePuzzle extends AppCompatActivity {
     // Following example at https://developer.android.com/training/sharing/shareaction.html
-    private ShareActionProvider mShareActionProvider;
+
 
     public static final String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
     public static final String LEVEL = "atorch.statspuzzles.LEVEL";
@@ -65,6 +64,10 @@ public class SolvePuzzle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solve_puzzle);
 
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -79,13 +82,7 @@ public class SolvePuzzle extends AppCompatActivity {
         puzzlePager = findViewById(R.id.pager);
         puzzlePager.setAdapter(new AppSectionsPagerAdapter(this, level, res));
 
-        puzzlePager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int puzzleIndex) {
-                super.onPageSelected(puzzleIndex);
-                prepareSharePuzzle(res.getPuzzle(level, puzzleIndex));
-            }
-        });
+
 
         puzzlePager.setCurrentItem(indexFirstUnsolvedPuzzle());
     }
@@ -101,33 +98,27 @@ public class SolvePuzzle extends AppCompatActivity {
         return n - 1;  // Everything solved, return last index
     }
 
-    private void prepareSharePuzzle(String puzzleStatement) {
-        String text = puzzleStatement + "\n\n" + getString(R.string.app_link);
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, text);
-        shareIntent.setType("text/plain");
-        if (mShareActionProvider != null) {
-            // Should be called whenever new fragment is displayed
-            mShareActionProvider.setShareIntent(shareIntent);
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.solve_puzzle, menu);
-        MenuItem item = menu.findItem(R.id.menu_item_share);
-
-        // Following http://stackoverflow.com/questions/19118051/unable-to-cast-action-provider-to-share-action-provider
-        mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-        if (mShareActionProvider == null) {
-            // Following http://stackoverflow.com/questions/19358510/why-menuitemcompat-getactionprovider-returns-null
-            mShareActionProvider = new ShareActionProvider(this);
-            MenuItemCompat.setActionProvider(item, mShareActionProvider);
-        }
-        prepareSharePuzzle(res.getPuzzle(level, puzzlePager.getCurrentItem()));
         return true;  // Return true to display menu
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_item_share) {
+            String puzzleStatement = res.getPuzzle(level, puzzlePager.getCurrentItem());
+            String text = puzzleStatement + "\n\n" + getString(R.string.app_link);
+            Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, text);
+            shareIntent.setType("text/plain");
+            startActivity(Intent.createChooser(shareIntent, null));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private static class Res {
