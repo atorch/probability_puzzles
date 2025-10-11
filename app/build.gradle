@@ -36,7 +36,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            // Only apply the signing config if the local.properties file exists (it will not on github)
+            if (project.rootProject.file('local.properties').exists()) {
+                signingConfig signingConfigs.release
+            }
         }
     }
     namespace 'atorch.statspuzzles'
