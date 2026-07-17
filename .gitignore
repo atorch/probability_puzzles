@@ -6,3 +6,4 @@ app/backup_build/*
 .gradle/*
 build/*
 .idea/*
+.DS_Store
