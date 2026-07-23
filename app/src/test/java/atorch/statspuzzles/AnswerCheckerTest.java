@@ -95,6 +95,20 @@ public class AnswerCheckerTest {
     }
 
     @Test
+    public void testBusStopPuzzleAnswer() {
+        // The stored answer for the bus stop puzzle (level 2) uses mXparser's iterated sum operator.
+        // The exact value is Pr[X >= 17 | Y = 19] where the posterior of X is a Gamma(20, 1)
+        // density truncated to [0, 20]; numerically it is approximately 0.502252198694341.
+        String correctAnswer =
+                "(e^(-17)*sum(k,0,19,17^k/k!) - e^(-20)*sum(k,0,19,20^k/k!))/(1 - e^(-20)*sum(k,0,19,20^k/k!))";
+        assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer(correctAnswer, "0.5022522"));
+        assertEquals(AnswerChecker.Result.CORRECT, AnswerChecker.checkAnswer(correctAnswer, "0.502252198694341"));
+        assertEquals(AnswerChecker.Result.INACCURATE, AnswerChecker.checkAnswer(correctAnswer, "0.5022"));
+        // The prior probability, before observing the line, is not the correct answer
+        assertEquals(AnswerChecker.Result.INCORRECT, AnswerChecker.checkAnswer(correctAnswer, "3/20"));
+    }
+
+    @Test
     public void testInaccurateAnswer() {
         assertEquals(AnswerChecker.Result.INACCURATE, AnswerChecker.checkAnswer("1/3", "0.333"));
     }

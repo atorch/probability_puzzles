@@ -614,6 +614,7 @@
         <item></item>
         <item>gambler_broke_11_bets_small</item>
         <item>vote_counting_small</item>
+        <item></item>
     </string-array>
     <string-array name="hints_2">
         <item>Linearity of expectation will help: name the foxes 1, 2, &#8230;, 5, and let X_i be an indicator for whether fox i is followed by a hound. The answer is E[X_1 + &#8230; + X_5] = E[X_1] + &#8230; + E[X_5]. Since the probability of being followed by a hound is the same for each of the foxes, the answer simplifies to 5*E[X_1], i.e. all you have to do is calculate the probability that a specific fox is followed by a hound and multiply it by five.</item>
@@ -634,6 +635,7 @@
         <item>This puzzle is straightforward if you know the power series for the exponential function, i.e. that e^x equals the sum from N=0 to infinity of (x^N)/(N!). Try playing around with (e^x + e^(-x)) and (e^x - e^(-x)).</item>
         <item>For any even number N, let F(N) denote the number of paths of length N (i.e. wealth trajectories over the course of N bets) that start at a wealth of one, end at a wealth of one, and never hit zero. For example, F(0)=1, F(2)=1 and F(4)=2; the two paths for F(4) are up-up-down-down and up-down-up-down. The solution is related to F(10). Can you express F recursively? Look up the Catalan numbers if you are stuck.</item>
         <item>The graph illustrates several sample paths for C\'s net vote count. We\'re looking for the probability that the path never hits zero after the first vote. Several facts will be helpful: first, the probability that the first vote out of the ballot box is for C is 70/100. Second, suppose the path hits zero (e.g. at the orange circle in the illustration): at that point, when the path first hits zero, we\'ve counted an equal number of votes for T and C. We can therefore \"reflect\" the left side of the path &#8212; the portion from the origin to the orange circle &#8212; around the horizontal axis, giving us an alternate path which necessarily has the same probability as the original path. Therefore, conditional on the path hitting zero (e.g. at the orange circle), the first vote removed from the ballot box is equally likely to have been for C as for T. Combine those facts to get the answer.</item>
+        <item>This is Bayes\' rule with a continuous unknown. The posterior density of X given that you observe 19 people is proportional to the prior density times the likelihood, i.e. proportional to x^19 * e^(-x) for x in [0, 20] &#8212; a Gamma density truncated to the interval [0, 20]. The answer is the integral of x^19 * e^(-x) from 17 to 20, divided by the same integral from 0 to 20. Repeated integration by parts gives the antiderivative you need: the integral of x^n * e^(-x) from 0 to t equals n!*(1 - e^(-t)*(1 + t + t^2/2! + &#8230; + t^n/n!)). You\'ll find that the answer is much larger than the prior probability of 3/20: a long line is strong evidence that the bus is due soon. See https://chalkdustmagazine.com/blog/empty-bus-stop/ for a wonderful discussion of this phenomenon (and of why an empty bus stop is bad news), and see the Regular Bus City problems in https://math.mit.edu/~sheffield/2022600spring/spring2022-600ProblemSet5.pdf for a closely related setup.</item>
     </string-array>
     <string-array name="puzzles_2">
         <item>Five foxes and seven hounds run into a foxhole. While they\'re inside they get all jumbled up, so that all orderings are equally likely.
@@ -682,6 +684,9 @@
         \n\nThe voters\' ballots are placed in a large urn. Before it is opened, the urn is shaken in such a way as to randomly shuffle the ballots, with all orderings equally likely. The urn is then opened and the ballots taken out one by one and tallied.
         \n\nGiven that 70 people voted for C (and 30 for T), we know she\'ll end up with a net advantage of 40 votes at the end of the count. There\'s randomness in how we get there, however.
         \n\nWhat\'s the probability that C is strictly ahead of T at every point in the counting process?</item>
+        <item>You want to catch a bus that arrives every 20 minutes, like clockwork &#8212; but you don\'t know the schedule. Model your arrival at the stop as uniformly random: X ~ Uniform([0, 20]), where X=x means the previous bus came x minutes ago, so that the next one arrives in 20-x minutes.
+            \n\nOther riders show up at the stop according to a Poisson process, at a rate of one person per minute, and the line drops to zero every time a bus arrives (assume the bus has infinite capacity, and that everyone waiting hops on).
+            \n\nBefore you can see the bus stop, your probability that the bus arrives within the next three minutes is 3/20. When you reach the stop, however, you count 19 people waiting in line. Given the length of the line, what\'s the probability that the bus arrives within the next three minutes?</item>
     </string-array>
     <string-array name="answers_2">
         <item>5*7/12</item>
@@ -702,6 +707,7 @@
         <item>0.5*(1 + e^(-2))</item>
         <item>1/42</item>
         <item>40/100</item>
+        <item>(e^(-17)*sum(k,0,19,17^k/k!) - e^(-20)*sum(k,0,19,20^k/k!))/(1 - e^(-20)*sum(k,0,19,20^k/k!))</item>
     </string-array>
 
 
