@@ -22,12 +22,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 
 import androidx.fragment.app.Fragment;
@@ -81,9 +85,6 @@ public class SolvePuzzle extends AppCompatActivity {
         res = new Res(getResources());
         puzzlePager = findViewById(R.id.pager);
         puzzlePager.setAdapter(new AppSectionsPagerAdapter(this, level, res));
-
-
-
         puzzlePager.setCurrentItem(indexFirstUnsolvedPuzzle());
     }
 
@@ -248,6 +249,44 @@ public class SolvePuzzle extends AppCompatActivity {
             final FragmentActivity activity = requireActivity();
             res = new Res(getResources());
 
+            // The app draws edge-to-edge, and on newer Android versions windowSoftInputMode=
+            // "adjustResize" (set on this activity in the manifest) no longer actually resizes
+            // the window for the keyboard -- apps are expected to consume the IME WindowInsets
+            // themselves. Without that, the keyboard can cover the answer field on long puzzles
+            // (or small screens), leaving the user unable to see what they're typing.
+            //
+            // We pad the bottom of the scrollable content by the keyboard's height (which also
+            // increases how far the ScrollView can scroll), and explicitly scroll the focused
+            // field into view once that padding takes effect. We can't rely on Android's own
+            // View#requestRectangleOnScreen() for this: ScrollView's legacy implementation of
+            // "is this rectangle already visible" ignores padding entirely, so it always
+            // considers a view within the *unpadded* bounds to already be visible, even when the
+            // padding means it's actually sitting behind the keyboard. We compute and apply the
+            // scroll offset ourselves instead.
+            final ScrollView scrollView = (ScrollView) rootView;
+            ViewCompat.setOnApplyWindowInsetsListener(rootView, (view, windowInsets) -> {
+                Insets imeInsets = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
+                view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), imeInsets.bottom);
+                return windowInsets;
+            });
+
+            final int[] previousHeight = {0};
+            final int[] previousPaddingBottom = {0};
+            rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+                int height = rootView.getHeight();
+                int paddingBottom = rootView.getPaddingBottom();
+                boolean shrankOrGrewPadding = (previousHeight[0] > 0 && height < previousHeight[0])
+                        || paddingBottom > previousPaddingBottom[0];
+                if (shrankOrGrewPadding) {
+                    View focusedView = rootView.findFocus();
+                    if (focusedView != null) {
+                        scrollToKeepViewVisible(scrollView, focusedView);
+                    }
+                }
+                previousHeight[0] = height;
+                previousPaddingBottom[0] = paddingBottom;
+            });
+
             Bundle args = getArguments();
             level = args.getInt(LEVEL);
             puzzleIndex = args.getInt(PUZZLE_INDEX);
@@ -305,6 +344,31 @@ public class SolvePuzzle extends AppCompatActivity {
                 imageView.setImageResource(id);
             }
             return rootView;
+        }
+
+        // Scrolls just enough to bring view fully within scrollView's padded content area (i.e.
+        // excluding the area covered by the soft keyboard), without any unnecessary movement if
+        // it's already visible there.
+        private static void scrollToKeepViewVisible(ScrollView scrollView, View view) {
+            int top = 0;
+            for (View v = view; v != null && v != scrollView; v = (View) v.getParent()) {
+                top += v.getTop();
+            }
+            int bottom = top + view.getHeight();
+
+            int currentScrollY = scrollView.getScrollY();
+            int visibleTop = currentScrollY + scrollView.getPaddingTop();
+            int visibleBottom = currentScrollY + scrollView.getHeight() - scrollView.getPaddingBottom();
+
+            int targetScrollY = currentScrollY;
+            if (bottom > visibleBottom) {
+                targetScrollY = bottom - scrollView.getHeight() + scrollView.getPaddingBottom();
+            } else if (top < visibleTop) {
+                targetScrollY = top - scrollView.getPaddingTop();
+            }
+            if (targetScrollY != currentScrollY) {
+                scrollView.smoothScrollTo(0, targetScrollY);
+            }
         }
 
         private void showHint() {

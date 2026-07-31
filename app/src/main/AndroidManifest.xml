@@ -25,7 +25,8 @@
         <activity
             android:name=".SolvePuzzle"
             android:label="@string/title_activity_solve_puzzle"
-            android:parentActivityName="atorch.statspuzzles.PuzzleSelection"/>
+            android:parentActivityName="atorch.statspuzzles.PuzzleSelection"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>
