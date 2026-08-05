@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -242,6 +243,7 @@ public class SolvePuzzle extends AppCompatActivity {
         private int level;
         private int puzzleIndex;
         private Res res;
+        private ViewTreeObserver.OnGlobalLayoutListener imeInsetsLayoutListener;
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -272,7 +274,7 @@ public class SolvePuzzle extends AppCompatActivity {
 
             final int[] previousHeight = {0};
             final int[] previousPaddingBottom = {0};
-            rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+            imeInsetsLayoutListener = () -> {
                 int height = rootView.getHeight();
                 int paddingBottom = rootView.getPaddingBottom();
                 boolean shrankOrGrewPadding = (previousHeight[0] > 0 && height < previousHeight[0])
@@ -285,7 +287,8 @@ public class SolvePuzzle extends AppCompatActivity {
                 }
                 previousHeight[0] = height;
                 previousPaddingBottom[0] = paddingBottom;
-            });
+            };
+            rootView.getViewTreeObserver().addOnGlobalLayoutListener(imeInsetsLayoutListener);
 
             Bundle args = getArguments();
             level = args.getInt(LEVEL);
@@ -344,6 +347,16 @@ public class SolvePuzzle extends AppCompatActivity {
                 imageView.setImageResource(id);
             }
             return rootView;
+        }
+
+        @Override
+        public void onDestroyView() {
+            View rootView = getView();
+            if (rootView != null && imeInsetsLayoutListener != null) {
+                rootView.getViewTreeObserver().removeOnGlobalLayoutListener(imeInsetsLayoutListener);
+            }
+            imeInsetsLayoutListener = null;
+            super.onDestroyView();
         }
 
         // Scrolls just enough to bring view fully within scrollView's padded content area (i.e.

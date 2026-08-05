@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.EditText;
 import android.widget.ScrollView;
 
@@ -33,6 +34,7 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.CoreMatchers.allOf;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -176,13 +178,18 @@ public class SolvePuzzleTest {
         ViewPager2 pager = activity.findViewById(R.id.pager);
         RecyclerView recyclerView = (RecyclerView) pager.getChildAt(0);
         RecyclerView.ViewHolder holder = recyclerView.findViewHolderForAdapterPosition(pager.getCurrentItem());
+        assertNotNull("No ViewHolder bound yet for adapter position " + pager.getCurrentItem()
+                + "; the page may not have finished laying out", holder);
         return holder.itemView.findViewById(R.id.user_answer);
     }
 
     private static ScrollView findAncestorScrollView(View view) {
-        for (View v = view; v != null; v = (View) v.getParent()) {
-            if (v instanceof ScrollView) {
-                return (ScrollView) v;
+        if (view instanceof ScrollView) {
+            return (ScrollView) view;
+        }
+        for (ViewParent parent = view.getParent(); parent instanceof View; parent = ((View) parent).getParent()) {
+            if (parent instanceof ScrollView) {
+                return (ScrollView) parent;
             }
         }
         throw new IllegalStateException("No ScrollView ancestor found for " + view);
