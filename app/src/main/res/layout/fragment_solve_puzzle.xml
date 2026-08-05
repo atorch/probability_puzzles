@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     tools:context="atorch.statspuzzles.PuzzleSelection" >
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="start"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:textSize="16sp" />
 
         <ImageView android:contentDescription="@string/check_mark_description"
             android:layout_marginTop="@dimen/activity_vertical_margin"
