@@ -28,13 +28,23 @@ jobs:
       matrix:
         locale: ['en-US', 'de-DE', 'es-ES', 'ar-EG']
         api-level: [33]
+        profile: ['pixel_6']
         include:
           # Also exercise a newer Android version: apps targeting API 35+ get edge-to-edge
           # enforced starting on API 35 devices, which changes soft-keyboard/inset behavior (see
           # the windowSoftInputMode handling in SolvePuzzle.java). One locale is enough here since
           # this is OS-level behavior, not a translation concern.
+          #
+          # Uses a smaller/lower-density profile than the API 33 legs: CI's runners have no GPU,
+          # so the emulator falls back to software rendering, and pixel_6's 1080x2400 framebuffer
+          # is too slow to composite there -- the app's window never gains focus within Espresso's
+          # 10s timeout, failing every test with RootViewWithoutFocusException. small_phone still
+          # exercises the edge-to-edge/IME behavior we care about (an OS-version feature, not one
+          # that depends on exact screen geometry); pixel_6/pixel_9 were verified by hand on real
+          # emulators separately (see PR description).
           - locale: 'en-US'
             api-level: 35
+            profile: 'small_phone'
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -63,5 +73,5 @@ jobs:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
           emulator-options: "-no-window -no-snapshot -prop persist.sys.language=${{ steps.locale_props.outputs.language }} -prop persist.sys.country=${{ steps.locale_props.outputs.country }}"
-          profile: "pixel_6"
+          profile: ${{ matrix.profile }}
           script: ./gradlew connectedAndroidTest
