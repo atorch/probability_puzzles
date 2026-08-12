@@ -63,4 +63,10 @@ public class PuzzleSelection extends AppCompatActivity {
             ((TextView) findViewById(viewId)).setText(text);
         }
     }
+
+    public void resetProgress(View view) {
+        SharedPreferences prefs = getSharedPreferences("atorch.statspuzzles.data", Context.MODE_PRIVATE);
+        prefs.edit().clear().apply();
+        updateCounter();
+    }
 }
