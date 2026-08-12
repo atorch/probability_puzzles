@@ -161,6 +161,15 @@
             android:textAlignment="viewStart"
             android:text="@string/new_in_this_update"/>
 
+        <Button
+            style="@style/GreyButton"
+            android:id="@+id/button_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:onClick="resetProgress"
+            android:text="Reset Progress" />
+
     </LinearLayout>
     </ScrollView>
 
