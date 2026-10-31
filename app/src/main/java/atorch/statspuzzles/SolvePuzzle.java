@@ -36,6 +36,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import org.mariuszgromada.math.mxparser.Expression;
+import org.mariuszgromada.math.mxparser.License;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -52,6 +53,12 @@ public class SolvePuzzle extends AppCompatActivity {
     public static final String PUZZLE_INDEX = "atorch.statspuzzles.PUZZLE_INDEX";
     public static final String LEVEL = "atorch.statspuzzles.LEVEL";
     private static final int roundingScale = 4;
+
+    static {
+        // mXparser is used under its non-commercial license (this app is free, with no ads or in-app purchases).
+        // The full license text ships with the app in assets/mXparser-LICENSE.txt
+        License.iConfirmNonCommercialUse("Adrian Torchiana");
+    }
 
     // Displays puzzles one at a time
     private ViewPager2 puzzlePager;

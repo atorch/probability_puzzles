@@ -102,7 +102,7 @@ public class AnswerCheckerTest {
     @Test
     public void testIncorrectAnswer() {
         assertEquals(AnswerChecker.Result.INCORRECT, AnswerChecker.checkAnswer("1", "2"));
-	assertEquals(AnswerChecker.Result.INCORRECT, AnswerChecker.checkAnswer("0.50", "0.49"));
+        assertEquals(AnswerChecker.Result.INCORRECT, AnswerChecker.checkAnswer("0.50", "0.49"));
         // The user's answer is not close enough to be considered merely inaccurate.
         assertEquals(AnswerChecker.Result.INCORRECT, AnswerChecker.checkAnswer("1/3", "0.33"));
     }
