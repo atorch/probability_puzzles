@@ -31,6 +31,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 17
+
       - name: Set locale properties
         id: locale_props
         run: |
